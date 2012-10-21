@@ -1,9 +1,9 @@
 
 program t1
     implicit none
-    character(len = :), allocatable :: word, longWord
+    character(len = :), allocatable :: word
     character(len = 2054) :: inputWord
-    integer :: wordLength, inputSize, i, fromPoint, toPoint
+    integer :: wordLength, inputSize, i, j, k, point, rowNumber
 
     write (*,'(a)', advance = 'no') 'Anna koko: '
     read (*,*) inputSize
@@ -12,16 +12,18 @@ program t1
     wordLength = len_trim(inputWord)
     word = inputword(1:wordLength)
 
-    longWord = ''
-    do while (len(longWord) < (inputSize * inputSize))
-        longWord = longWord // word
-    end do
-
-    fromPoint = 1
-    toPoint = inputSize
+    point = 1
+    rowNumber = 1
     do i = 1, inputSize
-        write(*,'(a)') longWord(fromPoint:toPoint)
-        fromPoint = toPoint + 1
-        toPoint = toPoint + inputSize
+        do j = 1, inputSize
+            write(*,'(a)', advance = 'no') word(point:point)
+            point = point + inputSize
+            if (point > wordLength) then
+                point = point - wordLength
+            end if
+        end do
+        rowNumber = rowNumber + 1
+        point = rowNumber
+        write(*,'(a)')
     end do
 end program
