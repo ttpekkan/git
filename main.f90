@@ -15,7 +15,7 @@ program t1
     longWord = ''
     do while (len(longWord) < (inputSize * inputSize))
         longWord = longWord // word
-    enddo
+    end do
 
     fromPoint = 1
     toPoint = inputSize
@@ -23,5 +23,5 @@ program t1
         write(*,'(a)') longWord(fromPoint:toPoint)
         fromPoint = toPoint + 1
         toPoint = toPoint + inputSize
-    enddo
+    end do
 end program
