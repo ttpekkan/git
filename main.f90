@@ -1,9 +1,9 @@
 
-program t1
+program t2
     implicit none
     character(len = :), allocatable :: word
     character(len = 2054) :: inputWord
-    integer :: wordLength, inputSize, i, j, k, point, rowNumber
+    integer :: wordLength, inputSize, i, j, point, rowNumber
 
     write (*,'(a)', advance = 'no') 'Anna koko: '
     read (*,*) inputSize
