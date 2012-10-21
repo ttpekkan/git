@@ -19,10 +19,16 @@ program t2
             write(*,'(a)', advance = 'no') word(point:point)
             point = point + inputSize
             if (point > wordLength) then
-                point = point - wordLength
+                do while (point > wordLength)
+                    point = point - wordLength
+                end do
             end if
         end do
-        rowNumber = rowNumber + 1
+        if (rowNumber < wordLength) then
+            rowNumber = rowNumber + 1
+        else
+            rowNumber = 1
+        endif
         point = rowNumber
         write(*,'(a)')
     end do
