@@ -1,49 +1,48 @@
-
-program t4
+program t5
     implicit none
-    integer, dimension(:,:), allocatable :: numberArray
     integer :: squareSize, counter, i, j
 
     write(*,'(a)', advance = 'no') 'Anna koko: '
     read(*,*) squareSize
 
-    allocate(numberArray(squareSize, squareSize))
-
     do i = 1, squareSize
         if (mod(i,2) == 0) then
             counter = i**2
             do j = 1, i
-                numberArray(i,j) = counter
+                write(*,'(i5)', advance = 'no') counter
                 counter = counter - 1
             end do
-            counter = (i - 1)**2 + 1
-            do j = 1, i - 1
-                numberArray(j,i) = counter
-                counter = counter + 1
+            do j = 1 + i, squareSize
+                if (mod(j,2) /= 0) then
+                    counter = j**2 - i + 1
+                    write(*,'(i5)', advance = 'no') counter
+                    if (j < squareSize) then
+                        counter = counter + 2*i - 1
+                        write(*,'(i5)', advance = 'no') counter
+                    end if
+                end if
             end do
         else
             counter = (i - 1)**2 + 1
             do j = 1, i
-                numberArray(i,j) = counter
+                write(*,'(i5)', advance = 'no') counter
                 counter = counter + 1
             end do
-            counter = i**2
-            do j = 1, i - 1
-                numberArray(j,i) = counter
-                counter = counter - 1
+            counter = counter - 1
+            do j = i + 1, squareSize
+                if (mod(j,2) == 0) then
+                    counter = counter + 2*i - 1
+                    write(*,'(i5)', advance = 'no') counter
+                    if (j < squareSize) then
+                        counter = (j + 1)**2 - i + 1
+                        write(*,'(i5)', advance = 'no') counter
+                    end if
+                end if
             end do
         end if
-
-
+        write(*,*)
+        write(*,*)
     end do
 
-    do i = 1, squareSize
-        do j = 1, squareSize
-            write(*,'(i5)', advance = 'no') numberArray(i,j) !Isoilla luvuilla printtiä pitää vähän säätää.
-        end do
-         write(*,*)
-         write(*,*)
-    end do
 
 end program
-
