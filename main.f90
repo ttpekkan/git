@@ -12,7 +12,7 @@ program hello
     end do
     total = 0
 
-    call moveKnight(1, 1, 1, board, 0)
+    call moveKnight(1, 1, 0)
     write(*,*) total
 
 
@@ -27,7 +27,7 @@ recursive subroutine moveKnight(i, j, counter)
     board(i,j) = counter
     if(counter == 25) then
         total = total + 1
-        call printBoard(board)
+        call printBoard
     end if
 
     if(checkIfOutside(i+2, j+1) == -1) then
@@ -81,9 +81,10 @@ recursive subroutine moveKnight(i, j, counter)
     board(i,j) = 0
 end subroutine moveKnight
 
-subroutine printBoard(board)                !Kaikin puolin tyylikäs ratkaisu tulostukseen.
+subroutine printBoard !Kaikin puolin tyylikäs ratkaisu tulostukseen.
     integer :: i, j
     integer, dimension(5,5) :: board
+    common /a/ board
 
     do i = 1, 5
         do j = 1, 5
@@ -138,7 +139,7 @@ subroutine printBoard(board)                !Kaikin puolin tyylikäs ratkaisu tu
             else
                 write(*,'(a)', advance = 'no') 'Y'
             end if
-          !  write(*,'(i3)', advance = 'no') board(i,j)
+            ! write(*,'(i3)', advance = 'no') board(i,j)
         end do
         write(*,*)
     end do
@@ -155,5 +156,3 @@ function checkIfOutside(i, j) result(outside)
         outside = -1
     end if
 end function checkIfOutside
-
-
