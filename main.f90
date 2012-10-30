@@ -12,7 +12,7 @@ program hello
     end do
     total = 0
 
-    call moveKnight(1, 1, 1, board, 0)
+    call moveKnight(1, 1, 1, board)
     write(*,*) total
 
 
@@ -155,4 +155,3 @@ function checkIfOutside(i, j) result(outside)
         outside = -1
     end if
 end function checkIfOutside
-
