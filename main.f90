@@ -3,7 +3,7 @@ program hello
     implicit none
     integer, dimension(5,5) :: board
     integer :: i, j, total
-    common /a/ total
+    common /a/ total, board
 
     do i = 1, 5
         do j = 1, 5
@@ -12,78 +12,79 @@ program hello
     end do
     total = 0
 
-    call moveKnight(1, 1, 1, board)
+    call moveKnight(1, 1, 1)
     write(*,*) total
 
 
 end program
 
-recursive subroutine moveKnight(i, j, counter, board)
+recursive subroutine moveKnight(i, j, counter)
     implicit none
     integer :: i, j, counter, checkIfOutside, total
     integer, dimension(5,5) :: board
-    common /a/ total
+    common /a/ total, board
 
     board(i,j) = counter
     if(counter == 25) then
         total = total + 1
-        call printBoard(board)
+        call printBoard
     end if
 
     if(checkIfOutside(i+2, j+1) == -1) then
         if(board(i+2, j+1) == 0) then
-            call moveKnight(i+2, j+1, counter+1, board)
+            call moveKnight(i+2, j+1, counter+1)
         end if
     end if
 
     if(checkIfOutside(i+1, j+2) == -1) then
         if(board(i+1, j+2) == 0) then
-            call moveKnight(i+1, j+2, counter+1, board)
+            call moveKnight(i+1, j+2, counter+1)
         end if
     end if
 
     if(checkIfOutside(i-1, j+2) == -1) then
         if(board(i-1, j+2) == 0) then
-            call moveKnight(i-1, j+2, counter+1, board)
+            call moveKnight(i-1, j+2, counter+1)
         end if
     end if
 
     if(checkIfOutside(i-2, j+1) == -1) then
         if(board(i-2, j+1) == 0) then
-            call moveKnight(i-2, j+1, counter+1, board)
+            call moveKnight(i-2, j+1, counter+1)
         end if
     end if
 
     if(checkIfOutside(i-1, j-2) == -1) then
         if(board(i-1, j-2) == 0) then
-            call moveKnight(i-1, j-2, counter+1, board)
+            call moveKnight(i-1, j-2, counter+1)
         end if
     end if
 
     if(checkIfOutside(i+2, j-1) == -1) then
         if(board(i+2, j-1) == 0) then
-            call moveKnight(i+2, j-1, counter+1, board)
+            call moveKnight(i+2, j-1, counter+1)
         end if
     end if
 
     if(checkIfOutside(i+1, j-2) == -1) then
         if(board(i+1, j-2) == 0) then
-            call moveKnight(i+1, j-2, counter+1, board)
+            call moveKnight(i+1, j-2, counter+1)
         end if
     end if
 
     if(checkIfOutside(i-2, j-1) == -1) then
         if(board(i-2, j-1) == 0) then
-            call moveKnight(i-2, j-1, counter+1, board)
+            call moveKnight(i-2, j-1, counter+1)
         end if
     end if
 
     board(i,j) = 0
 end subroutine moveKnight
 
-subroutine printBoard(board) !Kaikin puolin tyylikäs ratkaisu tulostukseen.
+subroutine printBoard !Kaikin puolin tyylikäs ratkaisu tulostukseen.
     integer :: i, j
     integer, dimension(5,5) :: board
+    common /a/ board
 
     do i = 1, 5
         do j = 1, 5
