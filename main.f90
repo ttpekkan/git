@@ -1,158 +1,257 @@
 
-program hello
+program t10
     implicit none
-    integer, dimension(5,5) :: board
-    integer :: i, j, total
-    common /a/ total, board
+    character(len = 100):: calculation, removeEmptySpaces, letsDoSomeMaths !Vain sadan merkin pituisia laskuja
 
-    do i = 1, 5
-        do j = 1, 5
-            board(i,j) = 0
-        end do
-    end do
-    total = 0
-
-    call moveKnight(1, 1, 1)
-    write(*,*) total
-
-
+    write(*,'(a)', advance = 'no') 'Anna lasku: '
+    read(*,'(a)') calculation
+    calculation = removeEmptySpaces(calculation) !Inputissa saa siis olla tyhjää tilaa.
+    call checkSyntax(calculation)
+    calculation = letsDoSomeMaths(calculation)
+    write(*,*) 'Vastaus: ', calculation
 end program
 
-recursive subroutine moveKnight(i, j, counter)
-    implicit none
-    integer :: i, j, counter, checkIfOutside, total
-    integer, dimension(5,5) :: board
-    common /a/ total, board
 
-    board(i,j) = counter
-    if(counter == 25) then
-        total = total + 1
-        call printBoard
-    end if
 
-    if(checkIfOutside(i+2, j+1) == -1) then
-        if(board(i+2, j+1) == 0) then
-            call moveKnight(i+2, j+1, counter+1)
-        end if
-    end if
+recursive function letsDoSomeMaths(calculation) result(theResult)
+    character(len = 100):: calculation, theResult, removeEmptySpaces, letsDoSomeMoreMaths, currentCalculation
+    character(len = 6) :: operatorsAndBrackets
+    integer :: i, a, b
 
-    if(checkIfOutside(i+1, j+2) == -1) then
-        if(board(i+1, j+2) == 0) then
-            call moveKnight(i+1, j+2, counter+1)
-        end if
-    end if
-
-    if(checkIfOutside(i-1, j+2) == -1) then
-        if(board(i-1, j+2) == 0) then
-            call moveKnight(i-1, j+2, counter+1)
-        end if
-    end if
-
-    if(checkIfOutside(i-2, j+1) == -1) then
-        if(board(i-2, j+1) == 0) then
-            call moveKnight(i-2, j+1, counter+1)
-        end if
-    end if
-
-    if(checkIfOutside(i-1, j-2) == -1) then
-        if(board(i-1, j-2) == 0) then
-            call moveKnight(i-1, j-2, counter+1)
-        end if
-    end if
-
-    if(checkIfOutside(i+2, j-1) == -1) then
-        if(board(i+2, j-1) == 0) then
-            call moveKnight(i+2, j-1, counter+1)
-        end if
-    end if
-
-    if(checkIfOutside(i+1, j-2) == -1) then
-        if(board(i+1, j-2) == 0) then
-            call moveKnight(i+1, j-2, counter+1)
-        end if
-    end if
-
-    if(checkIfOutside(i-2, j-1) == -1) then
-        if(board(i-2, j-1) == 0) then
-            call moveKnight(i-2, j-1, counter+1)
-        end if
-    end if
-
-    board(i,j) = 0
-end subroutine moveKnight
-
-subroutine printBoard !Kaikin puolin tyylikäs ratkaisu tulostukseen.
-    integer :: i, j
-    integer, dimension(5,5) :: board
-    common /a/ board
-
-    do i = 1, 5
-        do j = 1, 5
-            if(board(i,j) == 1) then
-                write(*,'(a)', advance = 'no') 'A'
-            else if(board(i,j) == 2) then
-                write(*,'(a)', advance = 'no') 'B'
-            else if(board(i,j) == 3) then
-                write(*,'(a)', advance = 'no') 'C'
-            else if(board(i,j) == 4) then
-                write(*,'(a)', advance = 'no') 'D'
-            else if(board(i,j) == 5) then
-                write(*,'(a)', advance = 'no') 'E'
-            else if(board(i,j) == 6) then
-                write(*,'(a)', advance = 'no') 'F'
-            else if(board(i,j) == 7) then
-                write(*,'(a)', advance = 'no') 'G'
-            else if(board(i,j) == 8) then
-                write(*,'(a)', advance = 'no') 'H'
-            else if(board(i,j) == 9) then
-                write(*,'(a)', advance = 'no') 'I'
-            else if(board(i,j) == 10) then
-                write(*,'(a)', advance = 'no') 'J'
-            else if(board(i,j) == 11) then
-                write(*,'(a)', advance = 'no') 'K'
-            else if(board(i,j) == 12) then
-                write(*,'(a)', advance = 'no') 'L'
-            else if(board(i,j) == 13) then
-                write(*,'(a)', advance = 'no') 'M'
-            else if(board(i,j) == 14) then
-                write(*,'(a)', advance = 'no') 'N'
-            else if(board(i,j) == 15) then
-                write(*,'(a)', advance = 'no') 'O'
-            else if(board(i,j) == 16) then
-                write(*,'(a)', advance = 'no') 'P'
-            else if(board(i,j) == 17) then
-                write(*,'(a)', advance = 'no') 'Q'
-            else if(board(i,j) == 18) then
-                write(*,'(a)', advance = 'no') 'R'
-            else if(board(i,j) == 19) then
-                write(*,'(a)', advance = 'no') 'S'
-            else if(board(i,j) == 20) then
-                write(*,'(a)', advance = 'no') 'T'
-            else if(board(i,j) == 21) then
-                write(*,'(a)', advance = 'no') 'U'
-            else if(board(i,j) == 22) then
-                write(*,'(a)', advance = 'no') 'V'
-            else if(board(i,j) == 23) then
-                write(*,'(a)', advance = 'no') 'W'
-            else if(board(i,j) == 24) then
-                write(*,'(a)', advance = 'no') 'X'
-            else
-                write(*,'(a)', advance = 'no') 'Y'
+    operatorsAndBrackets = '+-*/()' !Tarkistaa onko operoitavaa enää.
+    do i = 1, len_trim(calculation)
+        do a = 1, 6
+            if(calculation(i:i) == operatorsAndBrackets(a:a)) then
+                if (i == 1 .and. calculation(i:i) == '-') then !Ensimmäinen merkki saa olla - vastauksessa.
+                    continue
+                else
+                    go to 999
+                end if
             end if
-            ! write(*,'(i3)', advance = 'no') board(i,j)
         end do
-        write(*,*)
     end do
-    write(*,*)
-    write(*,*)
-end subroutine printBoard
-
-function checkIfOutside(i, j) result(outside)
-    integer :: i, j, outside
-
-    if (i > 5 .or. i < 1 .or. j > 5 .or. j < 1) then
-        outside = 1
-    else
-        outside = -1
+    return
+    999 continue
+    a = 1
+    b = len_trim(theResult)
+    do i = 1, b
+        if(theResult(i:i) == '(') then
+            a = i
+        end if
+    end do
+    do i = a, len_trim(theResult)
+        if(theResult(i:i) == ')') then
+            b = i
+            exit
+        end if
+    end do
+    if(theResult(a:a) == '(') then
+        theResult(a:a) = ''
+        theResult(b:b) = ''
     end if
-end function checkIfOutside
+    currentCalculation = theResult(a:b)
+    theResult = trim(theResult(1:a-1)) // trim(letsDoSomeMoreMaths(currentCalculation)) // theResult(b+1:len_trim(theResult))
+    theResult = removeEmptySpaces(theResult)
+    theResult = letsDoSomeMaths(theResult)
+
+end function letsDoSomeMaths
+
+
+function letsDoSomeMoreMaths(calculation) result(theResult)
+    character(len = 100):: calculation, theResult, removeEmptySpaces
+    integer i, j, counter, startPoint
+    real*4, dimension(100) :: numberArray
+
+    counter = 1
+    startPoint = 1
+    theResult = removeEmptySpaces(calculation)
+    do i = 1, len_trim(theResult)
+        if(theResult(i:i) == '+' .or. theResult(i:i) == '/' .or. theResult(i:i) == '*' .or. theResult(i:i) == '-') then
+            read(theResult(startPoint:i-1),*) numberArray(counter) !numberArray(counter) = Double.parseDouble(theResu.......)
+            counter = counter + 1
+            startPoint = i + 1
+        end if
+    end do
+    read(theResult(startPoint:len_trim(theResult)),*) numberArray(counter)
+    call divideAndRule
+    call beProductive
+    call needSomeAdditionalHelp             !Tämä hoitaa vähennyksen myös.
+    if(numberArray(1) < 0.1 .and. numberArray(1) > -0.1) then
+        write(theResult,'(f0.15)') numberArray(1) !Ei printtaa mitään, vaan sama kun theResult = Double.toString(numberArray(i))
+    else if(numberArray(1) > 10000 .or. numberArray(1) < -10000) then
+        write(theResult,'(f30.2)') numberArray(1)
+    else                                          !Leikitään formaattien kanssa, ettei tule potenssimuotoa.
+        write(theResult,*)  numberArray(1)
+    end if
+
+contains
+
+    subroutine divideAndRule
+        counter = 1
+        do i = 1, len_trim(theResult)
+            if(theResult(i:i) == '/') then
+                numberArray(counter) = numberArray(counter) / numberArray(counter+1)
+                call organiseArray
+            else if(theResult(i:i) == '+' .or. theResult(i:i) == '*' .or. theResult(i:i) == '-') then
+                counter = counter + 1
+            end if
+        end do
+    end subroutine divideAndRule
+
+    subroutine beProductive
+        counter = 1
+        do i = 1, len_trim(theResult)
+            if(theResult(i:i) == '*') then
+                numberArray(counter) = numberArray(counter) * numberArray(counter+1)
+                call organiseArray
+            else if(theResult(i:i) == '+' .or. theResult(i:i) == '-') then
+                counter = counter + 1
+            end if
+        end do
+    end subroutine beProductive
+
+    subroutine needSomeAdditionalHelp
+        counter = 2
+        do i = 1, len_trim(theResult)
+            if(theResult(i:i) == '-') then
+                numberArray(counter) = -numberArray(counter)
+                counter = counter + 1
+            else if(theResult(i:i) == '+') then
+                counter = counter + 1
+            end if
+        end do
+        counter = 1
+        do i = 1, len_trim(theResult)
+            if(theResult(i:i) == '+' .or. theResult(i:i) == '-') then
+                numberArray(counter) = numberArray(counter) + numberArray(counter+1)
+                call organiseArray
+            end if
+        end do
+    end subroutine needSomeAdditionalHelp
+
+    subroutine organiseArray
+        do j = counter+1, len_trim(theResult)
+            numberArray(j) = numberArray(j+1)
+        end do
+    end subroutine organiseArray
+
+end function letsDoSomeMoreMaths
+
+function removeEmptySpaces(calculation) result(trimmedCalculation)
+    character(len = 100) :: calculation, trimmedCalculation
+    integer :: i
+
+    trimmedCalculation = ''
+    do i = 1, len_trim(calculation)
+        if(calculation(i:i) /= '') then
+            trimmedCalculation = trim(trimmedCalculation) // calculation(i:i)
+        end if
+    end do
+end function removeEmptySpaces
+
+
+!Tästä tuli melko ruma. Ei kyllä ehkä löydä kaikkia mahdollisia syntaksivirheitä,
+!mutta ehkä tavallisimmat kumminkin.
+
+subroutine checkSyntax(calculation)
+    character(len = 100) :: calculation
+    character(len = 17) :: allowedChars
+    integer :: i, j, bracketCounterA, bracketCounterB
+
+    allowedChars = '0123456789/+*-().'
+    bracketCounterA = 0
+    bracketCounterB = 0
+    do i = 1, len_trim(calculation)
+        if(calculation(i:i) == '(') then
+            bracketCounterA = bracketCounterA + 1
+            if(i > 1) then
+                do j = 11, 15
+                    if(calculation(i-1:i-1) == allowedChars(j:j)) then
+                        go to 888
+                    end if
+                end do
+                call synError('No operator before (-bracket                              ')
+                888 continue
+            end if
+            do j = 11, 14
+                if(calculation(i+1:i+1) == allowedChars(j:j)) then
+                    call synError('Operator right after (-bracket                        ')
+                end if
+            end do
+        else if(calculation(i:i) == ')') then
+            bracketCounterB = bracketCounterB + 1
+            if(bracketCounterA == 0 .and. bracketCounterB > 0) then
+                call synError('No (-bracket before )-bracket                             ')
+            end if
+        end if
+        do j = 1, 17
+            if (calculation(i:i) == allowedChars(j:j)) then
+                go to 999
+            end if
+        end do
+        call synError('Mysterious characters                                             ')
+        999 continue
+        if(calculation(i:i) == '+' .or. calculation(i:i) == '-' .or. calculation(i:i) == '*' .or. calculation(i:i) == '/') then
+            if(i == 1) then
+                call synError('First char was not a number or a bracket                  ')
+            end if
+            j = i - 1
+            if(calculation(j:j) == '+' .or. calculation(j:j) == '-' .or. calculation(j:j) == '*' .or. calculation(j:j) == '/') then
+                call synError ('operator after operator                                  ')
+            end if
+            j = i + 1
+            if(calculation(j:j) == '+' .or. calculation(j:j) == '-' .or. calculation(j:j) == '*' .or. calculation(j:j) == '/') then
+                call synError('operator after operator                                   ')
+            end if
+        end if
+    end do
+    if (bracketCounterA /= bracketCounterB) then
+        call synError('Bracket count does not match                                      ')
+    end if
+    do i = 1, len_trim(calculation)
+        if(calculation(i:i) == '(') then
+            do j = i, len_trim(calculation)
+                if(calculation(j:j) == ')') then
+                    go to 666
+                end if
+            end do
+            call synError('No )-bracket after (-bracket                                  ')
+        end if
+        666 continue
+    end do
+    do i = 1, len_trim(calculation)
+        if(calculation(i:i) == '.') then
+            do j = 1, 10
+                if(calculation(i+1:i+1) == allowedChars(j:j)) then
+                    go to 555
+                end if
+            end do
+            call synError('Need to have numbers around periods                            ')
+            555 continue
+            do j = 1, 10
+                if(calculation(i-1:i-1) == allowedChars(j:j)) then
+                    go to 444
+                end if
+            end do
+            call synError('Need to have numbers around periods                             ')
+            444 continue
+        end if
+    end do
+    do i = 1, 10
+        if(calculation(len_trim(calculation):len_trim(calculation)) == allowedChars(i:i)) then
+            go to 777
+        end if
+    end do
+    if(calculation(len_trim(calculation):len_trim(calculation)) == ')') then
+        go to 777
+    end if
+    call synError('Mysterious last character                                                ')
+    777 continue
+
+contains
+    subroutine synError(message)
+        character(len = 50) :: message
+        write(*,*) 'Check Syntax!  ', message
+        stop
+    end subroutine synError
+end subroutine checkSyntax
