@@ -31,13 +31,6 @@ contains
                     end do
                 end if
             end do
-            call printArray(50, 50)
-            write(*,*)
-            write(*,*)
-            write(*,*)
-            write(*,*)
-            write(*,*)
-            write(*,*)
         end do
     end subroutine fillArray
 
