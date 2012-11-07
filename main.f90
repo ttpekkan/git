@@ -1,70 +1,72 @@
 
-!Päätin etsiä A:n loppuvia sanoja. Z-loppuvia sanoja on tietysti
-!yhtä paljon, josta johtuu kahdella kertominen muutamassa kohdassa.
-!Ohjelma tuntuu toimivan kun pituus noin alle 150.
-
 program hello
     implicit none
-    integer :: length, lastChar, i, j
-    integer*16 :: findWordsEndingWithA, total, bigNumber
-    integer*16, dimension(10000, 26) :: array
-    common /a/ array
+    integer*16 :: row, column
+    integer, dimension(50, 50) :: array
 
-    write(*,'(a)', advance = 'no') 'Anna length: '
-    read(*,*) length
+    call fillArray
+    call printArray(50, 50)
 
-    if(length == 1) then
-        write(*,*) 'Sanoja: 26'
-        stop
-    else if(length <= 0) then
-        write(*,*) 'Sanoja: 0'
-        stop
-    end if
-    !total = 26*(2**(length-1))              Liian iso lasku isoilla luvuilla.
-    total = 2
-    do i = 1, length-2                       !Kiertotapa tehdä sama asia.
-        total = total * 2
-    end do
-    total = total*26                        !Max määrä vastauksia jos haaratumiselle ei rajotteita.
-    total = total - 2*(2**(length-2))       !Max määrästä vähenettyt tulokset, koska A haarautuu yhteen suuntaan.
-    do i = 2, length-1                      !Karsitaan max määrästä tuloksia kun löydetään haaroja, jotka loppuvat A:n
-        !total = total - 2*(findWordsEndingWithA(i, 1)*2**(length-1-i))     Sama ongelma, kikkailu taas loopin avulla.
-        bigNumber = 2
-        if(i < length-1) then
-            do j = 1, (length-2-i)
-                bigNumber = bigNumber * 2
+contains
+
+    subroutine fillArray
+        integer :: i, j, someNumber
+
+        do i = 1, 50
+            do j = 1, 50
+                someNumber = 0
+                if(i == j) then
+                    array(i,j) = 0
+                else if(i == 1) then
+                    array(1,j) = j-1
+                else if(j == 1) then
+                    array(i, 1) = i-1
+                else
+                    do
+                        if(checkRowAndColumn(i, j, someNumber) == -1) then
+                            array(i,j) = someNumber
+                            exit
+                        end if
+                        someNumber = someNumber + 1
+                    end do
+                end if
             end do
-        else
-            bigNumber = 1
-        end if
-        total = total - 2*(findWordsEndingWithA(i, 1)*bigNumber)
-    end do
-    write(*,*) 'Sanoja: ', total
+            call printArray(50, 50)
+            write(*,*)
+            write(*,*)
+            write(*,*)
+            write(*,*)
+            write(*,*)
+            write(*,*)
+        end do
+    end subroutine fillArray
+
+    function checkRowAndColumn(x,y, someNumber) result(exists)
+        integer :: x, y, exists, i, someNumber
+
+        do i = 1, y-1
+            if(array(x,i) == someNumber) then
+                exists = 1
+                return
+            end if
+        end do
+        do i = 1, x-1
+            if(array(i,y) == someNumber) then
+                exists = 1
+                return
+            end if
+        end do
+        exists = -1
+    end function checkRowAndColumn
+
+    subroutine printArray(x,y)
+        integer :: i, j, x, y
+        do i = 1, y
+            do j = 1, x
+                write(*,'(i3)', advance = 'no') array(i,j)
+            end do
+            write(*,*)
+        end do
+    end subroutine printArray
 end program
-
-recursive function findWordsEndingWithA(length, lastChar) result(total)
-    integer :: length, lastChar, i, j
-    integer*16 :: total
-    integer*16, dimension(10000, 26) :: array
-    common /a/ array
-
-    if(lastChar < 1 .or. lastChar > 26) then
-        total = 0
-        return
-    end if
-    if(length == 1) then
-        total = 1
-        return
-    end if
-    if(array(length, lastChar) /= 0) then
-        total = array(length, lastChar)
-        return
-    else
-        array(length, lastChar) = findWordsEndingWithA(length-1, lastChar-1) + findWordsEndingWithA(length-1, lastChar+1)
-        total = array(length, lastChar)
-        return
-    end if
-
-end function findWordsEndingWithA
-
 
