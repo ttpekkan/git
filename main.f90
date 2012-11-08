@@ -1,65 +1,42 @@
 
-program hello
+program t12
     implicit none
-    integer*16 :: row, column
-    integer, dimension(50, 50) :: array
+    integer*16 :: row, column, increment, columnCounter, rowCounter
+    integer :: x, y
+    integer*16, dimension(8,8) :: baseSquare, changingSquare
 
-    call fillArray
-    call printArray(50, 50)
+    baseSquare= reshape( (/ 0,1,2,3,4,5,6,7, 1,0,3,2,5,4,7,6, 2,3,0,1,6,7,4,5, 3,2,1,0,7,6,5,4, &
+        4,5,6,7,0,1,2,3, 5,4,7,6,1,0,3,2, 6,7,4,5,2,3,0,1, 7,6,5,4,3,2,1,0  /), (/ 8, 8 /) )
 
-contains
+    write(*,'(a)', advance = 'no') 'Anna rivi: '
+    read(*,*) row
+    write(*,'(a)', advance = 'no') 'Anna sarake: '
+    read(*,*) column
+    changingSquare = baseSquare
+    columnCounter = 0
+    rowCounter = 0
 
-    subroutine fillArray
-        integer :: i, j, someNumber
+    do while(row > changingSquare(1,8) .or. column > changingSquare(1,8))
+        changingSquare = 8*changingSquare
+    end do
 
-        do i = 1, 50
-            do j = 1, 50
-                someNumber = 0
-                if(i == j) then
-                    array(i,j) = 0
-                else if(i == 1) then
-                    array(1,j) = j-1
-                else if(j == 1) then
-                    array(i, 1) = i-1
-                else
-                    do
-                        if(checkRowAndColumn(i, j, someNumber) == -1) then
-                            array(i,j) = someNumber
-                            exit
-                        end if
-                        someNumber = someNumber + 1
-                    end do
-                end if
-            end do
+    increment = changingSquare(1,2)-changingSquare(1,1)
+    do while(increment /= 1)
+        x = 1
+        y = 1
+        do while(columnCounter + increment < column)
+            x = x + 1
+            columnCounter = columnCounter + increment
         end do
-    end subroutine fillArray
-
-    function checkRowAndColumn(x,y, someNumber) result(exists)
-        integer :: x, y, exists, i, someNumber
-
-        do i = 1, y-1
-            if(array(x,i) == someNumber) then
-                exists = 1
-                return
-            end if
+        do while(rowCounter + increment < row)
+            y = y + 1
+            rowCounter = rowCounter + increment
         end do
-        do i = 1, x-1
-            if(array(i,y) == someNumber) then
-                exists = 1
-                return
-            end if
-        end do
-        exists = -1
-    end function checkRowAndColumn
+        changingSquare = baseSquare*increment/8 + changingSquare(x,y)
+        increment = changingSquare(1,2)-changingSquare(1,1)
+    end do
 
-    subroutine printArray(x,y)
-        integer :: i, j, x, y
-        do i = 1, y
-            do j = 1, x
-                write(*,'(i3)', advance = 'no') array(i,j)
-            end do
-            write(*,*)
-        end do
-    end subroutine printArray
+    write(*,*) 'Luku: ', changingSquare(column-columnCounter, row-rowCounter)
+
 end program
 
