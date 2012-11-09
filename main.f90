@@ -8,7 +8,7 @@ program t13
     common/a/ array, primes
 
     primes = (/2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97/)
-    write(*,'(a)', advance = 'no') 'Anna inputNumber: '
+    write(*,'(a)', advance = 'no') 'Anna luku: '
     read(*,*) inputNumber
     total = 0
 
@@ -18,7 +18,7 @@ program t13
         end if
         total = total + sumOfPrimeSums((inputNumber-primes(i)))
     end do
-    write(*,*) total
+    write(*,*) 'Tulos: ', total
 
 end program
 
