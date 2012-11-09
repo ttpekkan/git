@@ -1,42 +1,49 @@
 
-program t12
+program t13
     implicit none
-    integer*16 :: row, column, increment, columnCounter, rowCounter
-    integer :: x, y
-    integer*16, dimension(8,8) :: baseSquare, changingSquare
+    integer, dimension(25) :: primes
+    integer*16, dimension(100) :: array
+    integer :: inputNumber, i
+    integer*16 :: total, sumOfPrimeSums
+    common/a/ array, primes
 
-    baseSquare= reshape( (/ 0,1,2,3,4,5,6,7, 1,0,3,2,5,4,7,6, 2,3,0,1,6,7,4,5, 3,2,1,0,7,6,5,4, &
-        4,5,6,7,0,1,2,3, 5,4,7,6,1,0,3,2, 6,7,4,5,2,3,0,1, 7,6,5,4,3,2,1,0  /), (/ 8, 8 /) )
+    primes = (/2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97/)
+    write(*,'(a)', advance = 'no') 'Anna inputNumber: '
+    read(*,*) inputNumber
+    total = 0
 
-    write(*,'(a)', advance = 'no') 'Anna rivi: '
-    read(*,*) row
-    write(*,'(a)', advance = 'no') 'Anna sarake: '
-    read(*,*) column
-    changingSquare = baseSquare
-    columnCounter = 0
-    rowCounter = 0
-
-    do while(row > changingSquare(1,8) .or. column > changingSquare(1,8))
-        changingSquare = 8*changingSquare
+    do i = 1, 25
+        if(primes(i) == inputNumber) then
+            cycle
+        end if
+        total = total + sumOfPrimeSums((inputNumber-primes(i)))
     end do
-
-    increment = changingSquare(1,2)-changingSquare(1,1)
-    do while(increment /= 1)
-        x = 1
-        y = 1
-        do while(columnCounter + increment < column)
-            x = x + 1
-            columnCounter = columnCounter + increment
-        end do
-        do while(rowCounter + increment < row)
-            y = y + 1
-            rowCounter = rowCounter + increment
-        end do
-        changingSquare = baseSquare*increment/8 + changingSquare(x,y)
-        increment = changingSquare(1,2)-changingSquare(1,1)
-    end do
-
-    write(*,*) 'Luku: ', changingSquare(column-columnCounter, row-rowCounter)
+    write(*,*) total
 
 end program
 
+recursive function sumOfPrimeSums(someNumber) result(total)
+    integer, dimension(25) :: primes
+    integer*16, dimension(100) :: array
+    integer :: someNumber, i
+    integer*16 :: total
+    common/a/ array, primes
+
+    total = 0
+    if(someNumber < 0) then
+        return
+    end if
+    if(someNumber == 0) then
+        total = 1
+        return
+    end if
+    if(array(someNumber) /= 0) then
+        total = array(someNumber)
+        return
+    end if
+    do i = 1, 25
+        array(someNumber) = array(someNumber) + sumOfPrimeSums((someNumber-primes(i)))
+    end do
+    total = array(someNumber)
+
+end function sumOfPrimeSums
