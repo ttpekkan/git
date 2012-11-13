@@ -18,7 +18,7 @@ program hello
         startChar = inputWord(i:i)
         call getSubstrings(startChar, location(i))
     end do
-    write(*,*) counter
+    write(*,*) counter-1
 
 end program
 
@@ -30,14 +30,8 @@ recursive subroutine getSubstrings(substring, point)
     integer :: point, i, counter
     common/a/ inputWord, counter
 
-    if(substring == inputWord) then
-        return
-    end if
     counter = counter + 1
-    write(*,*) substring
-    if(point == len_trim(inputWord)) then
-        return
-    end if
+   ! write(*,*) substring
     call uniqueChars(inputWord(point+1:len_trim(inputWord)), chars, location)
     do i = 1, 26
         if(chars(i) == '') then
