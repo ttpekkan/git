@@ -1,68 +1,39 @@
 
-program hello
+program t14
     implicit none
-    character(len = 100) :: inputWord, startChar
+    integer :: i, j
+    integer, dimension(26) :: lastLocationOfChar
+    integer*16, dimension(:), allocatable :: sumOfSubsets
     character(len = 1), dimension(26) :: chars
-    integer, dimension(26) :: location
-    integer :: i, counter
-    common/a/ inputWord, counter
+    character(len = 26) :: alphabet
+    character(len = 512) :: word
 
-    write(*,'(a)', advance = 'no') 'Anna merkkijono: '
-    read(*,*) inputWord
-
-    call uniqueChars(inputWord, chars, location)
-    do i = 1, 26
-        if(chars(i) == '') then
-            exit
-        end if
-        startChar = inputWord(i:i)
-        call getSubstrings(startChar, location(i))
-    end do
-    write(*,*) counter-1
-
-end program
-
-recursive subroutine getSubstrings(substring, point)
-    implicit none
-    character(len = 100) :: substring, inputWord, nextWord
-    character(len = 1), dimension(26) :: chars
-    integer, dimension(26) :: location
-    integer :: point, i, counter
-    common/a/ inputWord, counter
-
-    counter = counter + 1
-   ! write(*,*) substring
-    call uniqueChars(inputWord(point+1:len_trim(inputWord)), chars, location)
-    do i = 1, 26
-        if(chars(i) == '') then
-            exit
-        end if
-        nextWord = trim(substring) // chars(i)
-        call getSubstrings(nextWord, location(i)+point)
-    end do
-
-end subroutine getSubstrings
-
-subroutine uniqueChars(someString, chars, location)
-    character(len = 100), intent(in) :: someString
-    character(len = 1), dimension(26), intent(out) :: chars
-    integer, dimension(26), intent(out) :: location
-    integer :: i, j, counter
-
-    counter = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    write(*,'(a)', advance = 'no') 'Anna Merkkijono: '
+    read(*,*) word
+    allocate(sumOfSubsets(len_trim(word)+1))
     chars = ''
-    location = 0
-    do i = 1, len_trim(someString)
-        do j = 1, counter
-            if(someString(i:i) == chars(j)) then
-                goto 999
+
+    sumOfSubsets(1) = 1
+    do i = 1, len_trim(word)
+        sumOfSubsets(i+1) = 2*sumOfSubsets(i)
+        do j = 1, 26
+            if(chars(j) == word(i:i)) then
+                sumOfSubsets(i+1) = sumOfSubsets(i+1) - sumOfSubsets(lastLocationOfChar(j))
+                exit
             end if
         end do
-        counter = counter + 1
-        chars(counter) = someString(i:i)
-        location(counter) = i
-        999 continue
+        do j = 1, 26
+            if(alphabet(j:j) == word(i:i)) then
+                lastLocationOfChar(j) = i
+                chars(j) = word(i:i)
+                exit
+            end if
+        end do
     end do
-end subroutine uniqueChars
+    write(*,*) sumOfSubsets(len_trim(word)+1) - 2   !-2 koska tyhjä merkkijono ja itse sana eivät ilmeisesti ole alijonoja.
+end program
+
+
 
 
