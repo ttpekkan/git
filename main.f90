@@ -1,39 +1,58 @@
 
-program t14
+program t15
+    use big_integer_module
     implicit none
-    integer :: i, j
-    integer, dimension(26) :: lastLocationOfChar
-    integer*16, dimension(:), allocatable :: sumOfSubsets
-    character(len = 1), dimension(26) :: chars
-    character(len = 26) :: alphabet
-    character(len = 512) :: word
+    integer :: checkDigitSum, expo , counter
+    type(big_integer) :: num, limit
+    common/a/ counter
 
-    alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    write(*,'(a)', advance = 'no') 'Anna Merkkijono: '
-    read(*,*) word
-    allocate(sumOfSubsets(len_trim(word)+1))
-    chars = ''
-
-    sumOfSubsets(1) = 1
-    do i = 1, len_trim(word)
-        sumOfSubsets(i+1) = 2*sumOfSubsets(i)
-        do j = 1, 26
-            if(chars(j) == word(i:i)) then
-                sumOfSubsets(i+1) = sumOfSubsets(i+1) - sumOfSubsets(lastLocationOfChar(j))
-                exit
+    counter = 1
+    write(*,'(a)') '1. 1**1'
+    write(*,'(a)') '1'
+    write(*,*)
+    num = '2'
+    limit = '10'
+    limit = limit**50
+ !   do while(num**2 < limit)  Tämä oli aivan liian hidas. Tuo num < 1000 on aika pitkälle hatusta vedetty.
+    do while(num < 1000)       !Isommat num-arvot tuntuvat tarvitsevan koko ajan isompia eksponentin arvoja,
+        expo = 1               !jotta sopivia numeroita löytyisi. En kyllä tiedä miksi.
+        do while(num**expo < limit)
+            if(checkDigitSum(expo, num**expo) == 1) then
+                counter = counter + 1
+                write(*,*)
             end if
+            expo = expo + 1
         end do
-        do j = 1, 26
-            if(alphabet(j:j) == word(i:i)) then
-                lastLocationOfChar(j) = i
-                chars(j) = word(i:i)
-                exit
-            end if
-        end do
+        num = num + 1
     end do
-    write(*,*) sumOfSubsets(len_trim(word)+1) - 2   !-2 koska tyhjä merkkijono ja itse sana eivät ilmeisesti ole alijonoja.
 end program
 
+function checkDigitSum(power, givenNumber) result(isValid)
+    use big_integer_module
+    integer :: power, isValid, i, counter
+    type(big_integer) :: givenNumber, tempNum, nextDigit
+    character(len = 50) :: charNum, intToChar
+    common/a/ counter
 
-
-
+    charNum = givenNumber
+    tempNum = '0'
+    do i = 1, len_trim(charNum)
+        nextDigit = charNum(i:i)
+        tempNum = tempNum + nextDigit
+    end do
+    if(tempNum**power == givenNumber) then
+        write(intToChar,*) counter
+        write(*,'(a)', advance = 'no') trim(adjustl(intToChar))
+        write(*,'(a)', advance = 'no') '. '
+        call print_big(tempNum)
+        write(*,'(a)', advance = 'no') '**'
+        write(intToChar,*) power
+        write(*,'(a)', advance = 'no') trim(adjustl(intToChar))
+        write(*,*)
+        call print_big(givenNumber)
+        write(*,*)
+        isValid = 1
+    else
+        isValid = -1
+    end if
+end function checkDigitSum
