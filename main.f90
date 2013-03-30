@@ -2,8 +2,7 @@
 program f4
     implicit none
 
-    real*8 :: interval, minSpeed
-    real*8 :: earthMass, moonMass, gravitationalConstant, endPoint, earthMoonDistance, moonRadius, earthRadius, KarmanLine
+    real*8 :: interval, earthMass, moonMass, gravitationalConstant, endPoint, earthMoonDistance, moonRadius, earthRadius, KarmanLine
 
     gravitationalConstant = 6.67259e-11
     moonMass = 7.348e22
