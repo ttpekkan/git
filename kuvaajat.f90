@@ -1,5 +1,5 @@
 program Q5
-    real :: I, U, P, n, H,G, e
+    real*8 :: I, U, P, n, H,G, e
 
     e = 2.718281828
     I = 0.0
@@ -15,7 +15,7 @@ program Q5
         write(1,*) I, P
         write(2,*) I, H
         write(3,*) I, G
-        I = I + 0.0001
+        I = I + 0.00001
         U = (0.00026/I) -17.10548*I -1.8364e-32 * e**(450*I) + 3.31826
         P = U*I
         n = 6.90538e-6 - 2.05912e-5 * I
