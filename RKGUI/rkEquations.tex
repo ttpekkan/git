@@ -1,0 +1,91 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[dvips]{color}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[dvips]{graphics}
+\usepackage{epsfig}
+\usepackage{verbatim}
+\usepackage[T1]{fontenc}
+\usepackage{cancel}
+\usepackage[utf8]{inputenc}
+\pagestyle{plain}
+\begin{document}
+
+\begin{center}
+\begin{huge}
+Relevant Equations for Raimo's Apparatus
+\end{huge}
+\end{center}
+Take the reaction: 
+\begin{equation*}
+Pr + O_2 \rightarrow X
+\end{equation*}
+The molar flow for oxygen is calculated by 
+\begin{eqnarray*}
+\frac{dn_{O_2}}{dt} = F_{O_2} = \frac{\Delta p \cdot V}{RT_{room} \cdot \Delta t} \:\:\:, 
+\end{eqnarray*}
+where $R$ is the gas constant. For helium (this obviously contains the small amount of precursor too) the molar flow is 
+\begin{eqnarray*}
+\frac{dn_{He}}{dt} = F_{He} = \left( \frac{1}{1 - \gamma} \right) \cdot \frac{p_{room} \cdot \Delta V}{RT_{room} \cdot \Delta t} \;\;\;,
+\end{eqnarray*}
+where $\gamma$ is the pinhole correction, calculated from $ \frac{F_{ph}}{F_{He} + F_{ph}} $. The total flow is obviously 
+\begin{equation*}
+F_{tot} = F_{O_2} + F_{He} \:, 
+\end{equation*}
+from which we can calculate the velocity in the beginning of the reactor: 
+\begin{eqnarray*}
+F_{tot} = \frac{p_1\;dV}{RT_{room}\;dt} = \frac{p_1\; dx \cdot A}{RT_{room}\;dt} &=& \frac{p_1\; v_1 \cdot \pi r^2}{RT_{room}} \\
+v_1 &=& \frac{F_{tot} \cdot RT_{room}}{p_1 \cdot \pi r^2}
+\end{eqnarray*}
+\\
+\\
+Calculating the helium viscosity in the first section of the reactor. We assume that the temperature is an average of the room temperature and the reactor temperature. We use the following empirical equation: 
+\begin{equation*}
+\eta = 5.023\cdot 10^{-7} \cdot \left( \frac{T_{room} + T_2}{2} \right)^{0.647} 
+\end{equation*}
+The units are $Pa \cdot s$. Now we can calculate the pressure drop to the Hagen–Poiseuille equation (Kaufman's paper). 
+\\
+\\
+For the first section $0 \rightarrow L_1$ (again we assume the average temperature): 
+\begin{equation*}
+p_2 = \left( {p_1}^2 - \frac{16\:F_{tot} \: L_1 \: \eta \: R\frac{T_{room} + T_2}{2}}{\pi r^4} \right)^{1/2}
+\end{equation*}
+$r$ is the reactor radius. 
+\\
+\\
+This expression could be simplified to 
+\begin{eqnarray*}
+p_2 &=& p_1\left(  1 - \frac{16\:F_{tot} \: L_1 \: \eta \: R\frac{T_{room} + T_2}{2}}{p_1^2 \: \pi r^4} \right)^{1/2} \\
+p_2 &\approx & p_1 \left( 1 - \frac{8\:\frac{p_1\; v_1 \cdot \pi r^2}{R \frac{T_{room} + T_2}{2} } \: L_1 \; \eta \: R\frac{T_{room} + T_2}{2}}{p_1^2 \: \pi r^4} \right) \\
+p_2 &\approx & p_1 - \frac{8L_1 \: \eta \: v_1}{r^2} \;\;,
+\end{eqnarray*}
+but for coding purposes, one might as well use the exact formula. 
+\\
+\\
+For the next section $L_1 \rightarrow L_2$ we can assume the temperature is $T_2$, so the visocisity now is 
+\begin{equation*}
+\eta = 5.023\cdot 10^{-7} \cdot \left(T_2 \right)^{0.647}  \;\;. 
+\end{equation*}
+We get the pressure drop for this section exactly the same way as previously. 
+\begin{equation*}
+p_3 = \left( {p_2}^2 - \frac{16\:F_{tot} \: L_2 \: \eta \: RT_2}{\pi r^4} \right)^{1/2}
+\end{equation*}
+The gas speed at this point is calculated exactly the same way as previously, the parameters just have different values. 
+\begin{eqnarray*}
+v_3 = \frac{F_{tot} \cdot RT_2}{p_3 \cdot \pi r^2}
+\end{eqnarray*}
+\\
+\\
+The concentration of a substance can be calculated from the ideal gas law 
+\begin{equation*}
+\frac{n}{V} = \frac{p}{RT} = c. 
+\end{equation*}
+In the reactor, the molar flow remains constant and so does the ratio $ \frac{F_{O_2}}{F_{tot}}$, so the concentration for $O_2$ can be calculated from 
+\begin{equation*}
+c_{O_2} = \frac{F_{O_2}}{F_{tot}} \cdot \frac{p_3}{RT_2} \:. 
+\end{equation*}
+This is in $ \frac{mol}{m^3}$. To get to $ \frac{N}{cm^3}$, we multiply with $6.022 \cdot 10^{23} \cdot 10^{-6}\:\: \frac{m^3}{mol\;cm^3} $. 
+Torr to Pa conversion is $1\;Torr = 133.322\;Pa$. 
+\end{document}
