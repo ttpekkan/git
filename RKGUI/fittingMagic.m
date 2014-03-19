@@ -6,7 +6,8 @@ function fittingGUI
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Preliminary actions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    
    %This simply creates the figure, onto which everything will  be placed. 
-
+ 
+   clear; 
    set(0,'Units','Normalized');  
    ScreenResolution = get(0, 'Screensize'); 
    
@@ -21,6 +22,9 @@ function fittingGUI
    set(f, 'PaperOrientation', 'landscape'); 
    set(f, 'InvertHardCopy', 'off');
    set(f, 'PaperPositionMode', 'auto');
+   set(f, 'PaperUnits', 'centimeters'); 
+   set(f, 'PaperSize', [27.7, 19.5]) 
+   set(f, 'Paperposition', [0, 0, 27.7, 19.5]); 
    movegui(f, 'center');  
    
    background = axes('Parent', f); 
@@ -474,8 +478,7 @@ function fittingGUI
     function takeScreenshot(obj, event) 
         [file, path] = uiputfile('*.eps');  
         if(file ~= 0)
-            print(f, '-depsc' , '-tiff', strcat(path, file));  
-        
+            saveas(f, strcat(path, file), 'psc2');  
         else 
             display('You need to give a location.') 
         end  
@@ -483,7 +486,9 @@ function fittingGUI
 
     %Open print dialog.
     function printGUI(obj, event)
+        set(f, 'PaperPositionMode', 'manual');   
         printdlg(f); 
+        set(f, 'PaperPositionMode', 'auto');
     end 
     
     %Makes a fit to the graph, after "Make a Fit" has been pressed. 
@@ -512,8 +517,9 @@ function fittingGUI
         if(backgroundMax(1) <= theData(1,1))  
             display('The position of the white (background) line sucks')
             return;
-        end 
-        
+        end
+       
+          
         %Sums the y-values of the data up until the white vertical line and then takes the average. 
         for i = 1:size(theData,1) 
             if(backgroundMax(1) < theData(i,1))
@@ -527,7 +533,7 @@ function fittingGUI
         %Deletes a possible previous background signal and plots the new one. 
         delete(backgroundSignal);
         hold on 
-        backgroundSignal = plot([theData(1,1), backgroundMax(1)], [average, average], 'k', 'linewidth', 4); 
+        backgroundSignal = plot([theData(1,1), backgroundMax(1)], [average, average], 'k', 'linewidth', 3); 
         hold off 
         
         %Gets the initial guess for the fit parameters from the text fields and then evaluates the optimised parameters 
@@ -536,7 +542,11 @@ function fittingGUI
         [exponentialFitInterval] = takeInterval(xmin(1), xmax(1), theData); 
         outputParams = getExponentialFitParameters(exponentialFitInterval, initParams); 
         plotFittedExponential(exponentialFitInterval, outputParams(1), outputParams(3), outputParams(5));
+        
+        set(minLine, 'XData', [min(exponentialFitInterval(:,1)), min(exponentialFitInterval(:,1))]); 
+        set(maxLine, 'XData', [max(exponentialFitInterval(:,1)), max(exponentialFitInterval(:,1))]);
         set(backgroundLine, 'XData', [backgroundMax(1), backgroundMax(1)]);
+        
         changeOutputParams(outputParams);
     end 
     
@@ -586,7 +596,32 @@ function fittingGUI
         xmax = str2double(get(editxMax, 'String')); 
         ymin = str2double(get(edityMin, 'String')); 
         ymax = str2double(get(edityMax, 'String')); 
+        
+        tick = (xmax-xmin)/500.0; 
+        minLineX = get(minLine, 'XData'); 
+        maxLineX = get(maxLine, 'XData'); 
+        bgLineX = get(backgroundLine, 'XData'); 
         setLimits(xmin, xmax, ymin, ymax); 
+        if(size(exponentialFitInterval,1) > 0) 
+            set(minLine, 'XData', minLineX); 
+            set(maxLine, 'XData', maxLineX);
+            set(backgroundLine, 'XData', bgLineX);
+        end 
+        if(minLineX(1) > maxLineX(1)) 
+            set(minLine, 'XData', maxLineX); 
+            set(maxLine, 'Xdata', minLineX); 
+            minLineX = get(minLine, 'XData'); 
+            maxLineX = get(maxLine, 'XData'); 
+        end 
+        if(maxLineX(1) > xmax) 
+            set(maxLine, 'XData', [xmax-tick, xmax-tick]); 
+        end 
+        if(minLineX(1) < xmin) 
+            set(minLine, 'XData', [xmin+tick, xmin+tick]); 
+        end 
+        if(bgLineX(1) < xmin || bgLineX(1) > xmax) 
+            set(backgroundLine, 'XData', [xmin+tick, xmin+tick]); 
+        end
     end 
 
     %Gets the data from the textfields to send in for calculations. 
@@ -613,6 +648,66 @@ function fittingGUI
                 return; 
             end 
         end 
+        if(inputData(1) <= 0)
+            set(editTroom, 'String', '<= 0?!'); 
+            return;
+        end  
+        if(inputData(2) <= 0)
+            set(editProom, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(3) <= 0)
+            set(editFVol, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(4) <= 0)
+            set(editTime, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(5) >= 1 || inputData(5) < 0)
+            set(editProom, 'String', '< 0 or > 1?!'); 
+            return; 
+        end
+        if(inputData(6) <= 0)
+            set(editp1, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(7) <= 0)
+            set(editT2, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(8) <= 0)
+            set(editL1, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(9) <= 0)
+            set(editL2, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(10) <= 0)
+            set(editReacDia, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(11) <= 0)
+            set(editMVol, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(12) <= 0 || inputData(12) > 100.0)
+            set(editReacDil, 'String', '<=0 or >100% ?!'); 
+            return; 
+        end  
+        if(inputData(13) < 0)
+            set(editdP, 'String', '< 0 ?!'); 
+            return; 
+        elseif(inputData(13) == 0) 
+            set(editdt, 'String', '1.0');
+            inputData(14) = 1.0; 
+        end
+        if(inputData(14) <= 0)
+            set(editdt, 'String', '<= 0?!'); 
+            return; 
+        end  
+ 
         outputData = letsDoSomeMaths(inputData);  
         
         %Makes the results visible. 
@@ -698,15 +793,14 @@ function fittingGUI
         
         %Plot both the exponential and linear function. 
         hold on 
-        residual = plot(x, y2, 'linewidth', 4, 'Color', [0.6, 0.3, 0.3]); 
-        NLfit = plot(x, y1, 'b', 'linewidth', 4); 
+        residual = plot(x, y2, 'linewidth', 3, 'Color', [0.6, 0.3, 0.3]); 
+        NLfit = plot(x, y1, 'b', 'linewidth', 3); 
         residualPoints = plot(residualData(:,1), residualData(:,2), 'd', 'Color', [0.2, 0.5, 0.3]); 
         hold off 
         
         %Set new limits. 
-        setLimits(min(theData(:,1)), max(theData(:,1)), 1.2*min(residualData(:,2)), 1.1*max(theData(:,2)));
-        set(minLine, 'XData', [min(anInterval(:,1)), min(anInterval(:,1))]); 
-        set(maxLine, 'XData', [max(anInterval(:,1)), max(anInterval(:,1))]);
+        limits = xlim; 
+        setLimits(limits(1), limits(2), 1.2*min(residualData(:,2)), 1.1*max(theData(:,2)));
     end 
     
 
@@ -726,21 +820,33 @@ function fittingGUI
         set(editxMin, 'String', num2str(xmin)); 
         set(editxMax, 'String', num2str(xmax));
         set(edityMin, 'String', num2str(ymin));
-        set(edityMax, 'String', num2str(ymax));
-        
-        %Deletes the old vertical lines. 
-        set(minLine, 'XData', [], 'YData', []);
-        set(maxLine, 'XData', [], 'YData', []);
-        set(backgroundLine, 'XData', [], 'YData', []); 
+        set(edityMax, 'String', num2str(ymax))
        
-        %Adds the new vertical lines and makes them draggable. 
-        minLine = line([(xmax-xmin)*0.15+xmin, (xmax-xmin)*0.15+xmin], [ymin, ymax], 'Color', 'g', 'LineWidth', 4);
-        maxLine = line([(xmax-xmin)*0.9+xmin, (xmax-xmin)*0.9+xmin], [ymin, ymax], 'Color', 'g', 'LineWidth', 4);   
-        backgroundLine = line([(xmax-xmin)*0.05+xmin, (xmax-xmin)*0.05+xmin], [ymin, ymax], 'Color', 'w', 'LineWidth', 4);
+        createMinLine((xmax-xmin)*0.15+xmin, (xmax-xmin)*0.15+xmin, ymin, ymax); 
+        createMaxLine((xmax-xmin)*0.9+xmin, (xmax-xmin)*0.9+xmin, ymin, ymax); 
+        createBgLine((xmax-xmin)*0.05+xmin,  (xmax-xmin)*0.05+xmin, ymin, ymax); 
         draggable(minLine, 'h'); 
         draggable(maxLine, 'h');      
         draggable(backgroundLine, 'h'); 
     end
+
+    function createMinLine(xmin, xmax, ymin, ymax)  
+        set(minLine, 'XData', [], 'YData', []);
+        minLine = line([xmin, xmax], [ymin, ymax], 'Color', 'g', 'LineWidth', 3);
+        draggable(minLine, 'h'); 
+    end 
+
+    function createMaxLine(xmin, xmax, ymin, ymax) 
+        set(maxLine, 'XData', [], 'YData', []);
+        maxLine = line([xmin, xmax], [ymin, ymax], 'Color', 'g', 'LineWidth', 3);
+        draggable(maxLine, 'h'); 
+    end 
+
+    function createBgLine(xmin, xmax, ymin, ymax)  
+        set(backgroundLine, 'XData', [], 'YData', []);
+        backgroundLine = line([xmin, xmax], [ymin, ymax], 'Color', 'w', 'LineWidth', 3);
+        draggable(backgroundLine, 'h'); 
+    end 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

@@ -45,7 +45,7 @@ Calculating the helium viscosity in the first section of the reactor. We assume 
 \begin{equation*}
 \eta = 5.023\cdot 10^{-7} \cdot \left( \frac{T_{room} + T_2}{2} \right)^{0.647} 
 \end{equation*}
-The units are $Pa \cdot s$. Now we can calculate the pressure drop to the Hagen–Poiseuille equation (Kaufman's paper). 
+The units are $Pa \cdot s$. Now we can calculate the pressure drop due to the Hagen–Poiseuille equation (Kaufman's paper). 
 \\
 \\
 For the first section $0 \rightarrow L_1$ (again we assume the average temperature): 
@@ -64,7 +64,7 @@ p_2 &\approx & p_1 - \frac{8L_1 \: \eta \: v_1}{r^2} \;\;,
 but for coding purposes, one might as well use the exact formula. 
 \\
 \\
-For the next section $L_1 \rightarrow L_2$ we can assume the temperature is $T_2$, so the visocisity now is 
+For the next section $L_1 \rightarrow L_2$ we can assume the temperature is $T_2$, so the viscosity now is 
 \begin{equation*}
 \eta = 5.023\cdot 10^{-7} \cdot \left(T_2 \right)^{0.647}  \;\;. 
 \end{equation*}
