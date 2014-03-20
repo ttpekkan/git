@@ -12,7 +12,7 @@ function fittingGUI
    ScreenResolution = get(0, 'Screensize'); 
    
    %f is the "foundation" for the GUI 
-   
+  
    f = figure; 
    set(f, 'NumberTitle', 'off'); 
    set(f, 'Name', 'Raimo''s Magical Fitting Program'); 
@@ -40,70 +40,72 @@ function fittingGUI
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% This Section Creates the Text/Edit Components %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
    functionString = uicontrol('Parent', f); 
-   createText(functionString, 'text', [0.653, 0.87, 0.13, 0.03], 0.7, 'A + B*exp(-k*t)'); 
+   createText(functionString, 'text', [0.653, 0.88, 0.13, 0.03], 0.7, 'A + B*exp(-k*t)'); 
    
    initialCoefficientsString = uicontrol('Parent', f); 
-   createText(initialCoefficientsString, 'text', [0.653, 0.835, 0.13, 0.03], 0.7, 'Initial Guess');  
+   createText(initialCoefficientsString, 'text', [0.653, 0.845, 0.13, 0.03], 0.7, 'Initial Guess');  
    
    k0 = uicontrol('Parent', f); 
-   createText(k0, 'text', [0.653, 0.80, 0.03, 0.03], 0.7, 'k0');   
+   createText(k0, 'text', [0.653, 0.81, 0.03, 0.03], 0.7, 'k0');   
    
    A0 = uicontrol('Parent', f); 
-   createText(A0, 'text', [0.653, 0.77, 0.03, 0.03], 0.7, 'A0');  
+   createText(A0, 'text', [0.653, 0.78, 0.03, 0.03], 0.7, 'A0');  
    
    B0 = uicontrol('Parent', f); 
-   createText(B0, 'text', [0.653, 0.74, 0.03, 0.03], 0.7, 'B0');  
+   createText(B0, 'text', [0.653, 0.75, 0.03, 0.03], 0.7, 'B0');  
    
-   editk0 = uicontrol('Parent', f); 
-   createText(editk0, 'edit', [0.685, 0.80, 0.1, 0.03], 0.7, '50.0');   
-   
-   editA0 = uicontrol('Parent', f); 
-   createText(editA0, 'edit', [0.685, 0.77, 0.1, 0.03], 0.7, '15.0'); 
-   
-   editB0 = uicontrol('Parent', f); 
-   createText(editB0, 'edit', [0.685, 0.74, 0.1, 0.03], 0.7, '120.0'); 
-    
    outputCoefficientsString = uicontrol('Parent', f); 
-   createText(outputCoefficientsString, 'text', [0.653, 0.695, 0.13, 0.04], 0.8, 'Output');
+   createText(outputCoefficientsString, 'text', [0.653, 0.715, 0.13, 0.03], 0.8, 'Output');
    
    park = uicontrol('Parent', f); 
-   createText(park, 'text', [0.653, 0.645, 0.03, 0.05], 0.7, 'k');   
+   createText(park, 'text', [0.653, 0.665, 0.03, 0.05], 0.7, 'k');   
    
    pardk = uicontrol('Parent', f); 
-   createText(pardk, 'text', [0.653, 0.60, 0.03, 0.05], 0.6, 'dk');  
+   createText(pardk, 'text', [0.653, 0.62, 0.03, 0.05], 0.6, 'dk');  
    
    parA = uicontrol('Parent', f); 
-   createText(parA, 'text', [0.653, 0.58, 0.03, 0.03], 0.7, 'A');  
+   createText(parA, 'text', [0.653, 0.60, 0.03, 0.03], 0.7, 'A');  
    
    pardA = uicontrol('Parent', f); 
-   createText(pardA, 'text', [0.653, 0.55, 0.03, 0.03], 0.7, 'dA');   
+   createText(pardA, 'text', [0.653, 0.57, 0.03, 0.03], 0.7, 'dA');   
    
    parB = uicontrol('Parent', f); 
-   createText(parB, 'text', [0.653, 0.52, 0.03, 0.03], 0.7, 'B');  
+   createText(parB, 'text', [0.653, 0.54, 0.03, 0.03], 0.7, 'B');  
    
    pardB = uicontrol('Parent', f); 
-   createText(pardB, 'text', [0.653, 0.49, 0.03, 0.03], 0.7, 'dB'); 
+   createText(pardB, 'text', [0.653, 0.51, 0.03, 0.03], 0.7, 'dB'); 
+   
+   editk0 = uicontrol('Parent', f); 
+   createText(editk0, 'edit', [0.685, 0.81, 0.1, 0.03], 0.7, '50.0');   
+   
+   editA0 = uicontrol('Parent', f); 
+   createText(editA0, 'edit', [0.685, 0.78, 0.1, 0.03], 0.7, '15.0'); 
+   
+   editB0 = uicontrol('Parent', f); 
+   createText(editB0, 'edit', [0.685, 0.75, 0.1, 0.03], 0.7, '120.0');
    
    editk = uicontrol('Parent', f); 
-   createText(editk, 'text', [0.685, 0.643, 0.098, 0.05], 0.4, '1.0');   
+   createText(editk, 'text', [0.685, 0.663, 0.098, 0.05], 0.4, '1.0');   
    
    editdk = uicontrol('Parent', f); 
-   createText(editdk, 'text', [0.685, 0.6, 0.098, 0.05], 0.4, '1.0'); 
+   createText(editdk, 'text', [0.685, 0.62, 0.098, 0.05], 0.4, '1.0'); 
    
    editA = uicontrol('Parent', f); 
-   createText(editA, 'text', [0.685, 0.58, 0.098, 0.03], 0.65, '1.0'); 
+   createText(editA, 'text', [0.685, 0.60, 0.098, 0.03], 0.65, '1.0'); 
    
    editdA = uicontrol('Parent', f); 
-   createText(editdA, 'text', [0.685, 0.55, 0.098, 0.03], 0.65, '1.0'); 
+   createText(editdA, 'text', [0.685, 0.57, 0.098, 0.03], 0.65, '1.0'); 
    
    editB = uicontrol('Parent', f); 
-   createText(editB, 'text', [0.685, 0.52, 0.098, 0.03], 0.65, '1.0'); 
+   createText(editB, 'text', [0.685, 0.54, 0.098, 0.03], 0.65, '1.0'); 
    
    editdB = uicontrol('Parent', f); 
-   createText(editdB, 'text', [0.685, 0.49, 0.098, 0.03], 0.65, '1.0'); 
+   createText(editdB, 'text', [0.685, 0.51, 0.098, 0.03], 0.65, '1.0'); 
+   
    
    getPath = uicontrol('Parent', f); 
    createText(getPath, 'edit', [0.02, 0.91, 0.20, 0.03], 0.45, '/home/timo/');   
+   
    
    xMin = uicontrol('Parent', f); 
    createText(xMin, 'text', [0.05, 0.24, 0.03, 0.025], 0.6, 'xMin');   
@@ -129,89 +131,133 @@ function fittingGUI
    edityMax = uicontrol('Parent', f); 
    createText(edityMax, 'edit', [0.085, 0.15, 0.1, 0.025], 0.7, '1.0'); 
    
+   
    Troom = uicontrol('Parent', f); 
-   createText(Troom, 'text', [0.787, 0.96, 0.09, 0.025], 0.6, 'T(K)[room]'); 
+   createText(Troom, 'text', [0.787, 0.95, 0.07, 0.035], 0.45, 'T(K) [room]'); 
    
    Proom = uicontrol('Parent', f); 
-   createText(Proom, 'text', [0.787, 0.925, 0.09, 0.025], 0.6, 'P(Torr)[room]'); 
+   createText(Proom, 'text', [0.787, 0.91, 0.07, 0.035], 0.45, 'P(Torr) [room]'); 
    
    FVol = uicontrol('Parent', f); 
-   createText(FVol, 'text', [0.787, 0.89, 0.09, 0.025], 0.6, 'F-Volume(cm3)');
+   createText(FVol, 'text', [0.787, 0.87, 0.07, 0.035], 0.45, 'F-Volume (cm3)');
    
    time = uicontrol('Parent', f); 
-   createText(time, 'text', [0.787, 0.855, 0.09, 0.025], 0.6, 'Time(s)');
+   createText(time, 'text', [0.787, 0.83, 0.07, 0.035], 0.45, 'Time(s)');
    
    pinhole = uicontrol('Parent', f); 
-   createText(pinhole, 'text', [0.787, 0.82, 0.09, 0.025], 0.6, 'Pinhole corr.');
+   createText(pinhole, 'text', [0.787, 0.79, 0.07, 0.035], 0.45, 'Pinhole corr.');
    
    p1 = uicontrol('Parent', f); 
-   createText(p1, 'text', [0.787, 0.785, 0.09, 0.025], 0.6, 'P1(torr)');
+   createText(p1, 'text', [0.787, 0.75, 0.07, 0.035], 0.45, 'P1(torr)');
    
    T2 = uicontrol('Parent', f); 
-   createText(T2, 'text', [0.787, 0.75, 0.09, 0.025], 0.6, 'T2(K)');
+   createText(T2, 'text', [0.787, 0.71, 0.07, 0.035], 0.45, 'T2(K)');
    
    L1 = uicontrol('Parent', f); 
-   createText(L1, 'text', [0.787, 0.715, 0.09, 0.025], 0.6, 'L1(cm)');
+   createText(L1, 'text', [0.787, 0.67, 0.07, 0.035], 0.45, 'L1(cm)');
    
    L2 = uicontrol('Parent', f); 
-   createText(L2, 'text', [0.787, 0.68, 0.09, 0.025], 0.6, 'L2(cm)');
+   createText(L2, 'text', [0.787, 0.63, 0.07, 0.035], 0.45, 'L2(cm)');
    
    reacDia = uicontrol('Parent', f); 
-   createText(reacDia, 'text', [0.787, 0.645, 0.09, 0.025], 0.6, 'Reactor i.d.(cm)');
-   
-   editTroom = uicontrol('Parent', f); 
-   createText(editTroom, 'edit', [0.88, 0.96, 0.09, 0.025], 0.6, '298.15'); 
-   
-   editProom = uicontrol('Parent', f); 
-   createText(editProom, 'edit', [0.88, 0.925, 0.09, 0.025], 0.6, '760.0'); 
-   
-   editFVol = uicontrol('Parent', f); 
-   createText(editFVol, 'edit', [0.88, 0.89, 0.09, 0.025], 0.6, '40.0'); 
-   
-   editTime = uicontrol('Parent', f); 
-   createText(editTime, 'edit', [0.88, 0.855, 0.09, 0.025], 0.6, '12.95'); 
-   
-   editPinhole = uicontrol('Parent', f); 
-   createText(editPinhole, 'edit', [0.88, 0.82, 0.09, 0.025], 0.6, '0.020'); 
-   
-   editp1 = uicontrol('Parent', f); 
-   createText(editp1, 'edit', [0.88, 0.785, 0.09, 0.025], 0.6, '2.280'); 
-   
-   editT2 = uicontrol('Parent', f); 
-   createText(editT2, 'edit', [0.88, 0.75, 0.09, 0.025], 0.6, '298.15'); 
-   
-   editL1 = uicontrol('Parent', f); 
-   createText(editL1, 'edit', [0.88, 0.715, 0.09, 0.025], 0.6, '28.00');
-   
-   editL2 = uicontrol('Parent', f); 
-   createText(editL2, 'edit', [0.88, 0.68, 0.09, 0.025], 0.6, '20.00'); 
-   
-   editReacDia = uicontrol('Parent', f); 
-   createText(editReacDia, 'edit', [0.88, 0.645, 0.09, 0.025], 0.6, '1.70'); 
+   createText(reacDia, 'text', [0.787, 0.59, 0.07, 0.035], 0.45, 'Reactor i.d.(cm)');
    
    MVol = uicontrol('Parent', f); 
-   createText(MVol, 'text', [0.787, 0.61, 0.09, 0.025], 0.6, 'M-volume(cm3)');
+   createText(MVol, 'text', [0.787, 0.55, 0.07, 0.035], 0.45, 'M-volume (cm3)');
    
    reacDil = uicontrol('Parent', f); 
-   createText(reacDil, 'text', [0.787, 0.575, 0.09, 0.025], 0.5, 'Reac. Diluted to(%)');
+   createText(reacDil, 'text', [0.787, 0.51, 0.07, 0.035], 0.45, 'Reac. Diluted to(%)');
    
    dP = uicontrol('Parent', f); 
-   createText(dP, 'text', [0.787, 0.54, 0.09, 0.025], 0.6, 'dP(torr)');
+   createText(dP, 'text', [0.787, 0.47, 0.07, 0.035], 0.45, 'dP(torr)');
    
    dt = uicontrol('Parent', f); 
-   createText(dt, 'text', [0.787, 0.505, 0.09, 0.025], 0.6, 'dt(s)');
+   createText(dt, 'text', [0.787, 0.43, 0.07, 0.035], 0.45, 'dt(s)');
+   
+   editTroom = uicontrol('Parent', f); 
+   createText(editTroom, 'edit', [0.86, 0.95, 0.06, 0.035], 0.5, '298.15'); 
+   
+   editProom = uicontrol('Parent', f); 
+   createText(editProom, 'edit', [0.86, 0.91, 0.06, 0.035], 0.5, '760.0'); 
+   
+   editFVol = uicontrol('Parent', f); 
+   createText(editFVol, 'edit', [0.86, 0.87, 0.06, 0.035], 0.5, '40.0'); 
+   
+   editTime = uicontrol('Parent', f); 
+   createText(editTime, 'edit', [0.86, 0.83, 0.06, 0.035], 0.5, '12.95'); 
+   
+   editPinhole = uicontrol('Parent', f); 
+   createText(editPinhole, 'edit', [0.86, 0.79, 0.06, 0.035], 0.5, '0.020'); 
+   
+   editp1 = uicontrol('Parent', f); 
+   createText(editp1, 'edit', [0.86, 0.75, 0.06, 0.035], 0.5, '2.280'); 
+   
+   editT2 = uicontrol('Parent', f); 
+   createText(editT2, 'edit', [0.86, 0.71, 0.06, 0.035], 0.5, '298.15'); 
+   
+   editL1 = uicontrol('Parent', f); 
+   createText(editL1, 'edit', [0.86, 0.67, 0.06, 0.035], 0.5, '28.00');
+   
+   editL2 = uicontrol('Parent', f); 
+   createText(editL2, 'edit', [0.86, 0.63, 0.06, 0.035], 0.5, '20.00'); 
+   
+   editReacDia = uicontrol('Parent', f); 
+   createText(editReacDia, 'edit', [0.86, 0.59, 0.06, 0.035], 0.5, '1.70'); 
    
    editMVol = uicontrol('Parent', f); 
-   createText(editMVol, 'edit', [0.88, 0.61, 0.09, 0.025], 0.6, '56.1');
+   createText(editMVol, 'edit', [0.86, 0.55, 0.06, 0.035], 0.5, '56.1');
    
    editReacDil = uicontrol('Parent', f); 
-   createText(editReacDil, 'edit', [0.88, 0.575, 0.09, 0.025], 0.6, '16.98');
+   createText(editReacDil, 'edit', [0.86, 0.51, 0.06, 0.035], 0.5, '16.98');
    
    editdP = uicontrol('Parent', f); 
-   createText(editdP, 'edit', [0.88, 0.54, 0.09, 0.025], 0.6, '0.090');
+   createText(editdP, 'edit', [0.86, 0.47, 0.06, 0.035], 0.5, '0.090');
    
    editdt = uicontrol('Parent', f); 
-   createText(editdt, 'edit', [0.88, 0.505, 0.09, 0.025], 0.6, '13.10');
+   createText(editdt, 'edit', [0.86, 0.43, 0.06, 0.035], 0.5, '13.10');
+   
+   errTroom = uicontrol('Parent', f); 
+   createText(errTroom, 'edit', [0.925, 0.95, 0.06, 0.035], 0.5, '2'); 
+   
+   errProom = uicontrol('Parent', f); 
+   createText(errProom, 'edit', [0.925, 0.91, 0.06, 0.035], 0.5, '5'); 
+   
+   errFVol = uicontrol('Parent', f); 
+   createText(errFVol, 'edit', [0.925, 0.87, 0.06, 0.035], 0.5, '0'); 
+   
+   errTime = uicontrol('Parent', f); 
+   createText(errTime, 'edit', [0.925, 0.83, 0.06, 0.035], 0.5, '0.1'); 
+   
+   errPinhole = uicontrol('Parent', f); 
+   createText(errPinhole, 'edit', [0.925, 0.79, 0.06, 0.035], 0.5, '0.001'); 
+   
+   errp1 = uicontrol('Parent', f); 
+   createText(errp1, 'edit', [0.925, 0.75, 0.06, 0.035], 0.5, '0'); 
+   
+   errT2 = uicontrol('Parent', f); 
+   createText(errT2, 'edit', [0.925, 0.71, 0.06, 0.035], 0.5, '2'); 
+   
+   errL1 = uicontrol('Parent', f); 
+   createText(errL1, 'edit', [0.925, 0.67, 0.06, 0.035], 0.5, '0');
+   
+   errL2 = uicontrol('Parent', f); 
+   createText(errL2, 'edit', [0.925, 0.63, 0.06, 0.035], 0.5, '0'); 
+   
+   errReacDia = uicontrol('Parent', f); 
+   createText(errReacDia, 'edit', [0.925, 0.59, 0.06, 0.035], 0.5, '0'); 
+   
+   errMVol = uicontrol('Parent', f); 
+   createText(errMVol, 'edit', [0.925, 0.55, 0.06, 0.035], 0.5, '0');
+   
+   errReacDil = uicontrol('Parent', f); 
+   createText(errReacDil, 'edit', [0.925, 0.51, 0.06, 0.035], 0.5, '0.849');
+   
+   errdP = uicontrol('Parent', f); 
+   createText(errdP, 'edit', [0.925, 0.47, 0.06, 0.035], 0.5, '0');
+   
+   errdt = uicontrol('Parent', f); 
+   createText(errdt, 'edit', [0.925, 0.43, 0.06, 0.035], 0.5, '0.2');
+   
    
    SourceTrig = uicontrol('Parent', f); 
    createText(SourceTrig, 'text', [0.36, 0.96, 0.05, 0.035], 0.35, 'Source Of Triggering'); 
@@ -255,11 +301,13 @@ function fittingGUI
    editDwellTime = uicontrol('Parent', f); 
    createText(editDwellTime, 'text', [0.70, 0.92, 0.05, 0.035], 0.4, '-');
    
+   
    SignalAve = uicontrol('Parent', f); 
    createText(SignalAve, 'text', [0.27, 0.96, 0.06, 0.035], 0.35, 'Background Average');
    
    editSignalAve = uicontrol('Parent', f); 
    createText(editSignalAve, 'text', [0.27, 0.92, 0.06, 0.035], 0.5, '-');
+   
    
    ResParams = uicontrol('Parent', f); 
    createText(ResParams, 'text', [0.2, 0.20, 0.15, 0.03], 0.6, 'Residual Parameters');   
@@ -277,31 +325,44 @@ function fittingGUI
    createText(editTheGrad, 'text', [0.24, 0.13, 0.11, 0.03], 0.7, '-');
    
    editTheConst = uicontrol('Parent', f); 
-   createText(editTheConst, 'text', [0.24, 0.09, 0.11, 0.03], 0.7, '-');  
+   createText(editTheConst, 'text', [0.24, 0.09, 0.11, 0.03], 0.7, '-'); 
+   
    
    v1 = uicontrol('Parent', f); 
-   createText(v1, 'text', [0.76, 0.20, 0.1, 0.04], 0.6, 'v1(m/s)');
+   createText(v1, 'text', [0.57, 0.19, 0.1, 0.04], 0.6, 'v1(m/s)');
    
    p2 = uicontrol('Parent', f); 
-   createText(p2, 'text', [0.76, 0.15, 0.1, 0.04], 0.6, 'p2(Torr)');
+   createText(p2, 'text', [0.57, 0.14, 0.1, 0.04], 0.6, 'p2(Torr)');
    
    v2 = uicontrol('Parent', f); 
-   createText(v2, 'text', [0.76, 0.10, 0.1, 0.04], 0.6, 'v2(m/s)');
+   createText(v2, 'text', [0.57, 0.09, 0.1, 0.04], 0.6, 'v2(m/s)');
    
    Nreactant = uicontrol('Parent', f); 
-   createText(Nreactant, 'text', [0.76, 0.05, 0.1, 0.04], 0.39, 'Nreactant(#/cm3)');
+   createText(Nreactant, 'text', [0.57, 0.04, 0.1, 0.04], 0.39, 'Nreactant(#/cm3)');
    
    editv1 = uicontrol('Parent', f); 
-   createText(editv1, 'text', [0.87, 0.20, 0.12, 0.04], 0.485, '-');
+   createText(editv1, 'text', [0.68, 0.19, 0.12, 0.04], 0.485, '-');
    
    editp2 = uicontrol('Parent', f); 
-   createText(editp2, 'text', [0.87, 0.15, 0.12, 0.04], 0.485, '-');
+   createText(editp2, 'text', [0.68, 0.14, 0.12, 0.04], 0.485, '-');
    
    editv2 = uicontrol('Parent', f); 
-   createText(editv2, 'text', [0.87, 0.10, 0.12, 0.04], 0.485, '-');
+   createText(editv2, 'text', [0.68, 0.09, 0.12, 0.04], 0.485, '-');
    
    editNreactant = uicontrol('Parent', f); 
-   createText(editNreactant, 'text', [0.87, 0.05, 0.12, 0.04], 0.49, '-');
+   createText(editNreactant, 'text', [0.68, 0.04, 0.12, 0.04], 0.49, '-');
+   
+   errv1 = uicontrol('Parent', f); 
+   createText(errv1, 'text', [0.82, 0.19, 0.12, 0.04], 0.485, '-');
+   
+   errp2 = uicontrol('Parent', f); 
+   createText(errp2, 'text', [0.82, 0.14, 0.12, 0.04], 0.485, '-');
+   
+   errv2 = uicontrol('Parent', f); 
+   createText(errv2, 'text', [0.82, 0.09, 0.12, 0.04], 0.485, '-');
+   
+   errNreactant = uicontrol('Parent', f); 
+   createText(errNreactant, 'text', [0.82, 0.04, 0.12, 0.04], 0.49, '-');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% This Section Creates the Buttons %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -315,15 +376,19 @@ function fittingGUI
    set(SelectFileButton, 'Callback', @openFile);
    
    makeFitButton = uicontrol('Parent', f); 
-   createButton(makeFitButton, [0.653, 0.44, 0.13, 0.035], 0.6, 'Fit!'); 
+   createButton(makeFitButton, [0.653, 0.47, 0.13, 0.035], 0.6, 'Normal Fit!'); 
    set(makeFitButton, 'Callback', @makeFit); 
+   
+   makeWallFitButton = uicontrol('Parent', f); 
+   createButton(makeWallFitButton, [0.653, 0.425, 0.13, 0.035], 0.6, 'Wall Fit!'); 
+   set(makeWallFitButton, 'Callback', @wallFit);
    
    changeLimitsButton = uicontrol('Parent', f); 
    createButton(changeLimitsButton, [0.05, 0.11, 0.13, 0.035], 0.4, 'Change Graph Limits'); 
    set(changeLimitsButton, 'Callback', @changeLimits); 
    
    calculateButton = uicontrol('Parent', f); 
-   createButton(calculateButton, [0.85, 0.275, 0.13, 0.05], 0.4, 'Calculate!'); 
+   createButton(calculateButton, [0.81, 0.24, 0.13, 0.05], 0.4, 'Calculate!'); 
    set(calculateButton, 'Callback', @startToCalculate); 
    
    removePointButton = uicontrol('Parent', f); 
@@ -362,6 +427,7 @@ function fittingGUI
    minLine = [];
    maxLine = [];  
    backgroundLine = []; 
+   fitWall = -1; 
 
    %Make the GUI visible.
    set(f,'Visible','on')
@@ -442,9 +508,8 @@ function fittingGUI
             theData(i,1) = (i-1)*tempNumber*10^(-6) - 0.015; 
         end 
         
-        %Here we remove the point, which is caused by the laser pulse. It has a much higher value than the others. 
-        %Because there is only one of them, we can break the loop after we find it. 
-        for i = 2:numOfIntegers-1 
+        %Here we remove the points, which are caused by the laser pulse. They have a much higher value than the others. 
+        for i = 2:numOfIntegers-1   
             if(theData(i-1,2)*5 < theData(i,2) && theData(i+1,2)*5 < theData(i,2))
                 theData = removePoint(theData, theData(i,1), theData(i,2)); 
                 break;
@@ -476,7 +541,7 @@ function fittingGUI
 
     %Takes a screenshot of the gui. 
     function takeScreenshot(obj, event) 
-        [file, path] = uiputfile('*.eps');  
+        [file, path] = uiputfile('*.png');  
         if(file ~= 0)
             saveas(f, strcat(path, file), 'psc2');  
         else 
@@ -490,8 +555,15 @@ function fittingGUI
         printdlg(f); 
         set(f, 'PaperPositionMode', 'auto');
     end 
+
+    %Wall fit specifier. 
+    function wallFit(obj, event) 
+        fitWall = 1; 
+        makeFit; 
+        fitWall = -1; 
+    end 
     
-    %Makes a fit to the graph, after "Make a Fit" has been pressed. 
+    %Makes a fit to the graph, after "Fit" has been pressed. 
     function makeFit(obj, event) 
         if(isempty(theData) == 1) 
             display('No Data')
@@ -540,7 +612,12 @@ function fittingGUI
         %from which the exponential function is plotted. 
         getInitParams(); 
         [exponentialFitInterval] = takeInterval(xmin(1), xmax(1), theData); 
-        outputParams = getExponentialFitParameters(exponentialFitInterval, initParams); 
+        if(fitWall == -1) 
+            outputParams = getExponentialFitParameters(exponentialFitInterval, initParams); 
+        else
+            initParams(2) = average; 
+            outputParams = getWallFitParameters(exponentialFitInterval, initParams(1), initParams(2), initParams(3)); 
+        end 
         plotFittedExponential(exponentialFitInterval, outputParams(1), outputParams(3), outputParams(5));
         
         set(minLine, 'XData', [min(exponentialFitInterval(:,1)), min(exponentialFitInterval(:,1))]); 
@@ -627,6 +704,7 @@ function fittingGUI
     %Gets the data from the textfields to send in for calculations. 
     function startToCalculate(obj, event) 
         inputData = zeros(1,14); 
+        dataErrors = zeros(1,14);
         
         inputData(1) = str2double(get(editTroom, 'String'));
         inputData(2) = str2double(get(editProom, 'String'));
@@ -642,9 +720,34 @@ function fittingGUI
         inputData(12) = str2double(get(editReacDil, 'String'));
         inputData(13) = str2double(get(editdP, 'String'));
         inputData(14) = str2double(get(editdt, 'String'));
+        
+        dataErrors(1) = str2double(get(errTroom, 'String'));
+        dataErrors(2) = str2double(get(errProom, 'String'));
+        dataErrors(3) = str2double(get(errFVol, 'String'));
+        dataErrors(4) = str2double(get(errTime, 'String'));
+        dataErrors(5) = str2double(get(errPinhole, 'String'));
+        dataErrors(6) = str2double(get(errp1, 'String'));
+        dataErrors(7) = str2double(get(errT2, 'String'));
+        dataErrors(8) = str2double(get(errL1, 'String'));
+        dataErrors(9) = str2double(get(errL2, 'String'));
+        dataErrors(10) = str2double(get(errReacDia, 'String'));
+        dataErrors(11) = str2double(get(errMVol, 'String'));
+        dataErrors(12) = str2double(get(errReacDil, 'String'));
+        dataErrors(13) = str2double(get(errdP, 'String'));
+        dataErrors(14) = str2double(get(errdt, 'String'));
         for i = 1:14
             if(isnan(inputData(i)) == 1)
                 display('Check your parameters!'); 
+                return; 
+            end 
+            if(isnan(dataErrors(i)) == 1)
+                display('Check your errors!'); 
+                return; 
+            end 
+        end 
+        for i = 1:14 
+            if(dataErrors(i) < 0) 
+                display('Check your errors (negative?)!'); 
                 return; 
             end 
         end 
@@ -708,13 +811,17 @@ function fittingGUI
             return; 
         end  
  
-        outputData = letsDoSomeMaths(inputData);  
+        outputData = letsDoSomeMaths(inputData, dataErrors);  
         
         %Makes the results visible. 
         set(editv1, 'String', num2str(outputData(1))); 
-        set(editp2, 'String', num2str(outputData(2)));
-        set(editv2, 'String', num2str(outputData(3)));
-        set(editNreactant, 'String', num2str(outputData(4), '%E'));
+        set(errv1, 'String', num2str(outputData(2)));
+        set(editp2, 'String', num2str(outputData(3)));
+        set(errp2, 'String', num2str(outputData(4)));
+        set(editv2, 'String', num2str(outputData(5)));
+        set(errv2, 'String', num2str(outputData(6)));
+        set(editNreactant, 'String', num2str(outputData(7), '%E'));
+        set(errNreactant, 'String', num2str(outputData(8), '%E'));
     end 
 
     %Selects a data point and then deletes it. 
@@ -959,6 +1066,25 @@ end
         outputParams(6) = parameterErrors(3);
     end
     
+    %Fit parameters for wall rate 
+    function [outputParams] = getWallFitParameters(theData, k0, A0, B0) 
+        outputParams = zeros(1, 6); 
+        initParams = [k0, B0]; 
+        expFunc = @(params, x) A0 + params(2)*exp(-params(1)*x);
+        [parameters, Res, Jac, Cov, MSE] = nlinfit(theData(:,1), theData(:,2), expFunc, initParams); 
+        
+        %The errors for the parameters is calculated here
+        parameterErrors = sqrt(diag(Cov)); 
+        
+        %confidenceIntervals = nlparci(parameters, Res, 'cov', Cov)
+        outputParams(1) = parameters(1); 
+        outputParams(2) = parameterErrors(1); 
+        outputParams(3) = A0; 
+        outputParams(4) = 0; 
+        outputParams(5) = parameters(2); 
+        outputParams(6) = parameterErrors(2);
+    end
+    
     %Function to delete a data point from the data. 
     function [dataMatrix] = removePoint(inputMatrix, xval,  yval) 
         step = 0; 
@@ -973,10 +1099,11 @@ end
     end 
     
     %Lets do some maths! 
-    function [outputData] = letsDoSomeMaths(inputData)
+    function [outputData] = letsDoSomeMaths(inputData, errorData)
         
         %Let's see what we are working with. 
-        outputData = zeros(1,4); 
+        outputData = zeros(1,8); 
+        
         Troom  = inputData(1); 
         Proom  = inputData(2);
         FVolume  = inputData(3);
@@ -991,6 +1118,22 @@ end
         dilution  = inputData(12);
         dP  = inputData(13);
         dt  = inputData(14); 
+        
+        errTroom  = errorData(1); 
+        errProom  = errorData(2);
+        errFVolume  = errorData(3);
+        errTime  = errorData(4);
+        errPinholeCorr  = errorData(5);
+        errp1  = errorData(6);
+        errT2  = errorData(7);
+        errL1  = errorData(8);
+        errL2  = errorData(9);
+        errReactorDiameter  = errorData(10);
+        errMVolume  = errorData(11);
+        errDilution  = errorData(12);
+        errdP  = errorData(13);
+        errdt  = errorData(14); 
+        
         N = 6.02214129e23;
         R = 8.3144621; 
         
@@ -1000,39 +1143,106 @@ end
         Proom = 133.322368*Proom; 
         p1 = 133.3223684211*p1;   
         dP = 133.3223684211*dP; 
-        PinholeCorr = 1.0 / (1.0 - PinholeCorr);
         reactorRadius = reactorDiameter / 200.0;
         L1 = L1/100.0; 
         L2 = L2/100.0;
-        dilution = dilution/100.0;         
+        dilution = dilution/100.0;   
+        
+        errFVolume = errFVolume * 1.0e-6;
+        errMVolume = errMVolume * 1.0e-6;
+        errProom = 133.322368*errProom; 
+        errp1 = 133.3223684211*errp1;   
+        errdP = 133.3223684211*errdP; 
+        errReactorRadius = errReactorDiameter / 200.0;
+        errL1 = errL1/100.0; 
+        errL2 = errL2/100.0;
+        errDilution = errDilution/100.0;   
+
+        errPinholeCorr = sqrt((1/(1-PinholeCorr).^2).^2 * errPinholeCorr.^2); 
+        PinholeCorr = 1.0 / (1.0 - PinholeCorr);
         
         %Calculate the molar flows. Helium flow obviously includes the precursor flow. 
         %The flow in the beginning of the reactor is also calculated. 
         reactantFlow = (dP*MVolume)/(R*Troom*dt);
+        reactantFlowError = (MVolume/(R*Troom*dt)).^2 * errdP.^2 + ... 
+                            (dP/(R*Troom*dt)).^2 * errMVolume.^2 + ...
+                            ((-dP*MVolume)/(R*Troom.^2 *dt)).^2 * errTroom.^2 + ... 
+                            ((-dP*MVolume)/(R*Troom*dt.^2)).^2 * errdt.^2; 
+        reactantFlowError = sqrt(reactantFlowError); 
+                        
         heliumFlow = PinholeCorr*(Proom*FVolume)/(R*Troom*Time);
+        heliumFlowError = ((Proom*FVolume)/(R*Troom*Time)).^2 * errPinholeCorr.^2 + ... 
+                          ((PinholeCorr*FVolume)/(R*Troom*Time)).^2 * errProom.^2 + ...
+                          ((Proom*PinholeCorr)/(R*Troom*Time)).^2 * errFVolume.^2 + ...
+                          ((-PinholeCorr*Proom*FVolume)/(R*Troom.^2 *Time)).^2 * errTroom.^2 + ...
+                          ((-PinholeCorr*Proom*FVolume)/(R*Troom*Time.^2)).^2 * errTime.^2;
+        heliumFlowError = sqrt(heliumFlowError); 
+    
         totalFlow = reactantFlow + heliumFlow;
-        v1 = (totalFlow*R*Troom)/(p1*pi*reactorRadius.^2);
+        totalFlowError = sqrt(heliumFlowError.^2 + reactantFlowError.^2); 
         
-        %Calculate pressure drop due to the Hagen–Poiseuille equation in the first section. 
-        %We assume that the temperature in this section is the average of the reactor and room temperature. 
-        heliumViscosity = 5.023e-7 * ((Troom + T2)/2.0).^(0.647);  
-        p2 = sqrt(p1.^2 - (16*totalFlow*L1*heliumViscosity*R*0.5*(Troom+T2))/(reactorRadius.^4 * pi)); 
+        v1 = (totalFlow*R*Troom)/(p1*pi*reactorRadius.^2);
+        v1Error = ((R*Troom)/(p1*pi*reactorRadius.^2)).^2 * totalFlowError.^2 + ... 
+                  ((totalFlow*R)/(p1*pi*reactorRadius.^2)).^2 * errTroom.^2 + ...
+                  ((-totalFlow*R*Troom)/(p1.^2 *pi*reactorRadius.^2)).^2 * errp1.^2 + ...
+                  ((-2*totalFlow*R*Troom)/(p1*pi*reactorRadius.^3)).^2 * errReactorRadius.^2; 
+        v1Error = sqrt(v1Error); 
+        
+        %Calculate pressure drop due to the Hagen–Poiseuille equation in the first section.     
+        heliumViscosity = 5.023e-7 * Troom.^(0.647); 
+        heliumViscosityError = sqrt((0.647*5.023e-7 * Troom.^(-0.353)).^2 * errTroom.^2); 
+        
+        p2 = sqrt(p1.^2 - (16*totalFlow*L1*heliumViscosity*R*Troom)/(reactorRadius.^4 * pi)); 
+        p2Error = ((-8*L1*heliumViscosity*R*Troom)/(reactorRadius.^4 * pi * p2)).^2 * totalFlowError.^2 + ... 
+                  ((-8*totalFlow*heliumViscosity*R*Troom)/(reactorRadius.^4 * pi * p2)).^2 * errL1.^2 + ... 
+                  ((-8*totalFlow*L1*R*Troom)/(reactorRadius.^4 * pi * p2)).^2 * heliumViscosityError.^2 + ... 
+                  ((-8*totalFlow*L1*heliumViscosity*R)/(reactorRadius.^4 * pi * p2)).^2 * errTroom.^2 + ... 
+                  ((32*totalFlow*L1*heliumViscosity*R*Troom)/(reactorRadius.^5 * pi * p2)).^2 * errReactorRadius.^2 + ...
+                  (p1/p2).^2 * errp1.^2; 
+        p2Error = sqrt(p2Error); 
+        
         
         %Calculate the pressure drop in the second section. 
-        %Now we assume that the temperature is the reactor temperature. 
         heliumViscosity = 5.023e-7 * T2.^(0.647); 
+        heliumViscosityError = sqrt((0.647*5.023e-7 * T2.^(-0.353)).^2 * errT2.^2);
         p3 = sqrt(p2.^2 - (16*totalFlow*L2*heliumViscosity*R*T2)/(reactorRadius.^4 * pi)); 
+        p3Error = ((-8*L2*heliumViscosity*R*T2)/(reactorRadius.^4 * pi * p3)).^2 * totalFlowError.^2 + ... 
+                  ((-8*totalFlow*heliumViscosity*R*T2)/(reactorRadius.^4 * pi * p3)).^2 * errL2.^2 + ... 
+                  ((-8*totalFlow*L2*R*T2)/(reactorRadius.^4 * pi * p3)).^2 * heliumViscosityError.^2 + ... 
+                  ((-8*totalFlow*L2*heliumViscosity*R)/(reactorRadius.^4 * pi * p3)).^2 * errT2.^2 + ... 
+                  ((32*totalFlow*L2*heliumViscosity*R*T2)/(reactorRadius.^5 * pi * p3)).^2 * errReactorRadius.^2 + ...
+                  (p2/p3).^2 * p2Error.^2; 
+        p3Error = sqrt(p3Error); 
         
         %Calculate the final concetration, flow speed and pressure at the pinhole. 
         v2 = (totalFlow*R*T2)/(p3*pi*reactorRadius.^2); 
-        Nreactant = dilution * (reactantFlow*p3)/(totalFlow*R*T2) *(N*1.0e-6); %Ugly conversions back to non-SI units. 
+        v2Error = ((R*T2)/(p3*pi*reactorRadius.^2)).^2 * totalFlowError.^2 + ... 
+                  ((totalFlow*R)/(p1*pi*reactorRadius.^2)).^2 * errT2.^2 + ...
+                  ((-totalFlow*R*T2)/(p1.^2 *pi*reactorRadius.^2)).^2 * p3Error.^2 + ...
+                  ((-2*totalFlow*R*T2)/(p3*pi*reactorRadius.^3)).^2 * errReactorRadius.^2; 
+        v2Error = sqrt(v2Error); 
+        
+        %Ugly conversions back to non-SI units.
+        Nreactant = dilution * (reactantFlow*p3)/(totalFlow*R*T2) *(N*1.0e-6); 
+        NreactantError = ((reactantFlow*p3)/(totalFlow*R*T2) *(N*1.0e-6)).^2 * errDilution.^2 + ... 
+                         ((dilution*p3)/(totalFlow*R*T2) *(N*1.0e-6)).^2 * reactantFlowError.^2 + ... 
+                         ((reactantFlow*dilution)/(totalFlow*R*T2) *(N*1.0e-6)).^2 * p3Error.^2 + ... 
+                         ((-dilution*reactantFlow*p3)/(totalFlow.^2 *R*T2) *(N*1.0e-6)).^2 * totalFlowError.^2 + ... 
+                         ((-dilution*reactantFlow*p3)/(totalFlow*R*T2.^2) *(N*1.0e-6)).^2 * errT2.^2; 
+        NreactantError = sqrt(NreactantError); 
+      
         p3 = p3/133.3223684211; 
+        p3Error = p3Error/133.3223684211; 
         
         %Send back the calculated values. 
         outputData(1) = v1; 
-        outputData(2) = p3; 
-        outputData(3) = v2; 
-        outputData(4) = Nreactant;  
+        outputData(2) = v1Error; 
+        outputData(3) = p3; 
+        outputData(4) = p3Error;
+        outputData(5) = v2;
+        outputData(6) = v2Error; 
+        outputData(7) = Nreactant;
+        outputData(8) = NreactantError;  
     end 
     
     

@@ -43,22 +43,22 @@ v_1 &=& \frac{F_{tot} \cdot RT_{room}}{p_1 \cdot \pi r^2}
 \\
 Calculating the helium viscosity in the first section of the reactor. We assume that the temperature is an average of the room temperature and the reactor temperature. We use the following empirical equation: 
 \begin{equation*}
-\eta = 5.023\cdot 10^{-7} \cdot \left( \frac{T_{room} + T_2}{2} \right)^{0.647} 
+\eta = 5.023\cdot 10^{-7} \cdot \left( T_{room} \right)^{0.647} 
 \end{equation*}
 The units are $Pa \cdot s$. Now we can calculate the pressure drop due to the Hagen–Poiseuille equation (Kaufman's paper). 
 \\
 \\
 For the first section $0 \rightarrow L_1$ (again we assume the average temperature): 
 \begin{equation*}
-p_2 = \left( {p_1}^2 - \frac{16\:F_{tot} \: L_1 \: \eta \: R\frac{T_{room} + T_2}{2}}{\pi r^4} \right)^{1/2}
+p_2 = \left( {p_1}^2 - \frac{16\:F_{tot} \: L_1 \: \eta \: RT_{room}}{\pi r^4} \right)^{1/2}
 \end{equation*}
 $r$ is the reactor radius. 
 \\
 \\
 This expression could be simplified to 
 \begin{eqnarray*}
-p_2 &=& p_1\left(  1 - \frac{16\:F_{tot} \: L_1 \: \eta \: R\frac{T_{room} + T_2}{2}}{p_1^2 \: \pi r^4} \right)^{1/2} \\
-p_2 &\approx & p_1 \left( 1 - \frac{8\:\frac{p_1\; v_1 \cdot \pi r^2}{R \frac{T_{room} + T_2}{2} } \: L_1 \; \eta \: R\frac{T_{room} + T_2}{2}}{p_1^2 \: \pi r^4} \right) \\
+p_2 &=& p_1\left(  1 - \frac{16\:F_{tot} \: L_1 \: \eta \: R T_{room} }{p_1^2 \: \pi r^4} \right)^{1/2} \\
+p_2 &\approx & p_1 \left( 1 - \frac{8\:\frac{p_1\; v_1 \cdot \pi r^2}{R T_{room}  } \: L_1 \; \eta \: RT_{room}}{p_1^2 \: \pi r^4} \right) \\
 p_2 &\approx & p_1 - \frac{8L_1 \: \eta \: v_1}{r^2} \;\;,
 \end{eqnarray*}
 but for coding purposes, one might as well use the exact formula. 

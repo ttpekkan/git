@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2013.4.2)  15 MAR 2014 15:06
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2013.4.2)  20 MAR 2014 00:19
 entering extended mode
  %&-line parsing enabled.
 **rkEquations.tex
@@ -412,8 +412,7 @@ Now handling font encoding U ...
    defining Unicode char U+2026 (decimal 8230)
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
-))
-No file rkEquations.aux.
+)) (./rkEquations.aux)
 \openout1 = `rkEquations.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
@@ -429,6 +428,7 @@ LaTeX Font Info:    ... okay on input line 14.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
 LaTeX Font Info:    Try loading font information for U+msa on input line 22.
+
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
@@ -451,26 +451,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 54--59
 
  []
 
-[1
 
-]
 Underfull \hbox (badness 10000) in paragraph at lines 63--68
 
  []
 
+[1
 
+]
 Underfull \hbox (badness 10000) in paragraph at lines 78--82
 
  []
 
 [2] (./rkEquations.aux) ) 
 Here is how much of TeX's memory you used:
- 2166 strings out of 495047
- 24626 string characters out of 1181990
+ 2168 strings out of 495047
+ 24658 string characters out of 1181990
  78054 words of memory out of 3000000
  5336 multiletter control sequences out of 15000+50000
  6874 words of font info for 24 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 30i,10n,22p,227b,141s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,9n,22p,227b,143s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on rkEquations.dvi (2 pages, 6792 bytes).
+Output written on rkEquations.dvi (2 pages, 6464 bytes).
