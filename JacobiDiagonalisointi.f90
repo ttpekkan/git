@@ -14,14 +14,14 @@ program kkLabra
     allocate(muunnosMatriisi(2*m+1,2*m+1))
 
     iteraatiot = 0
-    hamiltoninMatriisi = 0
+    hamiltoninMatriisi = 0.0d0
     do i = -m, m
         do j = -m, i
             if(i == j) then
-                hamiltoninMatriisi(i+1+m,j+1+m) = j**2 * 27.65 + V/2
+                hamiltoninMatriisi(i+1+m,j+1+m) = j**2 * 27.65d0 + V/2
             else if(j-i == -3) then
-                hamiltoninMatriisi(i+1+m,j+1+m) = -V/4
-                hamiltoninMatriisi(j+1+m,i+1+m) = -V/4
+                hamiltoninMatriisi(i+1+m,j+1+m) = -V/4.0d0
+                hamiltoninMatriisi(j+1+m,i+1+m) = -V/4.0d0
             end if
         end do
     end do
@@ -38,7 +38,7 @@ contains
         real*8 :: kulma, isoin, a, b
         integer :: i, j, x, y
 
-        muunnosMatriisi= 0
+        muunnosMatriisi= 0.0d0
         isoin = 0.0d0
         do i = 2, size(hamiltoninMatriisi,1)
             do j = 1, i-1
@@ -51,6 +51,7 @@ contains
                 end if
             end do
         end do
+        write(*,*) abs(isoin)
         if(abs(isoin) < 1.0d-15) then
             write(*,*) 'Supistui!'
             write(*,*) 'Iteraatiot: ', iteraatiot
@@ -60,9 +61,9 @@ contains
             stop
         end if
 
-        kulma = datan(2*isoin/(b-a))
+        kulma = datan(2.0d0 *isoin/(b-a))
         kulma = kulma/2.0d0
-        muunnosMatriisi= 0
+        muunnosMatriisi= 0.0d0
         do i = 1, size(hamiltoninMatriisi,1)
             muunnosMatriisi(i,i) = 1.0d0
         end do
