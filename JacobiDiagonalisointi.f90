@@ -51,7 +51,6 @@ contains
                 end if
             end do
         end do
-        write(*,*) abs(isoin)
         if(abs(isoin) < 1.0d-15) then
             write(*,*) 'Supistui!'
             write(*,*) 'Iteraatiot: ', iteraatiot
