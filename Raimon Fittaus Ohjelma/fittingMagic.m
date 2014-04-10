@@ -222,14 +222,14 @@ function fittingGUI
    ProomError = uicontrol('Parent', f); 
    createText(ProomError, 'edit', [0.925, 0.91, 0.06, 0.035], 0.5, '15.2'); 
    
-   errFVol = uicontrol('Parent', f); 
-   createText(errFVol, 'edit', [0.925, 0.87, 0.06, 0.035], 0.5, '0'); 
+   FVolError = uicontrol('Parent', f); 
+   createText(FVolError, 'edit', [0.925, 0.87, 0.06, 0.035], 0.5, '0'); 
    
    TimeError = uicontrol('Parent', f); 
    createText(TimeError, 'edit', [0.925, 0.83, 0.06, 0.035], 0.5, '0.2'); 
    
-   errPinhole = uicontrol('Parent', f); 
-   createText(errPinhole, 'edit', [0.925, 0.79, 0.06, 0.035], 0.5, '0.005'); 
+   PinholeError = uicontrol('Parent', f); 
+   createText(PinholeError, 'edit', [0.925, 0.79, 0.06, 0.035], 0.5, '0.005'); 
    
    pTotError = uicontrol('Parent', f); 
    createText(pTotError, 'edit', [0.925, 0.75, 0.06, 0.035], 0.5, '0.01'); 
@@ -243,14 +243,14 @@ function fittingGUI
    L2Error = uicontrol('Parent', f); 
    createText(L2Error, 'edit', [0.925, 0.63, 0.06, 0.035], 0.5, '0'); 
    
-   errReacDia = uicontrol('Parent', f); 
-   createText(errReacDia, 'edit', [0.925, 0.59, 0.06, 0.035], 0.5, '0'); 
+   ReacDiaError = uicontrol('Parent', f); 
+   createText(ReacDiaError, 'edit', [0.925, 0.59, 0.06, 0.035], 0.5, '0'); 
    
-   errMVol = uicontrol('Parent', f); 
-   createText(errMVol, 'edit', [0.925, 0.55, 0.06, 0.035], 0.5, '0');
+   MVolError = uicontrol('Parent', f); 
+   createText(MVolError, 'edit', [0.925, 0.55, 0.06, 0.035], 0.5, '0');
    
-   errReacDil = uicontrol('Parent', f); 
-   createText(errReacDil, 'edit', [0.925, 0.51, 0.06, 0.035], 0.5, '0.5065');
+   ReacDilError = uicontrol('Parent', f); 
+   createText(ReacDilError, 'edit', [0.925, 0.51, 0.06, 0.035], 0.5, '0.5065');
    
    dpError = uicontrol('Parent', f); 
    createText(dpError, 'edit', [0.925, 0.47, 0.06, 0.035], 0.5, '0');
@@ -373,8 +373,12 @@ function fittingGUI
    createText(NreactantError, 'text', [0.83, 0.04, 0.12, 0.035], 0.49, '-');
    
    
+   selectedCarrierGas = uicontrol('Parent', f); 
+   createText(selectedCarrierGas, 'text', [0.805, 0.39, 0.08, 0.035], 0.5, 'Carrier Gas:');
+   
    selectedReactant = uicontrol('Parent', f); 
-   createText(selectedReactant, 'text', [0.8, 0.37, 0.07, 0.035], 0.6, 'Reactant:');
+   createText(selectedReactant, 'text', [0.805, 0.35, 0.08, 0.035], 0.6, 'Reactant:')
+   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% This Section Creates the Buttons %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -419,16 +423,30 @@ function fittingGUI
    createButton(SSButton, [0.36, 0.015, 0.13, 0.05], 0.35, 'Take Screenshot'); 
    set(SSButton, 'Callback', @takeScreenshot);
    
+   
+   selectCarrierGas = uicontrol('Parent', f); 
+   set(selectCarrierGas, 'Style', 'popup'); 
+   set(selectCarrierGas, 'String', {'Helium', 'Nitrogen', 'Argon'}); 
+   set(selectCarrierGas, 'Units', 'Normalized', 'FontUnits', 'Normalized');
+   set(selectCarrierGas, 'Position', [0.89, 0.39, 0.09, 0.035]); 
+   set(selectCarrierGas, 'FontSize', 0.6); 
+   set(selectCarrierGas, 'BackgroundColor', [0.4, 0.0, 0.8]); 
+   set(selectCarrierGas, 'ForegroundColor', [0.2, 1, 1]); 
+   set(selectCarrierGas, 'SelectionHighlight', 'off');
+   set(selectCarrierGas, 'Callback', @carrierGasChange); 
+   
    selectReactant = uicontrol('Parent', f); 
    set(selectReactant, 'Style', 'popup'); 
    set(selectReactant, 'String', {'Other', 'Oxygen'}); 
    set(selectReactant, 'Units', 'Normalized', 'FontUnits', 'Normalized');
-   set(selectReactant, 'Position', [0.88, 0.37, 0.09, 0.035]); 
+   set(selectReactant, 'Position', [0.89, 0.35, 0.09, 0.035]); 
    set(selectReactant, 'FontSize', 0.6); 
    set(selectReactant, 'BackgroundColor', [0.4, 0.0, 0.8]); 
    set(selectReactant, 'ForegroundColor', [0.2, 1, 1]); 
    set(selectReactant, 'SelectionHighlight', 'off');
    set(selectReactant, 'Callback', @reactantChange); 
+   
+   
    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -452,6 +470,7 @@ function fittingGUI
    backgroundLine = []; 
    fitWall = -1; 
    reactant = 'Other';  
+   carrierGas = 'Helium'; 
    
    %Make the GUI visible.
    set(f,'Visible','on')
@@ -462,6 +481,21 @@ function fittingGUI
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Functions for listening and changing GUI-components %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
+    %The selected carrier gas may be useful in viscosity calculations. 
+    function carrierGasChange(obj, event) 
+        set(selectCarrierGas, 'Enable', 'off');
+        drawnow; 
+        set(selectCarrierGas, 'Enable', 'on');
+        selection = get(selectCarrierGas, 'Value'); 
+        if(selection == 1) 
+            carrierGas = 'Helium'; 
+        elseif(selection == 2) 
+            carrierGas = 'Nitrogen'; 
+        elseif(selection == 3) 
+            carrierGas = 'Argon'; 
+        end  
+    end 
+
     %The selected reactant may be useful in viscosity calculations. 
     function reactantChange(obj, event) 
         set(selectReactant, 'Enable', 'off');
@@ -760,16 +794,16 @@ function fittingGUI
         
         dataErrors(1) = str2double(get(TroomError, 'String'));
         dataErrors(2) = str2double(get(ProomError, 'String'));
-        dataErrors(3) = str2double(get(errFVol, 'String'));
+        dataErrors(3) = str2double(get(FVolError, 'String'));
         dataErrors(4) = str2double(get(TimeError, 'String'));
-        dataErrors(5) = str2double(get(errPinhole, 'String'));
+        dataErrors(5) = str2double(get(PinholeError, 'String'));
         dataErrors(6) = str2double(get(pTotError, 'String'));
         dataErrors(7) = str2double(get(T2Error, 'String'));
         dataErrors(8) = str2double(get(L1Error, 'String'));
         dataErrors(9) = str2double(get(L2Error, 'String'));
-        dataErrors(10) = str2double(get(errReacDia, 'String'));
-        dataErrors(11) = str2double(get(errMVol, 'String'));
-        dataErrors(12) = str2double(get(errReacDil, 'String'));
+        dataErrors(10) = str2double(get(ReacDiaError, 'String'));
+        dataErrors(11) = str2double(get(MVolError, 'String'));
+        dataErrors(12) = str2double(get(ReacDilError, 'String'));
         dataErrors(13) = str2double(get(dpError, 'String'));
         dataErrors(14) = str2double(get(dtError, 'String'));
         for i = 1:14
@@ -848,7 +882,7 @@ function fittingGUI
             return; 
         end  
  
-        outputData = letsDoSomeMaths(inputData, dataErrors, reactant);  
+        outputData = letsDoSomeMaths(inputData, dataErrors, carrierGas, reactant);  
         
         %Makes the results visible. 
         set(editp1, 'String', num2str(outputData(1))); 
@@ -1138,7 +1172,7 @@ end
     end 
     
     %Lets do some maths! 
-    function [outputData] = letsDoSomeMaths(inputData, errorData, reactant)
+    function [outputData] = letsDoSomeMaths(inputData, errorData, carrierGas, reactant)
         
         %Let's see what we are working with. 
         outputData = zeros(1,10); 
@@ -1148,7 +1182,7 @@ end
         FVolume  = inputData(3);
         Time  = inputData(4);
         PinholeCorrection  = inputData(5);
-        pHe  = inputData(6);
+        pCarrierGas  = inputData(6);
         T2  = inputData(7);
         L1  = inputData(8);
         L2  = inputData(9);
@@ -1163,7 +1197,7 @@ end
         FVolumeError  = errorData(3);
         TimeError  = errorData(4);
         PinholeCorrectionError  = errorData(5);
-        pHeError  = errorData(6);
+        pCarrierGasError  = errorData(6);
         T2Error  = errorData(7);
         L1Error  = errorData(8);
         L2Error  = errorData(9);
@@ -1180,7 +1214,7 @@ end
         FVolume = FVolume * 1.0e-6;
         MVolume = MVolume * 1.0e-6;
         Proom = 133.322368*Proom; 
-        pHe = 133.3223684211*pHe;   
+        pCarrierGas = 133.3223684211*pCarrierGas;   
         dp = 133.3223684211*dp; 
         reactorRadius = reactorDiameter / 200.0;
         L1 = L1/100.0; 
@@ -1190,7 +1224,7 @@ end
         FVolumeError = FVolumeError * 1.0e-6;
         MVolumeError = MVolumeError * 1.0e-6;
         ProomError = 133.322368*ProomError; 
-        pHeError = 133.3223684211*pHeError;   
+        pCarrierGasError = 133.3223684211*pCarrierGasError;   
         dpError = 133.3223684211*dpError; 
         ReactorRadiusError = ReactorDiameterError / 200.0;
         L1Error = L1Error/100.0; 
@@ -1200,7 +1234,7 @@ end
         PinholeCorrectionError = sqrt((1/(1-PinholeCorrection).^2).^2 *PinholeCorrectionError.^2); 
         PinholeCorrection = 1.0 / (1.0 - PinholeCorrection);
         
-        %Calculate the molar flows. Helium flow obviously includes the precursor flow. 
+        %Calculate the molar flows. Carrier Gas flow obviously includes the precursor flow. 
         reactantFlow = (dp*MVolume)/(R*Troom*dt);
         reactantFlowError = (MVolume/(R*Troom*dt)).^2 * dpError.^2 + ... 
                             (dp/(R*Troom*dt)).^2 * MVolumeError.^2 + ...
@@ -1208,22 +1242,22 @@ end
                             ((-dp*MVolume)/(R*Troom*dt.^2)).^2 * dtError.^2; 
         reactantFlowError = sqrt(reactantFlowError); 
                         
-        heliumFlow = PinholeCorrection*(Proom*FVolume)/(R*Troom*Time);
-        heliumFlowError = ((Proom*FVolume)/(R*Troom*Time)).^2 *PinholeCorrectionError.^2 + ... 
+        carrierGasFlow = PinholeCorrection*(Proom*FVolume)/(R*Troom*Time);
+        carrierGasFlowError = ((Proom*FVolume)/(R*Troom*Time)).^2 *PinholeCorrectionError.^2 + ... 
                           ((PinholeCorrection*FVolume)/(R*Troom*Time)).^2 * ProomError.^2 + ...
                           ((Proom*PinholeCorrection)/(R*Troom*Time)).^2 * FVolumeError.^2 + ...
                           ((-PinholeCorrection*Proom*FVolume)/(R*Troom.^2 *Time)).^2 * TroomError.^2 + ...
                           ((-PinholeCorrection*Proom*FVolume)/(R*Troom*Time.^2)).^2 * TimeError.^2;
-        heliumFlowError = sqrt(heliumFlowError); 
+        carrierGasFlowError = sqrt(carrierGasFlowError); 
     
-        totalFlow = reactantFlow + heliumFlow;
-        totalFlowError = sqrt(heliumFlowError.^2 + reactantFlowError.^2); 
+        totalFlow = reactantFlow + carrierGasFlow;
+        totalFlowError = sqrt(carrierGasFlowError.^2 + reactantFlowError.^2); 
         
         %Calculate total pressure and the velocity in the beginning of the reactor. 
-        p1 = pHe + (reactantFlow/heliumFlow)*pHe;
-        p1Error = (1 + reactantFlow/heliumFlow).^2 * pHeError.^2 + ...
-                  (pHe/heliumFlow).^2 * reactantFlowError.^2 + ...
-                  (-reactantFlow*pHe/(heliumFlow).^2).^2 * heliumFlowError.^2; 
+        p1 = pCarrierGas + (reactantFlow/carrierGasFlow)*pCarrierGas;
+        p1Error = (1 + reactantFlow/carrierGasFlow).^2 * pCarrierGasError.^2 + ...
+                  (pCarrierGas/carrierGasFlow).^2 * reactantFlowError.^2 + ...
+                  (-reactantFlow*pCarrierGas/(carrierGasFlow).^2).^2 * carrierGasFlowError.^2; 
         p1Error = sqrt(p1Error); 
         
         v1 = (totalFlow*R*Troom)/(p1*pi*reactorRadius.^2);
@@ -1232,28 +1266,21 @@ end
                   ((-totalFlow*R*Troom)/(p1.^2 *pi*reactorRadius.^2)).^2 * p1Error.^2 + ...
                   ((-2*totalFlow*R*Troom)/(p1*pi*reactorRadius.^3)).^2 * ReactorRadiusError.^2; 
         v1Error = sqrt(v1Error); 
+       
+        [carrierGasViscosity, carrierGasViscosityError] = calculateViscosity(carrierGas, Troom, TroomError); 
         
-        %Calculate viscosity with Sutherland's formula. 
-        heliumViscosity = 19.0e-6*(273.0 + 79.4)*Troom.^(1.5) / (273.0.^(1.5)*(Troom + 79.4));
-        heliumViscosityError = ( (19.0e-6*(273.0 + 79.4)/(273.0.^(1.5))) * ... 
-                             ( 1.5*Troom.^(0.5)*(Troom + 79.4).^(-1.0)  - Troom.^(1.5)*(Troom + 79.4).^(-2.0)) ).^2 * TroomError.^2; 
-        heliumViscosityError = sqrt(heliumViscosityError); 
-        
-        if(strcmp(reactant, 'Oxygen') == 1) 
-            oxygenViscosity = 20.18e-6*(292.25 + 127)*Troom.^(1.5) / (292.25.^(1.5)*(Troom + 127)); 
-            oxygenViscosityError = ( (20.18e-6*(292.25 + 127)/(292.25.^(1.5))) * ... 
-                             ( 1.5*Troom.^(0.5)*(Troom + 127).^(-1.0)  - Troom.^(1.5)*(Troom + 127).^(-2.0)) ).^2 * TroomError.^2; 
-            oxygenViscosityError = sqrt(oxygenViscosityError); 
-            totalViscosity = (heliumFlow/totalFlow)*heliumViscosity + (reactantFlow/totalFlow)*oxygenViscosity;
-            totalViscosityError = (heliumViscosity/totalFlow).^2 * heliumFlowError.^2 + ... 
-                                  (heliumFlow/totalFlow).^2 * heliumViscosityError.^2 + ... 
-                                  (oxygenViscosity/totalFlow).^2 * reactantFlowError.^2 + ... 
-                                  (reactantFlow/totalFlow).^2 * oxygenViscosityError.^2 + ... 
-                                  ((-heliumFlow*heliumViscosity-reactantFlow*oxygenViscosity)/(totalFlow.^2)).^2 * (totalFlowError).^2; 
-            totalViscosityError = sqrt(totalViscosityError); 
+        if(strcmp(reactant, 'Other') == 1) 
+            totalViscosity = carrierGasViscosity;
+            totalViscosityError = carrierGasViscosityError; 
         else 
-            totalViscosity = heliumViscosity;
-            totalViscosityError = heliumViscosityError; 
+            [reactantViscosity, reactantViscosityError] = calculateViscosity(reactant, Troom, TroomError);   
+            totalViscosity = (carrierGasFlow/totalFlow)*carrierGasViscosity + (reactantFlow/totalFlow)*reactantViscosity;
+            totalViscosityError = (carrierGasViscosity/totalFlow).^2 * carrierGasFlowError.^2 + ... 
+                                  (carrierGasFlow/totalFlow).^2 * carrierGasViscosityError.^2 + ... 
+                                  (reactantViscosity/totalFlow).^2 * reactantFlowError.^2 + ... 
+                                  (reactantFlow/totalFlow).^2 * reactantViscosityError.^2 + ... 
+                                  ((-carrierGasFlow*carrierGasViscosity-reactantFlow*reactantViscosity)/(totalFlow.^2)).^2 * (totalFlowError).^2; 
+            totalViscosityError = sqrt(totalViscosityError);        
         end 
         
         %Calculate pressure drop due to the Hagen–Poiseuille equation in the first section. 
@@ -1267,26 +1294,20 @@ end
         p2Error = sqrt(p2Error); 
          
         %Calculate viscosity with Sutherland's formula. 
-        heliumViscosity = 19.0e-6*(273.0 + 79.4)*T2.^(1.5) / (273.0.^(1.5)*(T2 + 79.4));
-        heliumViscosityError = ( (19.0e-6*(273.0 + 79.4)/(273.0.^(1.5))) * ... 
-                             ( 1.5*2.^(0.5)*(T2 + 79.4).^(-1.0)  - T2.^(1.5)*(T2 + 79.4).^(-2.0)) ).^2 * T2Error.^2; 
-        heliumViscosityError = sqrt(heliumViscosityError); 
+        [carrierGasViscosity, carrierGasViscosityError] = calculateViscosity(carrierGas, T2, T2Error);
         
-        if(strcmp(reactant, 'Oxygen') == 1) 
-            oxygenViscosity = 20.18e-6*(292.25 + 127)*T2.^(1.5) / (292.25.^(1.5)*(T2 + 127)); 
-            oxygenViscosityError = ( (20.18e-6*(292.25 + 127)/(292.25.^(1.5))) * ... 
-                             ( 1.5*2.^(0.5)*(T2 + 127).^(-1.0)  - T2.^(1.5)*(T2 + 127).^(-2.0)) ).^2 * T2Error.^2; 
-            oxygenViscosityError = sqrt(oxygenViscosityError); 
-            totalViscosity = (heliumFlow/totalFlow)*heliumViscosity + (reactantFlow/totalFlow)*oxygenViscosity;
-            totalViscosityError = (heliumViscosity/totalFlow).^2 * heliumFlowError.^2 + ... 
-                                  (heliumFlow/totalFlow).^2 * heliumViscosityError.^2 + ... 
-                                  (oxygenViscosity/totalFlow).^2 * reactantFlowError.^2 + ... 
-                                  (reactantFlow/totalFlow).^2 * oxygenViscosityError.^2 + ... 
-                                  ((-heliumFlow*heliumViscosity-reactantFlow*oxygenViscosity)/(totalFlow.^2)).^2 * (totalFlowError).^2; 
-            totalViscosityError = sqrt(totalViscosityError); 
+        if(strcmp(reactant, 'Other') == 1) 
+            totalViscosity = carrierGasViscosity;
+            totalViscosityError = carrierGasViscosityError; 
         else 
-            totalViscosity = heliumViscosity;
-            totalViscosityError = heliumViscosityError; 
+            [reactantViscosity, reactantViscosityError] = calculateViscosity(reactant, T2, T2Error);   
+            totalViscosity = (carrierGasFlow/totalFlow)*carrierGasViscosity + (reactantFlow/totalFlow)*reactantViscosity;
+            totalViscosityError = (carrierGasViscosity/totalFlow).^2 * carrierGasFlowError.^2 + ... 
+                                  (carrierGasFlow/totalFlow).^2 * carrierGasViscosityError.^2 + ... 
+                                  (reactantViscosity/totalFlow).^2 * reactantFlowError.^2 + ... 
+                                  (reactantFlow/totalFlow).^2 * reactantViscosityError.^2 + ... 
+                                  ((-carrierGasFlow*carrierGasViscosity-reactantFlow*reactantViscosity)/(totalFlow.^2)).^2 * (totalFlowError).^2; 
+            totalViscosityError = sqrt(totalViscosityError);        
         end 
 
         %Calculate the pressure drop in the second section.
@@ -1333,6 +1354,30 @@ end
         outputData(10) = NreactantError;  
     end 
     
+    function [viscosity, viscosityError] = calculateViscosity(substance, T, dT) 
+    
+        if(strcmp(substance, 'Helium') == 1) 
+            C = 79.4;                           %Sutherlands Constant
+            T0 = 273.0;                         %Reference Temperature
+            Visc0 = 19.0e-6;                    %Reference Viscosity   
+        elseif(strcmp(substance, 'Nitrogen') == 1) 
+            C = 111;                           
+            T0 = 300.55;                        
+            Visc0 = 17.81e-6;   
+        elseif(strcmp(substance, 'Argon') == 1) 
+            C = 144.4;                           
+            T0 = 273.11;                        
+            Visc0 = 21.25e-6;   
+        elseif(strcmp(substance, 'Oxygen') == 1) 
+            C = 127;                           
+            T0 = 292.25;                        
+            Visc0 = 20.18e-6;                         
+        end 
+        viscosity = Visc0*(T0 + C)*T.^(1.5) / (T0.^(1.5)*(T + C));
+        viscosityError = ( (Visc0*(T0 + C)/(T0.^(1.5))) * ... 
+                             ( 1.5*T.^(0.5)*(T + C).^(-1.0)  - T.^(1.5)*(T + C).^(-2.0)) ).^2 * dT.^2; 
+        viscosityError = sqrt(viscosityError);
+    end 
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    
