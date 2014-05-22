@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2013.4.2)  8 APR 2014 23:48
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2013.4.2)  22 MAY 2014 03:13
 entering extended mode
  %&-line parsing enabled.
 **rkEquations.tex
@@ -437,40 +437,115 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 22.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 49--53
+Underfull \hbox (badness 10000) in paragraph at lines 32--37
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 55--60
+Underfull \hbox (badness 10000) in paragraph at lines 52--56
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--67
+Underfull \hbox (badness 10000) in paragraph at lines 58--63
 
  []
 
 [1
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 71--76
+Underfull \hbox (badness 10000) in paragraph at lines 65--70
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--90
+Underfull \hbox (badness 10000) in paragraph at lines 74--79
 
  []
 
-[2] (./rkEquations.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--93
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 99--107
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--107
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--107
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 222--224
+
+ []
+
+
+Overfull \hbox (17.18134pt too wide) in alignment at lines 224--227
+ [][][] []
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 239--244
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 258--261
+
+ []
+
+[5] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 364--366
+
+ []
+
+
+Overfull \hbox (44.62357pt too wide) in alignment at lines 366--372
+ [][][] []
+ []
+
+
+Overfull \hbox (22.9958pt too wide) in alignment at lines 378--382
+ [][][] []
+ []
+
+[7]
+Overfull \hbox (45.55138pt too wide) in alignment at lines 398--407
+ [][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--414
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--414
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 418--423
+
+ []
+
+[9] (./rkEquations.aux) ) 
 Here is how much of TeX's memory you used:
- 2168 strings out of 495047
- 24658 string characters out of 1181990
- 78054 words of memory out of 3000000
- 5336 multiletter control sequences out of 15000+50000
- 6874 words of font info for 24 fonts, out of 3000000 for 9000
+ 2172 strings out of 495047
+ 24698 string characters out of 1181990
+ 83054 words of memory out of 3000000
+ 5338 multiletter control sequences out of 15000+50000
+ 8408 words of font info for 26 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 30i,9n,22p,227b,141s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,12n,22p,781b,143s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on rkEquations.dvi (2 pages, 7232 bytes).
+Output written on rkEquations.dvi (9 pages, 34276 bytes).

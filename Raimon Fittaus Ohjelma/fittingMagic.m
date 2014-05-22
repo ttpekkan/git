@@ -38,98 +38,83 @@ function fittingGUI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% This Section Creates the Text/Edit Components %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  
-   functionString = uicontrol('Parent', f); 
-   createText(functionString, 'text', [0.653, 0.88, 0.13, 0.03], 0.7, 'A + B*exp(-k*t)'); 
-   
-   initialCoefficientsString = uicontrol('Parent', f); 
-   createText(initialCoefficientsString, 'text', [0.653, 0.845, 0.13, 0.03], 0.7, 'Initial Guess');  
-   
-   k0 = uicontrol('Parent', f); 
-   createText(k0, 'text', [0.653, 0.81, 0.03, 0.03], 0.7, 'k0');   
-   
-   A0 = uicontrol('Parent', f); 
-   createText(A0, 'text', [0.653, 0.78, 0.03, 0.03], 0.7, 'A0');  
-   
-   B0 = uicontrol('Parent', f); 
-   createText(B0, 'text', [0.653, 0.75, 0.03, 0.03], 0.7, 'B0');  
-   
-   outputCoefficientsString = uicontrol('Parent', f); 
-   createText(outputCoefficientsString, 'text', [0.653, 0.715, 0.13, 0.03], 0.8, 'Output');
-   
-   park = uicontrol('Parent', f); 
-   createText(park, 'text', [0.653, 0.665, 0.03, 0.05], 0.7, 'k');   
-   
-   pardk = uicontrol('Parent', f); 
-   createText(pardk, 'text', [0.653, 0.62, 0.03, 0.05], 0.6, 'dk');  
-   
-   parA = uicontrol('Parent', f); 
-   createText(parA, 'text', [0.653, 0.60, 0.03, 0.03], 0.7, 'A');  
-   
-   pardA = uicontrol('Parent', f); 
-   createText(pardA, 'text', [0.653, 0.57, 0.03, 0.03], 0.7, 'dA');   
-   
-   parB = uicontrol('Parent', f); 
-   createText(parB, 'text', [0.653, 0.54, 0.03, 0.03], 0.7, 'B');  
-   
-   pardB = uicontrol('Parent', f); 
-   createText(pardB, 'text', [0.653, 0.51, 0.03, 0.03], 0.7, 'dB'); 
-   
-   editk0 = uicontrol('Parent', f); 
-   createText(editk0, 'edit', [0.685, 0.81, 0.1, 0.03], 0.7, '58.0');   
-   
-   editA0 = uicontrol('Parent', f); 
-   createText(editA0, 'edit', [0.685, 0.78, 0.1, 0.03], 0.7, '25.0'); 
-   
-   editB0 = uicontrol('Parent', f); 
-   createText(editB0, 'edit', [0.685, 0.75, 0.1, 0.03], 0.7, '252.0');
-   
-   editk = uicontrol('Parent', f); 
-   createText(editk, 'text', [0.685, 0.663, 0.098, 0.05], 0.4, '1.0');   
-   
-   editdk = uicontrol('Parent', f); 
-   createText(editdk, 'text', [0.685, 0.62, 0.098, 0.05], 0.4, '1.0'); 
-   
-   editA = uicontrol('Parent', f); 
-   createText(editA, 'text', [0.685, 0.60, 0.098, 0.03], 0.65, '1.0'); 
-   
-   editdA = uicontrol('Parent', f); 
-   createText(editdA, 'text', [0.685, 0.57, 0.098, 0.03], 0.65, '1.0'); 
-   
-   editB = uicontrol('Parent', f); 
-   createText(editB, 'text', [0.685, 0.54, 0.098, 0.03], 0.65, '1.0'); 
-   
-   editdB = uicontrol('Parent', f); 
-   createText(editdB, 'text', [0.685, 0.51, 0.098, 0.03], 0.65, '1.0'); 
-   
-   
+     
    getPath = uicontrol('Parent', f); 
    createText(getPath, 'edit', [0.02, 0.91, 0.20, 0.03], 0.45, '/home/timo/');   
    
+   SourceTrig = uicontrol('Parent', f); 
+   createText(SourceTrig, 'text', [0.36, 0.96, 0.05, 0.035], 0.35, 'Source Of Triggering'); 
+   
+   DwellUnits = uicontrol('Parent', f); 
+   createText(DwellUnits, 'text', [0.415, 0.96, 0.05, 0.035], 0.4, 'Dwell Units');
+   
+   Acq = uicontrol('Parent', f); 
+   createText(Acq, 'text', [0.47, 0.96, 0.05, 0.035], 0.4, 'Acq. Mode');
+   
+   PassLength = uicontrol('Parent', f); 
+   createText(PassLength, 'text', [0.525, 0.96, 0.05, 0.035], 0.4, 'Pass Length');
+   
+   PassCount = uicontrol('Parent', f); 
+   createText(PassCount, 'text', [0.58, 0.96, 0.05, 0.035], 0.4, 'Pass Count');
+   
+   PassCountPre = uicontrol('Parent', f); 
+   createText(PassCountPre, 'text', [0.635, 0.96, 0.06, 0.035], 0.35, 'Pass Count Preset');
+   
+   DwellTime = uicontrol('Parent', f); 
+   createText(DwellTime, 'text', [0.70, 0.96, 0.05, 0.035], 0.4, 'Dwell Time');
+   
+   editSourceTrig = uicontrol('Parent', f); 
+   createText(editSourceTrig, 'text', [0.36, 0.92, 0.05, 0.035], 0.4, '-'); 
+   
+   editDwellUnits = uicontrol('Parent', f); 
+   createText(editDwellUnits, 'text', [0.415, 0.92, 0.05, 0.035], 0.4, '-');
+   
+   editAcq = uicontrol('Parent', f); 
+   createText(editAcq, 'text', [0.47, 0.92, 0.05, 0.035], 0.4, '-');
+   
+   editPassLength = uicontrol('Parent', f); 
+   createText(editPassLength, 'text', [0.525, 0.92, 0.05, 0.035], 0.4, '-');
+   
+   editPassCount = uicontrol('Parent', f); 
+   createText(editPassCount, 'text', [0.58, 0.92, 0.05, 0.035], 0.4, '-');
+   
+   editPassCountPre = uicontrol('Parent', f); 
+   createText(editPassCountPre, 'text', [0.635, 0.92, 0.06, 0.035], 0.35, '-');
+   
+   editDwellTime = uicontrol('Parent', f); 
+   createText(editDwellTime, 'text', [0.70, 0.92, 0.05, 0.035], 0.4, '-');
+   
+   
+   SignalAve = uicontrol('Parent', f); 
+   createText(SignalAve, 'text', [0.27, 0.96, 0.06, 0.035], 0.35, 'Background Average');
+   
+   editSignalAve = uicontrol('Parent', f); 
+   createText(editSignalAve, 'text', [0.27, 0.92, 0.06, 0.035], 0.5, '-')
+   
    
    xMin = uicontrol('Parent', f); 
-   createText(xMin, 'text', [0.05, 0.24, 0.03, 0.025], 0.6, 'xMin');   
+   createText(xMin, 'text', [0.653, 0.88, 0.03, 0.025], 0.6, 'xMin');   
    
    xMax = uicontrol('Parent', f); 
-   createText(xMax, 'text', [0.05, 0.21, 0.03, 0.025], 0.59, 'xMax');  
+   createText(xMax, 'text', [0.653, 0.85, 0.03, 0.025], 0.59, 'xMax');  
    
    yMin = uicontrol('Parent', f); 
-   createText(yMin, 'text', [0.05, 0.18, 0.03, 0.025], 0.6, 'yMin');  
+   createText(yMin, 'text', [0.653, 0.82, 0.03, 0.025], 0.6, 'yMin');  
    
    yMax = uicontrol('Parent', f); 
-   createText(yMax, 'text', [0.05, 0.15, 0.03, 0.025], 0.6, 'yMax');
+   createText(yMax, 'text', [0.653, 0.79, 0.03, 0.025], 0.6, 'yMax');
    
    editxMin = uicontrol('Parent', f); 
-   createText(editxMin, 'edit', [0.085, 0.24, 0.1, 0.025], 0.7, '1.0');   
+   createText(editxMin, 'edit', [0.685, 0.88, 0.1, 0.025], 0.7, '1.0');   
    
    editxMax = uicontrol('Parent', f); 
-   createText(editxMax, 'edit', [0.085, 0.21, 0.1, 0.025], 0.7, '1.0'); 
+   createText(editxMax, 'edit', [0.685, 0.85, 0.1, 0.025], 0.7, '1.0'); 
    
    edityMin = uicontrol('Parent', f); 
-   createText(edityMin, 'edit', [0.085, 0.18, 0.1, 0.025], 0.7, '1.0'); 
+   createText(edityMin, 'edit', [0.685, 0.82, 0.1, 0.025], 0.7, '1.0'); 
    
    edityMax = uicontrol('Parent', f); 
-   createText(edityMax, 'edit', [0.085, 0.15, 0.1, 0.025], 0.7, '1.0'); 
+   createText(edityMax, 'edit', [0.685, 0.79, 0.1, 0.025], 0.7, '1.0'); 
    
    
    Troom = uicontrol('Parent', f); 
@@ -258,77 +243,8 @@ function fittingGUI
    dtError = uicontrol('Parent', f); 
    createText(dtError, 'edit', [0.925, 0.43, 0.06, 0.035], 0.5, '0.2');
    
-   
-   SourceTrig = uicontrol('Parent', f); 
-   createText(SourceTrig, 'text', [0.36, 0.96, 0.05, 0.035], 0.35, 'Source Of Triggering'); 
-   
-   DwellUnits = uicontrol('Parent', f); 
-   createText(DwellUnits, 'text', [0.415, 0.96, 0.05, 0.035], 0.4, 'Dwell Units');
-   
-   Acq = uicontrol('Parent', f); 
-   createText(Acq, 'text', [0.47, 0.96, 0.05, 0.035], 0.4, 'Acq. Mode');
-   
-   PassLength = uicontrol('Parent', f); 
-   createText(PassLength, 'text', [0.525, 0.96, 0.05, 0.035], 0.4, 'Pass Length');
-   
-   PassCount = uicontrol('Parent', f); 
-   createText(PassCount, 'text', [0.58, 0.96, 0.05, 0.035], 0.4, 'Pass Count');
-   
-   PassCountPre = uicontrol('Parent', f); 
-   createText(PassCountPre, 'text', [0.635, 0.96, 0.06, 0.035], 0.35, 'Pass Count Preset');
-   
-   DwellTime = uicontrol('Parent', f); 
-   createText(DwellTime, 'text', [0.70, 0.96, 0.05, 0.035], 0.4, 'Dwell Time');
-   
-   editSourceTrig = uicontrol('Parent', f); 
-   createText(editSourceTrig, 'text', [0.36, 0.92, 0.05, 0.035], 0.4, '-'); 
-   
-   editDwellUnits = uicontrol('Parent', f); 
-   createText(editDwellUnits, 'text', [0.415, 0.92, 0.05, 0.035], 0.4, '-');
-   
-   editAcq = uicontrol('Parent', f); 
-   createText(editAcq, 'text', [0.47, 0.92, 0.05, 0.035], 0.4, '-');
-   
-   editPassLength = uicontrol('Parent', f); 
-   createText(editPassLength, 'text', [0.525, 0.92, 0.05, 0.035], 0.4, '-');
-   
-   editPassCount = uicontrol('Parent', f); 
-   createText(editPassCount, 'text', [0.58, 0.92, 0.05, 0.035], 0.4, '-');
-   
-   editPassCountPre = uicontrol('Parent', f); 
-   createText(editPassCountPre, 'text', [0.635, 0.92, 0.06, 0.035], 0.35, '-');
-   
-   editDwellTime = uicontrol('Parent', f); 
-   createText(editDwellTime, 'text', [0.70, 0.92, 0.05, 0.035], 0.4, '-');
-   
-   
-   SignalAve = uicontrol('Parent', f); 
-   createText(SignalAve, 'text', [0.27, 0.96, 0.06, 0.035], 0.35, 'Background Average');
-   
-   editSignalAve = uicontrol('Parent', f); 
-   createText(editSignalAve, 'text', [0.27, 0.92, 0.06, 0.035], 0.5, '-');
-   
-   
-   ResParams = uicontrol('Parent', f); 
-   createText(ResParams, 'text', [0.2, 0.20, 0.15, 0.03], 0.6, 'Residual Parameters');   
-   
-   linearFunc = uicontrol('Parent', f); 
-   createText(linearFunc, 'text', [0.2, 0.17, 0.15, 0.03], 0.6, 'Ax + B');
-   
-   theGrad = uicontrol('Parent', f); 
-   createText(theGrad, 'text', [0.2, 0.13, 0.03, 0.03], 0.7, 'A');
-   
-   theConst = uicontrol('Parent', f); 
-   createText(theConst, 'text', [0.2, 0.09, 0.03, 0.03], 0.7, 'B');
-   
-   editTheGrad = uicontrol('Parent', f); 
-   createText(editTheGrad, 'text', [0.24, 0.13, 0.11, 0.03], 0.7, '-');
-   
-   editTheConst = uicontrol('Parent', f); 
-   createText(editTheConst, 'text', [0.24, 0.09, 0.11, 0.03], 0.7, '-'); 
-   
-   vp = uicontrol('Parent', f); 
-   createText(vp, 'text', [0.59, 0.20, 0.1, 0.035], 0.6, 'p1(Torr)');
+   p1 = uicontrol('Parent', f); 
+   createText(p1, 'text', [0.59, 0.20, 0.1, 0.035], 0.6, 'p1(Torr)');
    
    v1 = uicontrol('Parent', f); 
    createText(v1, 'text', [0.59, 0.16, 0.1, 0.035], 0.6, 'v1(m/s)');
@@ -372,12 +288,107 @@ function fittingGUI
    NreactantError = uicontrol('Parent', f); 
    createText(NreactantError, 'text', [0.83, 0.04, 0.12, 0.035], 0.49, '-');
    
-   
    selectedCarrierGas = uicontrol('Parent', f); 
    createText(selectedCarrierGas, 'text', [0.805, 0.39, 0.08, 0.035], 0.5, 'Carrier Gas:');
    
    selectedReactant = uicontrol('Parent', f); 
    createText(selectedReactant, 'text', [0.805, 0.35, 0.08, 0.035], 0.6, 'Reactant:')
+   
+   
+   fittingFunction = uicontrol('Parent', f); 
+   createText(fittingFunction, 'text', [0.04, 0.22, 0.2, 0.03], 0.5, 'y = A + Bexp(-k''*t)');
+   
+   firstExp = uicontrol('Parent', f); 
+   createText(firstExp, 'text', [0.04, 0.18, 0.035, 0.035], 0.9, 'k''');
+   
+   editFirstExp = uicontrol('Parent', f); 
+   createText(editFirstExp, 'text', [0.08, 0.18, 0.1, 0.035], 0.7, '-');
+   
+   firstExpError = uicontrol('Parent', f); 
+   createText(firstExpError, 'text', [0.185, 0.18, 0.1, 0.035], 0.7, '-');
+   
+   secondExp = uicontrol('Parent', f); 
+   createText(secondExp, 'text', [0.04, 0.14, 0.035, 0.035], 0.9, 'kw');
+
+   editSecondExp = uicontrol('Parent', f); 
+   createText(editSecondExp, 'text', [0.08, 0.14, 0.1, 0.035], 0.7, '-');
+
+   secondExpError = uicontrol('Parent', f); 
+   createText(secondExpError, 'text', [0.185, 0.14, 0.1, 0.035], 0.7, '-');
+
+   backgroundAverage = uicontrol('Parent', f); 
+   createText(backgroundAverage, 'text', [0.04, 0.108, 0.03, 0.03], 0.9, 'A');
+
+   editBackgroundAverage = uicontrol('Parent', f); 
+   createText(editBackgroundAverage, 'text', [0.08, 0.108, 0.1, 0.03], 0.7, '-');
+
+   backgroundAverageError = uicontrol('Parent', f); 
+   createText(backgroundAverageError, 'text', [0.185, 0.108, 0.1, 0.03], 0.7, '-');
+
+   firstAmplitude = uicontrol('Parent', f); 
+   createText(firstAmplitude, 'text', [0.04, 0.075, 0.03, 0.03], 0.9, 'B');
+
+   editFirstAmplitude = uicontrol('Parent', f); 
+   createText(editFirstAmplitude, 'text', [0.08, 0.075, 0.1, 0.03], 0.7, '-');
+
+   firstAmplitudeError = uicontrol('Parent', f); 
+   createText(firstAmplitudeError, 'text', [0.185, 0.075, 0.1, 0.03], 0.7, '-');
+
+   secondAmplitude = uicontrol('Parent', f); 
+   createText(secondAmplitude, 'text', [0.04, 0.043, 0.03, 0.03], 0.9, 'C');
+
+   editSecondAmplitude = uicontrol('Parent', f); 
+   createText(editSecondAmplitude, 'text', [0.08, 0.043, 0.1, 0.03], 0.7, '-');
+
+   secondAmplitudeError = uicontrol('Parent', f); 
+   createText(secondAmplitudeError, 'text', [0.185, 0.043, 0.1, 0.03], 0.7, '-');
+
+   forwardRate = uicontrol('Parent', f); 
+   createText(forwardRate, 'text', [0.3, 0.185, 0.03, 0.03], 0.9, 'k''f');
+
+   editForwardRate = uicontrol('Parent', f); 
+   createText(editForwardRate, 'text', [0.34, 0.185, 0.1, 0.03], 0.65, '-');
+
+   forwardRateError = uicontrol('Parent', f); 
+   createText(forwardRateError, 'text', [0.45, 0.185, 0.1, 0.03], 0.65, '-');
+
+   backwardRate = uicontrol('Parent', f); 
+   createText(backwardRate, 'text', [0.3, 0.15, 0.03, 0.03], 0.9, 'k''b');
+
+   editBackwardRate = uicontrol('Parent', f); 
+   createText(editBackwardRate, 'text', [0.34, 0.15, 0.1, 0.03], 0.65, '-');
+
+   backwardRateError = uicontrol('Parent', f); 
+   createText(backwardRateError, 'text', [0.45, 0.15, 0.1, 0.03], 0.65, '-');
+
+   firstWallRate = uicontrol('Parent', f); 
+   createText(firstWallRate, 'text', [0.3, 0.118, 0.03, 0.03], 0.6, 'kw1');
+
+   editFirstWallRate = uicontrol('Parent', f); 
+   createText(editFirstWallRate, 'edit', [0.34, 0.118, 0.1, 0.03], 0.7, 'Give kw1');
+
+   firstWallRateError = uicontrol('Parent', f); 
+   createText(firstWallRateError, 'edit', [0.45, 0.118, 0.1, 0.03], 0.7, 'Give dkw1');
+
+   secondWallRate = uicontrol('Parent', f); 
+   createText(secondWallRate, 'text', [0.3, 0.085, 0.03, 0.03], 0.6, 'kw2');
+
+   editSecondWallRate = uicontrol('Parent', f); 
+   createText(editSecondWallRate, 'text', [0.34, 0.085, 0.1, 0.03], 0.7, '-');
+
+   secondWallRateError = uicontrol('Parent', f); 
+   createText(secondWallRateError, 'text', [0.45, 0.085, 0.1, 0.03], 0.7, '-');
+   
+   EQconstant = uicontrol('Parent', f); 
+   createText(EQconstant, 'text', [0.3, 0.043, 0.035, 0.035], 0.6, 'ln(K)');
+
+   editEQconstant = uicontrol('Parent', f); 
+   createText(editEQconstant, 'text', [0.34, 0.043, 0.1, 0.035], 0.5, '-');
+
+   EQconstantError = uicontrol('Parent', f); 
+   createText(EQconstantError, 'text', [0.45, 0.043, 0.1, 0.035], 0.5, '-');
+   
+   
    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    
@@ -392,15 +403,11 @@ function fittingGUI
    set(SelectFileButton, 'Callback', @openFile);
    
    makeFitButton = uicontrol('Parent', f); 
-   createButton(makeFitButton, [0.653, 0.47, 0.13, 0.035], 0.6, 'Normal Fit!'); 
+   createButton(makeFitButton, [0.653, 0.43, 0.13, 0.055], 0.9, 'Fit!'); 
    set(makeFitButton, 'Callback', @makeFit); 
-   
-   makeWallFitButton = uicontrol('Parent', f); 
-   createButton(makeWallFitButton, [0.653, 0.425, 0.13, 0.035], 0.6, 'Wall Fit!'); 
-   set(makeWallFitButton, 'Callback', @wallFit);
-   
+ 
    changeLimitsButton = uicontrol('Parent', f); 
-   createButton(changeLimitsButton, [0.05, 0.11, 0.13, 0.035], 0.4, 'Change Graph Limits'); 
+   createButton(changeLimitsButton, [0.653, 0.75, 0.13, 0.035], 0.4, 'Change Graph Limits'); 
    set(changeLimitsButton, 'Callback', @changeLimits); 
    
    calculateButton = uicontrol('Parent', f); 
@@ -408,21 +415,20 @@ function fittingGUI
    set(calculateButton, 'Callback', @startToCalculate); 
    
    removePointButton = uicontrol('Parent', f); 
-   createButton(removePointButton, [0.36, 0.195, 0.13, 0.05], 0.4, 'Remove a Point'); 
+   createButton(removePointButton, [0.653, 0.68, 0.13, 0.05], 0.4, 'Remove a Point'); 
    set(removePointButton, 'Callback', @selectPoint); 
    
    writeTextButton = uicontrol('Parent', f); 
-   createButton(writeTextButton, [0.36, 0.135, 0.13, 0.05], 0.35, 'Save Data (.txt)'); 
+   createButton(writeTextButton, [0.653, 0.625, 0.13, 0.05], 0.35, 'Save Data (.txt)'); 
    set(writeTextButton, 'Callback', @saveFile); 
    
    printButton = uicontrol('Parent', f); 
-   createButton(printButton, [0.36, 0.075, 0.13, 0.05], 0.35, 'Print GUI (b&w)'); 
+   createButton(printButton, [0.653, 0.57, 0.13, 0.05], 0.35, 'Print GUI (b&w)'); 
    set(printButton, 'Callback', @printGUI); 
    
    SSButton = uicontrol('Parent', f); 
-   createButton(SSButton, [0.36, 0.015, 0.13, 0.05], 0.35, 'Take Screenshot'); 
+   createButton(SSButton, [0.653, 0.515, 0.13, 0.05], 0.35, 'Take Screenshot'); 
    set(SSButton, 'Callback', @takeScreenshot);
-   
    
    selectCarrierGas = uicontrol('Parent', f); 
    set(selectCarrierGas, 'Style', 'popup'); 
@@ -446,6 +452,23 @@ function fittingGUI
    set(selectReactant, 'SelectionHighlight', 'off');
    set(selectReactant, 'Callback', @reactantChange); 
    
+   selectFittingFunction = uicontrol('Parent', f); 
+   set(selectFittingFunction, 'Style', 'popup'); 
+   set(selectFittingFunction, 'String', {'Precursor decay, normal fit', ... 
+                                         'Precursor decay, wall fit', ... 
+                                        'Reaction product that has a zero wall rate', ...
+                                        'Reaction product that has a nonzero wall rate', ...
+                                        'EQ: precursor decay, product wall rate is zero', ...
+                                        'EQ: precursor decay, product wall rate is nonzero', ...
+                                        'EQ: Reaction product'}); 
+   set(selectFittingFunction, 'Units', 'Normalized', 'FontUnits', 'Normalized');
+   set(selectFittingFunction, 'Position', [0.25, 0.22, 0.33, 0.03]); 
+   set(selectFittingFunction, 'FontSize', 0.6); 
+   set(selectFittingFunction, 'BackgroundColor', [0.4, 0.0, 0.8]); 
+   set(selectFittingFunction, 'ForegroundColor', [0.2, 1, 1]); 
+   set(selectFittingFunction, 'SelectionHighlight', 'off');
+   set(selectFittingFunction, 'Callback', @fittingFunctionSelected); 
+   
    
    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -453,7 +476,7 @@ function fittingGUI
     
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% "Variables" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    
-   %Here I'm simply naming stuff that I'm going to use later. Also, the axes are created. 
+   %Here I'm simply naming stuff that I'm going to use later. Also, the axes are created and previously used variables loaded. 
    theAxes = axes('Parent', f); 
    createAxes(theAxes); 
    theGraph = plot([], []);
@@ -468,9 +491,48 @@ function fittingGUI
    minLine = [];
    maxLine = [];  
    backgroundLine = []; 
-   fitWall = -1; 
    reactant = 'Other';  
    carrierGas = 'Helium'; 
+   selectedFunction = 1; 
+   
+   fittingFunctionSelected; 
+   variables = load('variables'); 
+   
+   set(editTroom, 'String', num2str(variables(1)));
+   set(editProom, 'String', num2str(variables(2)));
+   set(editFVol, 'String', num2str(variables(3)));
+   set(editTime, 'String', num2str(variables(4)));
+   set(editPinhole, 'String', num2str(variables(5)));
+   set(editpTot, 'String', num2str(variables(6)));
+   set(editT2, 'String', num2str(variables(7)));
+   set(editL1, 'String', num2str(variables(8)));
+   set(editL2, 'String', num2str(variables(9)));
+   set(editReacDia, 'String', num2str(variables(10)));
+   set(editMVol, 'String', num2str(variables(11)));
+   set(editReacDil, 'String', num2str(variables(12)));
+   set(editdp, 'String', num2str(variables(13)));
+   set(editdt, 'String', num2str(variables(14)));
+   set(TroomError, 'String', num2str(variables(1)));
+   set(ProomError, 'String', num2str(variables(2)));
+   set(FVolError, 'String', num2str(variables(3)));
+   set(TimeError, 'String', num2str(variables(4)));
+   set(PinholeError, 'String', num2str(variables(5)));
+   set(pTotError, 'String', num2str(variables(6)));
+   set(T2Error, 'String', num2str(variables(7)));
+   set(L1Error, 'String', num2str(variables(8)));
+   set(L2Error, 'String', num2str(variables(9)));
+   set(ReacDiaError, 'String', num2str(variables(10)));
+   set(MVolError, 'String', num2str(variables(11)));
+   set(ReacDilError, 'String', num2str(variables(12)));
+   set(dpError, 'String', num2str(variables(13)));
+   set(dtError, 'String', num2str(variables(14)));
+   
+   set(editFirstWallRate, 'String', num2str(variables(29)));
+   set(firstWallRateError, 'String', num2str(variables(30)));
+   if(variables(29) == 999 || variables(30) == 999) 
+       set(editFirstWallRate, 'String', 'Give kw1');
+       set(firstWallRateError, 'String', 'Give dkw1');
+   end
    
    %Make the GUI visible.
    set(f,'Visible','on')
@@ -481,35 +543,7 @@ function fittingGUI
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Functions for listening and changing GUI-components %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    %The selected carrier gas may be useful in viscosity calculations. 
-    function carrierGasChange(obj, event) 
-        set(selectCarrierGas, 'Enable', 'off');
-        drawnow; 
-        set(selectCarrierGas, 'Enable', 'on');
-        selection = get(selectCarrierGas, 'Value'); 
-        if(selection == 1) 
-            carrierGas = 'Helium'; 
-        elseif(selection == 2) 
-            carrierGas = 'Nitrogen'; 
-        elseif(selection == 3) 
-            carrierGas = 'Argon'; 
-        end  
-    end 
-
-    %The selected reactant may be useful in viscosity calculations. 
-    function reactantChange(obj, event) 
-        set(selectReactant, 'Enable', 'off');
-        drawnow; 
-        set(selectReactant, 'Enable', 'on');
-        selection = get(selectReactant, 'Value'); 
-        if(selection == 1) 
-            reactant = 'Other'; 
-        elseif(selection == 2) 
-            reactant = 'Oxygen'; 
-        end 
-    end 
-
-    %Tries to open a given file 
+    %Tries to open a given file.
     function openFile(obj, event) 
         
         %This rather long-winded navigation through the binary file is necessary to extract the information we want from the .mcs file headers.
@@ -579,9 +613,9 @@ function fittingGUI
             theData(i,1) = (i-1)*tempNumber*10^(-6) - 0.015; 
         end 
         
-        %Here we remove the points, which are caused by the laser pulse. They have a much higher value than the others. 
+        %Here we remove the point, which is caused by the laser pulse. It has much higher value than the others.
         for i = 2:numOfIntegers-1   
-            if(theData(i-1,2)*5 < theData(i,2) && theData(i+1,2)*5 < theData(i,2))
+            if(theData(i-1,2)*10 < theData(i,2) && theData(i+1,2)*10 < theData(i,2))
                 theData = removePoint(theData, theData(i,1), theData(i,2)); 
                 break;
             end 
@@ -627,21 +661,137 @@ function fittingGUI
         set(f, 'PaperPositionMode', 'auto');
     end 
 
-    %Wall fit specifier. 
-    function wallFit(obj, event) 
-        fitWall = 1; 
-        makeFit; 
-        fitWall = -1; 
+    %Changes the fitting function.
+    function fittingFunctionSelected(obj, event) 
+        set(selectFittingFunction, 'Enable', 'off');
+        drawnow; 
+        set(selectFittingFunction, 'Enable', 'on');
+        selection = get(selectFittingFunction, 'Value'); 
+        
+        resetFitParameterFields;
+               
+        if(selection == 1 || selection == 2 || selection == 3 || selection == 4 || selection == 7)       
+            set(secondAmplitude, 'Visible', 'Off');
+            set(editSecondAmplitude, 'Visible', 'Off');
+            set(secondAmplitudeError, 'Visible', 'Off');             
+            set(backwardRate, 'Visible', 'Off');
+            set(editBackwardRate, 'Visible', 'Off');
+            set(backwardRateError, 'Visible', 'Off');                 
+            set(secondWallRate, 'Visible', 'Off');
+            set(editSecondWallRate, 'Visible', 'Off');
+            set(secondWallRateError, 'Visible', 'Off');    
+            set(secondExp, 'Visible', 'Off'); 
+            set(editSecondExp, 'Visible', 'Off');
+            set(secondExpError, 'Visible', 'Off');
+            set(EQconstant, 'Visible', 'Off'); 
+            set(editEQconstant, 'Visible', 'Off');
+            set(EQconstantError, 'Visible', 'Off');
+            if(selection == 1) 
+                set(fittingFunction, 'String', 'y = A + Bexp(-k''*t)') 
+                selectedFunction = 1;      
+            elseif(selection == 2) 
+                set(fittingFunction, 'String', 'y = A + Bexp(-k''*t)')
+                selectedFunction = 2; 
+            elseif(selection == 3) 
+                set(fittingFunction, 'String', 'y = A + B[1 - exp(-k''*t)]')
+                selectedFunction = 3;
+            elseif(selection == 4) 
+                set(secondExp, 'Visible', 'On'); 
+                set(editSecondExp, 'Visible', 'On');
+                set(secondExpError, 'Visible', 'On');
+                set(fittingFunction, 'String', 'y = A + B[exp(-kw*t) - exp(-k''*t)]')
+                selectedFunction = 4; 
+            else
+                set(firstExp, 'String', 'r1');
+                set(secondExp, 'String', 'r2');
+                set(secondExp, 'Visible', 'On'); 
+                set(editSecondExp, 'Visible', 'On');
+                set(secondExpError, 'Visible', 'On');
+                set(forwardRate, 'Visible', 'Off');
+                set(editForwardRate, 'Visible', 'Off');
+                set(forwardRateError, 'Visible', 'Off');
+                set(firstWallRate, 'Visible', 'Off');
+                set(editFirstWallRate, 'Visible', 'Off');
+                set(firstWallRateError, 'Visible', 'Off');
+                set(fittingFunction, 'String', 'y = A + B[exp(-r1*t) - exp(-r2*t)]')
+                selectedFunction = 7; 
+            end 
+        else
+            set(firstExp, 'String', 'r1');
+            set(secondExp, 'String', 'r2');
+            set(fittingFunction, 'String', 'y = A + Bexp(-r1*t) + Cexp(-r2*t)')
+            if(selection == 5)                
+                selectedFunction = 5;
+            else
+                selectedFunction = 6;
+            end
+        end
     end 
-    
+
+    %Resets the fitting parameters, when fitting function is changed. 
+    function resetFitParameterFields
+        set(firstExp, 'Visible', 'On'); 
+        set(firstExp, 'String', 'k'''); 
+        set(editFirstExp, 'Visible', 'On');
+        set(editFirstExp, 'String', '-'); 
+        set(firstExpError, 'Visible', 'On');
+        set(firstExpError, 'String', '-'); 
+        
+        set(secondExp, 'Visible', 'On'); 
+        set(secondExp, 'String', 'kw'''); 
+        set(editSecondExp, 'Visible', 'On');
+        set(editSecondExp, 'String', '-');  
+        set(secondExpError, 'Visible', 'On');
+        set(secondExpError, 'String', '-'); 
+        
+        set(backgroundAverage, 'Visible', 'On'); 
+        set(editBackgroundAverage, 'Visible', 'On');
+        set(editBackgroundAverage, 'String', '-');  
+        set(backgroundAverageError, 'Visible', 'On');
+        set(backgroundAverageError, 'String', '-'); 
+        
+        set(firstAmplitude, 'Visible', 'On'); 
+        set(editFirstAmplitude, 'Visible', 'On');
+        set(editFirstAmplitude, 'String', '-');  
+        set(firstAmplitudeError, 'Visible', 'On');
+        set(firstAmplitudeError, 'String', '-');
+        
+        set(secondAmplitude, 'Visible', 'On'); 
+        set(editSecondAmplitude, 'Visible', 'On');
+        set(editSecondAmplitude, 'String', '-');  
+        set(secondAmplitudeError, 'Visible', 'On');
+        set(secondAmplitudeError, 'String', '-');
+        
+        set(forwardRate, 'Visible', 'On'); 
+        set(editForwardRate, 'Visible', 'On'); 
+        set(forwardRateError, 'Visible', 'On');
+        
+        set(backwardRate, 'Visible', 'On'); 
+        set(editBackwardRate, 'Visible', 'On');
+        set(backwardRateError, 'Visible', 'On');
+        
+        set(firstWallRate, 'Visible', 'On'); 
+        set(editFirstWallRate, 'Visible', 'On');  
+        set(firstWallRateError, 'Visible', 'On');
+
+        set(secondWallRate, 'Visible', 'On'); 
+        set(editSecondWallRate, 'Visible', 'On');
+        set(secondWallRateError, 'Visible', 'On');
+        
+        set(EQconstant, 'Visible', 'On'); 
+        set(editEQconstant, 'Visible', 'On'); 
+        set(EQconstantError, 'Visible', 'On');
+    end
+
     %Makes a fit to the graph, after "Fit" has been pressed. 
     function makeFit(obj, event) 
+        initParams = []; 
         if(isempty(theData) == 1) 
             display('No Data')
             return;
         end 
         
-        %The order of the vertical green lines doesn't matter. 
+        %The order of the vertical green lines doesn't matter. Can't be on top of each other. 
         if(get(minLine, 'XData') == get(maxLine, 'XData'))
             display('Vertical lines on top of each other')
             return;
@@ -661,8 +811,7 @@ function fittingGUI
             display('The position of the white (background) line sucks')
             return;
         end
-       
-          
+               
         %Sums the y-values of the data up until the white vertical line and then takes the average. 
         for i = 1:size(theData,1) 
             if(backgroundMax(1) < theData(i,1))
@@ -679,66 +828,115 @@ function fittingGUI
         backgroundSignal = plot([theData(1,1), backgroundMax(1)], [average, average], 'k', 'linewidth', 3); 
         hold off 
         
-        %Gets the initial guess for the fit parameters from the text fields and then evaluates the optimised parameters 
-        %from which the exponential function is plotted. 
-        getInitParams(); 
+        %Some sort a guess for initial parameters. They depend on fitting function of course. 
+        initParams(1) = average;
+        initParams(2) = max(theData(:,2)) - average;
+        initParams(3) = 150;
         [exponentialFitInterval] = takeInterval(xmin(1), xmax(1), theData); 
-        if(fitWall == -1) 
-            outputParams = getExponentialFitParameters(exponentialFitInterval, initParams); 
-        else
-            initParams(2) = average; 
-            outputParams = getWallFitParameters(exponentialFitInterval, initParams(1), initParams(2), initParams(3)); 
-        end 
-        plotFittedExponential(exponentialFitInterval, outputParams(1), outputParams(3), outputParams(5));
+             
+        if(selectedFunction == 4) 
+            initParams(2) = 2*initParams(2); 
+            initParams(3) = 30; 
+            initParams(4) = 150; 
+        elseif(selectedFunction == 5 || selectedFunction == 6)
+            initParams(2) = 2*initParams(2);
+            initParams(4) = 0.7*initParams(2); 
+            initParams(5) = 110;
+        elseif(selectedFunction == 7)
+            initParams(2) = 2*initParams(2);
+            initParams(3) = 70;
+            initParams(4) = 150;
+        end
         
+        %Get the fit parameters. 
+        outputParams = getExponentialFitParameters(exponentialFitInterval, initParams, selectedFunction);
+        %Plot the result. 
+        plotFittedExponential(exponentialFitInterval, outputParams);
+        
+        %Set axis limits. 
         set(minLine, 'XData', [min(exponentialFitInterval(:,1)), min(exponentialFitInterval(:,1))]); 
         set(maxLine, 'XData', [max(exponentialFitInterval(:,1)), max(exponentialFitInterval(:,1))]);
         set(backgroundLine, 'XData', [backgroundMax(1), backgroundMax(1)]);
         
-        changeOutputParams(outputParams);
+        %Show the fit parameters and data derived from them. 
+        changeOutputParams(outputParams);   
     end 
     
-    %Changes the initial parameters to those in the text fields (or if they suck, changes back to the originals). 
-    function getInitParams() 
-        initParams = [str2double(get(editk0, 'String')), str2double(get(editA0, 'String')), str2double(get(editB0, 'String'))];
-        if(isnan(initParams(1)) == 1)
-            initParams(1) = 50.0; 
-            set(editk0, 'String', '50.0'); 
-            display('Numeric parameters work better!!') 
-        end
-        if(isnan(initParams(2)) == 1)
-            initParams(2) = 15.0;
-            set(editA0, 'String', '15.0'); 
-            display('Numeric parameters work better!!')
-        end
-        if (isnan(initParams(3)) == 1)
-            initParams(3) = 120.0; 
-            set(editB0, 'String', '120.0'); 
-            display('Numeric parameters work better!!')       
-        end         
-    end 
-    
-    %Change the output parameter text fields after fit
+    %Change the output parameter text fields after fit.
     function changeOutputParams(params)
-        for i = 1:6 
+        for i = 1:size(params, 2)
             if(isnan(params(i)) == 1) 
                 display('Bad output parameters.') 
                 return;
             end 
         end 
-        charArray = cell(6, 1); 
-        for i = 1:6 
+        
+        %We need to know the reactant concentraiton to calculate other stuff (such as the EQ constant). 
+        startToCalculate;
+        T = str2double(get(editT2, 'String'));
+        reactantC = str2double(get(editNreactant, 'String'));
+        reactantCError = str2double(get(NreactantError, 'String'));
+        wallRate = str2double(get(editFirstWallRate, 'String'));
+        wallRateError = str2double(get(firstWallRateError, 'String'));
+        
+        if(isnan(reactantC) == 1)
+            reactantC = 0;
+        end
+        if(isnan(reactantCError) == 1)
+            reactantCError = 0;
+        end
+        if(isnan(wallRateError) == 1)
+            wallRateError = 0;
+        end
+        if(isnan(wallRate) == 1)
+            display('Give the wall rate!')
+            kineticParams = zeros(1,8); 
+        else 
+            kineticParams = calculateKineticStuff(params, T, wallRate, wallRateError, reactantC, reactantCError, selectedFunction);
+        end
+        
+        charArray = cell(size(params, 2), 1); 
+        for i = 1:size(params,2) 
             charArray{i} = num2str(params(i)); 
         end 
-        set(editk, 'String', charArray{1});
-        set(editdk, 'String', charArray{2});
-        set(editA, 'String',charArray{3});
-        set(editdA, 'String', charArray{4});
-        set(editB, 'String', charArray{5});
-        set(editdB, 'String', charArray{6});     
+        %Change the parameter text fields! 
+        set(editBackgroundAverage, 'String', charArray{1});
+        set(backgroundAverageError, 'String', charArray{2});
+        set(editFirstAmplitude, 'String',charArray{3});
+        set(firstAmplitudeError, 'String', charArray{4});
+        set(editFirstExp, 'String', charArray{5});
+        set(firstExpError, 'String', charArray{6});  
+        if(selectedFunction == 1 || selectedFunction == 2 || selectedFunction == 3) 
+            set(editForwardRate, 'String', num2str(kineticParams(1))); 
+            set(forwardRateError, 'String', num2str(kineticParams(2)));  
+        elseif(selectedFunction == 4) 
+            set(editSecondExp, 'String', charArray{7});
+            set(secondExpError, 'String', charArray{8});
+            
+            set(editForwardRate, 'String', num2str(kineticParams(1))); 
+            set(forwardRateError, 'String', num2str(kineticParams(2)));  
+        elseif(selectedFunction == 5 || selectedFunction == 6)
+            set(editSecondAmplitude, 'String',charArray{7});
+            set(secondAmplitudeError, 'String', charArray{8});
+            set(editSecondExp, 'String', charArray{9});
+            set(secondExpError, 'String', charArray{10});
+            
+            set(editForwardRate, 'String', num2str(kineticParams(1)));
+            set(forwardRateError, 'String', num2str(kineticParams(2)));
+            set(editBackwardRate, 'String', num2str(kineticParams(3)));
+            set(backwardRateError, 'String', num2str(kineticParams(4)));
+            set(editSecondWallRate, 'String', num2str(kineticParams(5)));
+            set(secondWallRateError, 'String', num2str(kineticParams(6)));
+            set(editEQconstant, 'String', num2str(kineticParams(7)));
+            set(EQconstantError, 'String', num2str(kineticParams(8)));  
+        else
+            set(editSecondExp, 'String', charArray{7});
+            set(secondExpError, 'String', charArray{8});
+        end 
+       
     end 
 
-    %Changes the limits to those in the text fields 
+    %Changes the limits to those in the text fields. 
     function changeLimits(obj, event) 
         xmin = str2double(get(editxMin, 'String')); 
         xmax = str2double(get(editxMax, 'String')); 
@@ -772,52 +970,69 @@ function fittingGUI
         end
     end 
 
-    %Gets the data from the textfields to send in for calculations. 
+    %Gets the data from the textfields to send in for calculations. Also saves variables to a text file. 
     function startToCalculate(obj, event) 
+        allData = zeros(1,30); 
         inputData = zeros(1,14); 
-        dataErrors = zeros(1,14);
+        inputDataErrors = zeros(1,14);
         
-        inputData(1) = str2double(get(editTroom, 'String'));
-        inputData(2) = str2double(get(editProom, 'String'));
-        inputData(3) = str2double(get(editFVol, 'String'));
-        inputData(4) = str2double(get(editTime, 'String'));
-        inputData(5) = str2double(get(editPinhole, 'String'));
-        inputData(6) = str2double(get(editpTot, 'String'));
-        inputData(7) = str2double(get(editT2, 'String'));
-        inputData(8) = str2double(get(editL1, 'String'));
-        inputData(9) = str2double(get(editL2, 'String'));
-        inputData(10) = str2double(get(editReacDia, 'String'));
-        inputData(11) = str2double(get(editMVol, 'String'));
-        inputData(12) = str2double(get(editReacDil, 'String'));
-        inputData(13) = str2double(get(editdp, 'String'));
-        inputData(14) = str2double(get(editdt, 'String'));
+        %Get the relevant info from the GUI.
+        allData(1) = str2double(get(editTroom, 'String'));
+        allData(2) = str2double(get(editProom, 'String'));
+        allData(3) = str2double(get(editFVol, 'String'));
+        allData(4) = str2double(get(editTime, 'String'));
+        allData(5) = str2double(get(editPinhole, 'String'));
+        allData(6) = str2double(get(editpTot, 'String'));
+        allData(7) = str2double(get(editT2, 'String'));
+        allData(8) = str2double(get(editL1, 'String'));
+        allData(9) = str2double(get(editL2, 'String'));
+        allData(10) = str2double(get(editReacDia, 'String'));
+        allData(11) = str2double(get(editMVol, 'String'));
+        allData(12) = str2double(get(editReacDil, 'String'));
+        allData(13) = str2double(get(editdp, 'String'));
+        allData(14) = str2double(get(editdt, 'String'));
         
-        dataErrors(1) = str2double(get(TroomError, 'String'));
-        dataErrors(2) = str2double(get(ProomError, 'String'));
-        dataErrors(3) = str2double(get(FVolError, 'String'));
-        dataErrors(4) = str2double(get(TimeError, 'String'));
-        dataErrors(5) = str2double(get(PinholeError, 'String'));
-        dataErrors(6) = str2double(get(pTotError, 'String'));
-        dataErrors(7) = str2double(get(T2Error, 'String'));
-        dataErrors(8) = str2double(get(L1Error, 'String'));
-        dataErrors(9) = str2double(get(L2Error, 'String'));
-        dataErrors(10) = str2double(get(ReacDiaError, 'String'));
-        dataErrors(11) = str2double(get(MVolError, 'String'));
-        dataErrors(12) = str2double(get(ReacDilError, 'String'));
-        dataErrors(13) = str2double(get(dpError, 'String'));
-        dataErrors(14) = str2double(get(dtError, 'String'));
+        allData(15) = str2double(get(TroomError, 'String'));
+        allData(16) = str2double(get(ProomError, 'String'));
+        allData(17) = str2double(get(FVolError, 'String'));
+        allData(18) = str2double(get(TimeError, 'String'));
+        allData(19) = str2double(get(PinholeError, 'String'));
+        allData(20) = str2double(get(pTotError, 'String'));
+        allData(21) = str2double(get(T2Error, 'String'));
+        allData(22) = str2double(get(L1Error, 'String'));
+        allData(23) = str2double(get(L2Error, 'String'));
+        allData(24) = str2double(get(ReacDiaError, 'String'));
+        allData(25) = str2double(get(MVolError, 'String'));
+        allData(26) = str2double(get(ReacDilError, 'String'));
+        allData(27) = str2double(get(dpError, 'String'));
+        allData(28) = str2double(get(dtError, 'String'));
+        
+        allData(29) = str2double(get(editFirstWallRate, 'String'));
+        allData(30) = str2double(get(firstWallRateError, 'String'));
+        
+        inputData = allData(1:14);
+        inputDataErrors = allData(15:28); 
+        
+        %Check that the values make sense. 
         for i = 1:14
             if(isnan(inputData(i)) == 1)
                 display('Check your parameters!'); 
                 return; 
             end 
-            if(isnan(dataErrors(i)) == 1)
+            if(isnan(inputDataErrors(i)) == 1)
                 display('Check your errors!'); 
                 return; 
             end 
         end 
+        if(isnan(allData(29)) == 1 || isnan(allData(30)) == 1)
+                allData(29) = 999; 
+                allData(30) = 999; 
+        end 
+        %Save the given value to a text file. 
+        save('variables', 'allData',  '-ascii'); 
+            
         for i = 1:14 
-            if(dataErrors(i) < 0) 
+            if(inputDataErrors(i) < 0) 
                 display('Check your errors (negative?)!'); 
                 return; 
             end 
@@ -839,7 +1054,7 @@ function fittingGUI
             return; 
         end  
         if(inputData(5) >= 1 || inputData(5) < 0)
-            set(editProom, 'String', '< 0 or > 1?!'); 
+            set(editPinhole, 'String', '< 0 or > 1?!'); 
             return; 
         end
         if(inputData(6) <= 0)
@@ -881,8 +1096,8 @@ function fittingGUI
             set(editdt, 'String', '<= 0?!'); 
             return; 
         end  
- 
-        outputData = letsDoSomeMaths(inputData, dataErrors, carrierGas, reactant);  
+    
+        outputData = letsDoSomeMaths(inputData, inputDataErrors, carrierGas, reactant);  
         
         %Makes the results visible. 
         set(editp1, 'String', num2str(outputData(1))); 
@@ -895,6 +1110,34 @@ function fittingGUI
         set(v2Error, 'String', num2str(outputData(8)));
         set(editNreactant, 'String', num2str(outputData(9), '%E'));
         set(NreactantError, 'String', num2str(outputData(10), '%E'));
+    end 
+
+    %The selected carrier gas may be useful in viscosity calculations. 
+    function carrierGasChange(obj, event) 
+        set(selectCarrierGas, 'Enable', 'off');
+        drawnow; 
+        set(selectCarrierGas, 'Enable', 'on');
+        selection = get(selectCarrierGas, 'Value'); 
+        if(selection == 1) 
+            carrierGas = 'Helium'; 
+        elseif(selection == 2) 
+            carrierGas = 'Nitrogen'; 
+        elseif(selection == 3) 
+            carrierGas = 'Argon'; 
+        end  
+    end 
+
+    %The selected reactant may be useful in viscosity calculations. 
+    function reactantChange(obj, event) 
+        set(selectReactant, 'Enable', 'off');
+        drawnow; 
+        set(selectReactant, 'Enable', 'on');
+        selection = get(selectReactant, 'Value'); 
+        if(selection == 1) 
+            reactant = 'Other'; 
+        elseif(selection == 2) 
+            reactant = 'Oxygen'; 
+        end 
     end 
 
     %Selects a data point and then deletes it. 
@@ -913,7 +1156,7 @@ function fittingGUI
         yval = 0; 
         
         %Goes through the data to find the data point closest to the point selected by the cursor. 
-        %Not particularly efficient, as it goes through all the data points and the forms a matrix 
+        %Not particularly efficient, as it goes through all the data points and then forms a matrix 
         %that is one size smaller and replaces the old data matrix with that. 
         for i = 1:size(theData,1)
             if(c > sqrt((xSF*(x-theData(i,1))).^2 + (ySF*(y-theData(i,2))).^2))
@@ -949,29 +1192,37 @@ function fittingGUI
     end 
 
     %Plots the fit from solved parameters. Also plots the residual under the graph. 
-    function plotFittedExponential(anInterval, k, A, B) 
+    function plotFittedExponential(anInterval, params) 
         
         %Delete possible old data. 
         residualData = []; 
         delete(residualPoints); 
         delete(NLfit);
         delete(residual); 
-        
-        %x and y points for the exponential fit. 
-        y1 = A + B*exp(-k*anInterval(:,1)); 
-        x = anInterval(:,1); 
-        
+  
+        %The 'actual' graphs. 
+        x = anInterval(:,1);
+        if(selectedFunction == 1 || selectedFunction == 2) 
+            y1 = params(1) + params(3)*exp(-params(5)*x);      
+        elseif(selectedFunction == 3) 
+            y1 = params(1) + params(3)*(1 - exp(-params(5)*x));
+        elseif(selectedFunction == 4) 
+            y1 = params(1) + params(3)*(exp(-params(5)*x) - exp(-params(7)*x));
+        elseif(selectedFunction == 5 || selectedFunction == 6) 
+            y1 = params(1) + params(3)*exp(-params(5)*x) + params(7)*exp(-params(9)*x); 
+        else 
+            y1 = params(1) + params(3)*(exp(-params(5)*x) - exp(-params(7)*x));
+        end 
+              
         %x and y points for the residual data. 
         residualData(:,1) = anInterval(:,1);  
         residualData(:,2) = anInterval(:,2) - y1; 
         
         %Make a linear fit for the residual data. 
         outputparams = polyfit(residualData(:,1),residualData(:,2),1); 
-        set(editTheGrad, 'String', num2str(outputparams(1))); 
-        set(editTheConst, 'String', num2str(outputparams(2)));
         y2 = outputparams(1)*x + outputparams(2); 
         
-        %Plot both the exponential and linear function. 
+        %Plot both the exponential and the linear function. 
         hold on 
         residual = plot(x, y2, 'linewidth', 3, 'Color', [0.6, 0.3, 0.3]); 
         NLfit = plot(x, y1, 'b', 'linewidth', 3); 
@@ -979,10 +1230,10 @@ function fittingGUI
         hold off 
         
         %Set new limits. 
-        limits = xlim; 
+        limits = xlim;
         setLimits(limits(1), limits(2), 1.2*min(residualData(:,2)), 1.1*max(theData(:,2)));
+             
     end 
-    
 
     %Edit xy-limits to the  graph. 
     function setLimits(xmin, xmax, ymin, ymax)
@@ -1121,43 +1372,6 @@ end
         end 
     end 
     
-    %Gets the fit parameters for a given set of data for the exponential of the form y = A + B*exp(-k*x). 
-    function [outputParams] = getExponentialFitParameters(theData, initParams) 
-        outputParams = zeros(1, 6); 
-        expFunc = @(params, x) params(2) + params(3)*exp(-params(1)*x);
-        [parameters, Res, Jac, Cov, MSE] = nlinfit(theData(:,1), theData(:,2), expFunc, initParams); 
-        
-        %The errors for the parameters is calculated here
-        parameterErrors = sqrt(diag(Cov)); 
-        
-        %confidenceIntervals = nlparci(parameters, Res, 'cov', Cov)
-        outputParams(1) = parameters(1); 
-        outputParams(2) = parameterErrors(1); 
-        outputParams(3) = parameters(2); 
-        outputParams(4) = parameterErrors(2);
-        outputParams(5) = parameters(3); 
-        outputParams(6) = parameterErrors(3);
-    end
-    
-    %Fit parameters for wall rate 
-    function [outputParams] = getWallFitParameters(theData, k0, A0, B0) 
-        outputParams = zeros(1, 6); 
-        initParams = [k0, B0]; 
-        expFunc = @(params, x) A0 + params(2)*exp(-params(1)*x);
-        [parameters, Res, Jac, Cov, MSE] = nlinfit(theData(:,1), theData(:,2), expFunc, initParams); 
-        
-        %The errors for the parameters is calculated here
-        parameterErrors = sqrt(diag(Cov)); 
-        
-        %confidenceIntervals = nlparci(parameters, Res, 'cov', Cov)
-        outputParams(1) = parameters(1); 
-        outputParams(2) = parameterErrors(1); 
-        outputParams(3) = A0; 
-        outputParams(4) = 0; 
-        outputParams(5) = parameters(2); 
-        outputParams(6) = parameterErrors(2);
-    end
-    
     %Function to delete a data point from the data. 
     function [dataMatrix] = removePoint(inputMatrix, xval,  yval) 
         step = 0; 
@@ -1171,7 +1385,99 @@ end
         end 
     end 
     
-    %Lets do some maths! 
+    %Gets the fit parameters for a given set of data and for a given fit function. 
+    function [outputParams] = getExponentialFitParameters(theData, initParams, selection)
+        outputParams = zeros(1, 2*size(initParams, 2));
+        background = initParams(1);
+        backgroundConstantParameters = initParams(2:size(initParams, 2));
+        
+        if(selection == 1)
+            
+            expFunc = @(params, x) params(1) + params(2)*exp(-params(3)*x);
+            [parameters, Res, Jac, Cov, MSE] = nlinfit(theData(:,1), theData(:,2), expFunc, initParams);
+            
+            %Errors
+            parameterErrors = sqrt(diag(Cov));
+            %confidenceIntervals = nlparci(parameters, Res, 'cov', Cov)
+            
+            outputParams(1) = parameters(1);
+            outputParams(2) = parameterErrors(1);
+            outputParams(3) = parameters(2);
+            outputParams(4) = parameterErrors(2);
+            outputParams(5) = parameters(3);
+            outputParams(6) = parameterErrors(3);
+        elseif(selection == 2)
+            
+            expFunc = @(params, x) background + params(1)*exp(-params(2)*x);
+            [parameters, Res, Jac, Cov, MSE] = nlinfit(theData(:,1), theData(:,2), expFunc, backgroundConstantParameters);
+            
+            parameterErrors = sqrt(diag(Cov));
+            outputParams(1) = initParams(1);
+            outputParams(2) = 0;
+            outputParams(3) = parameters(1);
+            outputParams(4) = parameterErrors(1);
+            outputParams(5) = parameters(2);
+            outputParams(6) = parameterErrors(2);
+        elseif(selection == 3)
+            
+            expFunc = @(params, x) background + params(1)*(1 - exp(-params(2)*x));
+            [parameters, Res, Jac, Cov, MSE] = nlinfit(theData(:,1), theData(:,2), expFunc, backgroundConstantParameters);
+            
+            parameterErrors = sqrt(diag(Cov));
+            outputParams(1) = initParams(1);
+            outputParams(2) = 0;
+            outputParams(3) = parameters(1);
+            outputParams(4) = parameterErrors(1);
+            outputParams(5) = parameters(2);
+            outputParams(6) = parameterErrors(2);
+        elseif(selection == 4)
+            
+            expFunc = @(params, x) background + params(1)*(exp(-params(2)*x) - exp(-params(3)*x));
+            [parameters, Res, Jac, Cov, MSE] = nlinfit(theData(:,1), theData(:,2), expFunc, backgroundConstantParameters);
+            
+            parameterErrors = sqrt(diag(Cov));
+            outputParams(1) = initParams(1);
+            outputParams(2) = 0;
+            outputParams(3) = parameters(1);
+            outputParams(4) = parameterErrors(1);
+            outputParams(5) = parameters(2);
+            outputParams(6) = parameterErrors(2);
+            outputParams(7) = parameters(3);
+            outputParams(8) = parameterErrors(3);
+        elseif(selection == 5 || selection == 6)    
+            
+            expFunc = @(params, x) background + params(1)*exp(-params(2)*x) + params(3)*exp(-params(4)*x);
+            [parameters, Res, Jac, Cov, MSE] = nlinfit(theData(:,1), theData(:,2), expFunc, backgroundConstantParameters);
+           
+            parameterErrors = sqrt(diag(Cov));
+            outputParams(1) = initParams(1);
+            outputParams(2) = 0;
+            outputParams(3) = parameters(1);
+            outputParams(4) = parameterErrors(1);
+            outputParams(5) = parameters(2);
+            outputParams(6) = parameterErrors(2);
+            outputParams(7) = parameters(3);
+            outputParams(8) = parameterErrors(3);
+            outputParams(9) = parameters(4);
+            outputParams(10) = parameterErrors(4);
+        else 
+            
+            expFunc = @(params, x) background + params(1)*(exp(-params(2)*x) - exp(-params(3)*x));
+            [parameters, Res, Jac, Cov, MSE] = nlinfit(theData(:,1), theData(:,2), expFunc, backgroundConstantParameters);
+            
+            parameterErrors = sqrt(diag(Cov));
+            outputParams(1) = initParams(1);
+            outputParams(2) = 0;
+            outputParams(3) = parameters(1);
+            outputParams(4) = parameterErrors(1);
+            outputParams(5) = parameters(2);
+            outputParams(6) = parameterErrors(2);
+            outputParams(7) = parameters(3);
+            outputParams(8) = parameterErrors(3);
+        end
+    end
+    
+    %Calculate the velocities, pressures and concentrations. 
     function [outputData] = letsDoSomeMaths(inputData, errorData, carrierGas, reactant)
         
         %Let's see what we are working with. 
@@ -1235,7 +1541,7 @@ end
         PinholeCorrection = 1.0 / (1.0 - PinholeCorrection);
         
         %Calculate the molar flows. Carrier Gas flow obviously includes the precursor flow. 
-        reactantFlow = (dp*MVolume)/(R*Troom*dt);
+        reactantFlow = (dp*MVolume)/(R*Troom*dt); 
         reactantFlowError = (MVolume/(R*Troom*dt)).^2 * dpError.^2 + ... 
                             (dp/(R*Troom*dt)).^2 * MVolumeError.^2 + ...
                             ((-dp*MVolume)/(R*Troom.^2 *dt)).^2 * TroomError.^2 + ... 
@@ -1354,6 +1660,106 @@ end
         outputData(10) = NreactantError;  
     end 
     
+    %Calculate the rate constants and EQ constants 
+    function [outputData] = calculateKineticStuff(params, T, wallRate, wallRateError, reactantC, reactantCError, selection)
+       
+        if(selection == 1 || selection == 2 || selection == 3) 
+            if(reactantC == 0) 
+                rateConstant = 0; 
+                rateConstantError = 0; 
+            else 
+                rateConstant = (params(5) - wallRate)/(reactantC); 
+                rateConstantError = (1/reactantC).^2 * (params(6)).^2  + ...
+                                  (-1/reactantC).^2 * (wallRateError).^2 + ...
+                                  ((wallRate - params(5))/(reactantC).^2).^2 * (reactantCError).^2;
+                rateConstantError = sqrt(rateConstantError); 
+            end 
+            
+            outputData(1) = rateConstant; 
+            outputData(2) = rateConstantError;
+        elseif(selection == 4) 
+            if(reactantC == 0) 
+                rateConstant = 0; 
+                rateConstantError = 0; 
+            else 
+                rateConstant = (params(7) - wallRate)/(reactantC); 
+                rateConstantError = (1/reactantC).^2 * (params(8)).^2  + ...
+                                  (-1/reactantC).^2 * (wallRateError).^2 + ...
+                                  ((wallRate - params(7))/(reactantC).^2).^2 * (reactantCError).^2;
+                rateConstantError = sqrt(rateConstantError); 
+            end 
+            
+            outputData(1) = rateConstant; 
+            outputData(2) = rateConstantError;
+            
+        elseif(selection == 5 || selection == 6)  
+            if(reactantC == 0) 
+                outputData = zeros(1,8); 
+            else 
+                F = params(3)/params(7);
+                Ferror = (1/params(7)).^2 * (params(4)).^2 + ... 
+                       (-F/params(7)).^2 * (params(8)).^2;
+                Ferror = sqrt(Ferror);
+                
+                alpha = (params(5)*F + params(9))/(1 + F) - wallRate;
+                alphaError = (F/(F+1)).^2 * (params(6)).^2 + ...
+                           ( params(5)/(F+1) - (params(5)*F+params(9))/((F+1).^2) ).^2 * (Ferror).^2 + ... 
+                           (F/(F+1)).^2 * (params(10)).^2 + ...
+                           (-1).^2 * (wallRateError).^2; 
+                alphaError = sqrt(alphaError);
+                
+                if(selection == 6) 
+                    delta = (params(5)*params(9) - wallRate * ((params(5) + params(9)*F)/(1+F)) )/(alpha);
+                    deltaError = ( -delta/alpha ).^2 * (alphaError).^2 + ...
+                               ( (params(9)/alpha - wallRate/(alpha*(1+F))) ).^2 * (params(6)).^2 + ...
+                               ( (params(5)/alpha - wallRate*F/(alpha*(1+F))) ).^2 * (params(10)).^2 + ...  
+                               ( -params(5)/(alpha*(1+F)) - params(9)*F/(alpha*(1+F)) ).^2 * (wallRateError).^2 + ... 
+                               ( -(wallRate/alpha) * (params(9)/(1+F) - (params(5) + params(9)*F)/((1+F).^2)) ).^2 * (Ferror).^2 ;
+                    deltaError = sqrt(deltaError);
+                else 
+                    delta = 0; 
+                    deltaError = 0; 
+                end 
+                
+                beta = params(5) + params(9) - alpha - wallRate - delta ;
+                betaError = (params(6)).^2 + (params(10)).^2 + (alphaError).^2 + (wallRateError).^2 + (deltaError).^2; 
+                betaError = sqrt(betaError); 
+                rateConstantF = alpha/reactantC;
+                rateConstantFerror = (1/reactantC).^2 * (alphaError).^2 + ... 
+                                   (rateConstantF/reactantC).^2 * (reactantCError).^2; 
+                rateConstantFerror = sqrt(rateConstantFerror);
+                
+                rateConstantB = beta ;
+                rateConstantBerror = betaError;
+                
+                equilibriumConstant = rateConstantF/rateConstantB;
+                equilibriumConstantError = (1/rateConstantB).^2 * (rateConstantFerror).^2 + ... 
+                                         (equilibriumConstant/rateConstantB).^2 * (rateConstantBerror).^2; 
+                equilibriumConstantError = sqrt(equilibriumConstantError);
+                
+                %Express the EQ constant in terms of pressure (bar) and make it dimensionless. 
+                equilibriumConstant = 1.0e-1 * 6.02214129e23 * equilibriumConstant /(8.3144621*T);
+                equilibriumConstantError = 1.0e-1 * 6.02214129e23 * equilibriumConstantError /(8.3144621*T);
+                
+                %Take the natural log of the EQ constant. 
+                equilibriumConstantError = equilibriumConstantError/equilibriumConstant; 
+                equilibriumConstant = log(equilibriumConstant); 
+                
+                outputData(1) = rateConstantF; 
+                outputData(2) = rateConstantFerror;
+                outputData(3) = rateConstantB; 
+                outputData(4) = rateConstantBerror;
+                outputData(5) = delta; 
+                outputData(6) = deltaError;
+                outputData(7) = equilibriumConstant; 
+                outputData(8) = equilibriumConstantError;        
+            end       
+        else 
+            outputData = zeros(1,8);
+        end 
+    end
+        
+    %Calculate the viscosity of a selected substance. 
     function [viscosity, viscosityError] = calculateViscosity(substance, T, dT) 
     
         if(strcmp(substance, 'Helium') == 1) 
