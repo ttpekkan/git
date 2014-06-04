@@ -910,8 +910,10 @@ function fittingGUI
             set(editForwardRate, 'String', num2str(kineticParams(1))); 
             set(forwardRateError, 'String', num2str(kineticParams(2)));  
         elseif(selectedFunction == 4) 
-            set(editSecondExp, 'String', charArray{7});
-            set(secondExpError, 'String', charArray{8});
+            set(editFirstExp, 'String', charArray{7});
+            set(firstExpError, 'String', charArray{8});  
+            set(editSecondExp, 'String', charArray{5});
+            set(secondExpError, 'String', charArray{6});
             
             set(editForwardRate, 'String', num2str(kineticParams(1))); 
             set(forwardRateError, 'String', num2str(kineticParams(2)));  
