@@ -490,13 +490,15 @@ function fittingGUI
    residualPoints = plot([],[]); 
    minLine = [];
    maxLine = [];  
-   backgroundLine = []; 
+   minBG = [];
+   maxBG = []; 
    reactant = 'Other';  
    carrierGas = 'Helium'; 
    selectedFunction = 1; 
    
    fittingFunctionSelected; 
    variables = load('variables'); 
+   positions = load('positions'); 
    
    set(editTroom, 'String', num2str(variables(1)));
    set(editProom, 'String', num2str(variables(2)));
@@ -533,7 +535,7 @@ function fittingGUI
        set(editFirstWallRate, 'String', 'Give kw1');
        set(firstWallRateError, 'String', 'Give dkw1');
    end
-   
+  
    %Make the GUI visible.
    set(f,'Visible','on')
    
@@ -803,29 +805,44 @@ function fittingGUI
             xmax = get(minLine, 'XData');
             xmin = get(maxLine, 'XData');
         end
+                
+        %The order of the vertical white lines doesn't matter. Can't be on top of each other. 
+        if(get(minBG, 'XData') == get(maxBG, 'XData'))
+            display('Vertical lines on top of each other')
+            return;
+        end 
+        if(get(minBG, 'XData') < get(maxBG, 'XData'))
+            BGmin = get(minBG, 'XData');
+            BGmax = get(maxBG, 'XData');
+        else
+            BGmax = get(minBG, 'XData');
+            BGmin = get(maxBG, 'XData');
+        end
         
-        %Gets the x-value of the white vertical line. 
-        backgroundMax = get(backgroundLine, 'XData'); 
         average = 0; 
-        if(backgroundMax(1) <= theData(1,1))  
+        if(BGmax(1) <= theData(1,1))  
             display('The position of the white (background) line sucks')
             return;
         end
                
         %Sums the y-values of the data up until the white vertical line and then takes the average. 
+        pointCounter = 0; 
         for i = 1:size(theData,1) 
-            if(backgroundMax(1) < theData(i,1))
-                average = average/(i-1); 
+            if(BGmax(1) < theData(i,1))
+                average = average/pointCounter;
                 set(editSignalAve, 'String', num2str(average)); 
                 break;            
             end 
-            average = average + theData(i,2); 
+            if(theData(i,1) >= BGmin(1)) 
+                average = average + theData(i,2); 
+                pointCounter = pointCounter + 1; 
+            end 
         end 
         
         %Deletes a possible previous background signal and plots the new one. 
         delete(backgroundSignal);
         hold on 
-        backgroundSignal = plot([theData(1,1), backgroundMax(1)], [average, average], 'k', 'linewidth', 3); 
+        backgroundSignal = plot([BGmin(1), BGmax(1)], [average, average], 'k', 'linewidth', 3); 
         hold off 
         
         %Some sort a guess for initial parameters. They depend on fitting function of course. 
@@ -856,7 +873,22 @@ function fittingGUI
         %Set axis limits. 
         set(minLine, 'XData', [min(exponentialFitInterval(:,1)), min(exponentialFitInterval(:,1))]); 
         set(maxLine, 'XData', [max(exponentialFitInterval(:,1)), max(exponentialFitInterval(:,1))]);
-        set(backgroundLine, 'XData', [backgroundMax(1), backgroundMax(1)]);
+        set(minBG, 'XData', [BGmin(1), BGmin(1)]);
+        set(maxBG, 'XData', [BGmax(1), BGmax(1)]);
+        
+        %Save vertical line positions and x-axis limits.  
+        position = zeros(1,6);
+        
+        position(1) = str2double(get(editxMin, 'String'));
+        position(2) = str2double(get(editxMax, 'String'));
+        position(3) = min(exponentialFitInterval(:,1)); 
+        position(4) = max(exponentialFitInterval(:,1));
+        position(5) = BGmin(1);
+        position(6) = BGmax(1);
+        
+        %Save the positions to a text file. 
+        save('positions', 'position',  '-ascii');
+        positions = load('positions');
         
         %Show the fit parameters and data derived from them. 
         changeOutputParams(outputParams);   
@@ -948,27 +980,33 @@ function fittingGUI
         tick = (xmax-xmin)/500.0; 
         minLineX = get(minLine, 'XData'); 
         maxLineX = get(maxLine, 'XData'); 
-        bgLineX = get(backgroundLine, 'XData'); 
+        BGmin = get(minBG, 'XData'); 
+        BGmax = get(maxBG, 'XData'); 
+        
         setLimits(xmin, xmax, ymin, ymax); 
-        if(size(exponentialFitInterval,1) > 0) 
-            set(minLine, 'XData', minLineX); 
-            set(maxLine, 'XData', maxLineX);
-            set(backgroundLine, 'XData', bgLineX);
-        end 
+       
         if(minLineX(1) > maxLineX(1)) 
             set(minLine, 'XData', maxLineX); 
             set(maxLine, 'Xdata', minLineX); 
             minLineX = get(minLine, 'XData'); 
             maxLineX = get(maxLine, 'XData'); 
         end 
-        if(maxLineX(1) > xmax) 
-            set(maxLine, 'XData', [xmax-tick, xmax-tick]); 
+        
+        if(BGmin > BGmax) 
+            set(minBG, 'XData', BGmax); 
+            set(maxBG, 'Xdata', BGmin); 
+            BGmin = get(minBG, 'XData'); 
+            BGmax = get(maxBG, 'XData'); 
         end 
-        if(minLineX(1) < xmin) 
-            set(minLine, 'XData', [xmin+tick, xmin+tick]); 
+        
+        if(maxLineX(1) > xmax || minLineX(1) < xmin) 
+            set(maxLine, 'XData', [xmax-tick*2, xmax-tick*2]); 
+            set(minLine, 'XData', [xmin+tick*2, xmin+tick*2]);
         end 
-        if(bgLineX(1) < xmin || bgLineX(1) > xmax) 
-            set(backgroundLine, 'XData', [xmin+tick, xmin+tick]); 
+        
+        if(BGmax(1) > xmax || BGmin(1) < xmin) 
+            set(maxBG, 'XData', [xmax-tick, xmax-tick]); 
+            set(minBG, 'XData', [xmin+tick, xmin+tick]);
         end
     end 
 
@@ -1181,8 +1219,9 @@ function fittingGUI
            %Initially we delete everything in the graph and create everything anew. 
            createAxes(theAxes); 
            minLine = line;
-           maxLine = line; 
-           backgroundLine = line; 
+           maxLine = line;
+           minBG = line;
+           maxBG = line;
            NLfit = plot([],[]);
            backgroundSignal = plot([],[]); 
            residualPoints = plot([],[]);  
@@ -1190,7 +1229,10 @@ function fittingGUI
            hold on 
            theGraph = plot(thePoints(:,1), thePoints(:,2), 'd', 'Color', 'y'); 
            hold off
-           setLimits(min(thePoints(:,1)), max(thePoints(:,1)), min(thePoints(:,2)) - 0.1*max(thePoints(:,2)), 1.1*max(thePoints(:,2)));
+           setLimits(min(positions(1)), max(positions(2)), min(thePoints(:,2)) - 0.1*max(thePoints(:,2)), 1.1*max(thePoints(:,2)));
+           
+           set(editxMin, 'String', num2str(positions(1)));
+           set(editxMax, 'String', num2str(positions(2)));
     end 
 
     %Plots the fit from solved parameters. Also plots the residual under the graph. 
@@ -1250,17 +1292,13 @@ function fittingGUI
         set(theAxes, 'XLim', [xmin, xmax], 'YLim', [ymin, ymax]); 
         
         %Changes the limit labels in the GUI. 
-        set(editxMin, 'String', num2str(xmin)); 
-        set(editxMax, 'String', num2str(xmax));
         set(edityMin, 'String', num2str(ymin));
         set(edityMax, 'String', num2str(ymax))
        
-        createMinLine((xmax-xmin)*0.15+xmin, (xmax-xmin)*0.15+xmin, ymin, ymax); 
-        createMaxLine((xmax-xmin)*0.9+xmin, (xmax-xmin)*0.9+xmin, ymin, ymax); 
-        createBgLine((xmax-xmin)*0.05+xmin,  (xmax-xmin)*0.05+xmin, ymin, ymax); 
-        draggable(minLine, 'h'); 
-        draggable(maxLine, 'h');      
-        draggable(backgroundLine, 'h'); 
+        createMinLine(positions(3), positions(3), ymin, ymax); 
+        createMaxLine(positions(4), positions(4), ymin, ymax); 
+        createMinBG(positions(5), positions(5), ymin, ymax); 
+        createMaxBG(positions(6), positions(6), ymin, ymax);
     end
 
     function createMinLine(xmin, xmax, ymin, ymax)  
@@ -1275,10 +1313,16 @@ function fittingGUI
         draggable(maxLine, 'h'); 
     end 
 
-    function createBgLine(xmin, xmax, ymin, ymax)  
-        set(backgroundLine, 'XData', [], 'YData', []);
-        backgroundLine = line([xmin, xmax], [ymin, ymax], 'Color', 'w', 'LineWidth', 3);
-        draggable(backgroundLine, 'h'); 
+    function createMinBG(xmin, xmax, ymin, ymax)  
+        set(minBG, 'XData', [], 'YData', []);
+        minBG = line([xmin, xmax], [ymin, ymax], 'Color', 'w', 'LineWidth', 3);
+        draggable(minBG, 'h'); 
+    end 
+
+    function createMaxBG(xmin, xmax, ymin, ymax)  
+        set(maxBG, 'XData', [], 'YData', []);
+        maxBG = line([xmin, xmax], [ymin, ymax], 'Color', 'w', 'LineWidth', 3);
+        draggable(maxBG, 'h'); 
     end 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
