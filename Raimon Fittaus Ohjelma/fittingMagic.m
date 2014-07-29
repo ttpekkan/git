@@ -1206,6 +1206,10 @@ function fittingGUI
             end 
         end 
         theData = removePoint(theData, xval, yval);
+       
+        positions(1) = str2double(get(editxMin, 'String'));
+        positions(2) = str2double(get(editxMax, 'String'));
+        
         plotPoints(theData); 
     end 
     
