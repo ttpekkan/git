@@ -1,0 +1,428 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[dvips]{color}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[dvips]{graphics}
+\usepackage{epsfig}
+\usepackage{verbatim}
+\usepackage[T1]{fontenc}
+\usepackage{cancel}
+\usepackage[utf8]{inputenc}
+\pagestyle{plain}
+\begin{document}
+
+\begin{center}
+\begin{huge}
+Relevant Equations for Raimo's Apparatus
+\end{huge}
+\end{center}
+Take the reaction: 
+\begin{equation*}
+R + O_2 \rightarrow X
+\end{equation*}
+The molar flow for oxygen (or any other reactant) is calculated by measuring the pressure change in a known volume and temperature in a certain time interval (stopwatch). 
+\begin{eqnarray*}
+\frac{dn_{O_2}}{dt} = F_{O_2} = \frac{\Delta p \cdot V}{RT_{room} \cdot \Delta t} \:\:\:, 
+\end{eqnarray*}
+where $R$ is the gas constant. For the bath gas (usually helium) the molar flow is calculated by measuring the gas flow that comes out of the back of the reactor. In this case the we measure the change of volume in a certain time interval at room temperature and 1 atm. This does not take into account that part of the gas flow that goes through the pinhole and the "pinhole flow" has to be measured seperately. After the pinhole flow is measured we can add a correction factor to our calculations. 
+\begin{eqnarray*}
+\frac{dn_{He}}{dt} = F_{He} = \left( \frac{1}{1 - \gamma} \right) \cdot \frac{p_{room} \cdot \Delta V}{RT_{room} \cdot \Delta t} \;\;\;,
+\end{eqnarray*}
+where $\gamma$ is the pinhole correction, calculated from $ \frac{F_{ph}}{F_{He} + F_{ph}} $. 
+\\
+\\
+The total molar flow in the reactor is obvously 
+\begin{equation*}
+F_{tot} = F_{O_2} + F_{He} \:.
+\end{equation*}
+If 
+\begin{equation*}
+\frac{p_{O_2}}{p_{He}} =  \frac{F_{O_2}}{F_{He}} \;\;
+\end{equation*}
+then 
+\begin{equation*}
+p_{tot} = p_1 = p_{He} + p_{O_2} =  p_{He} + \frac{F_{O_2}}{F_{He}} \cdot p_{He} \;\;.
+\end{equation*}
+Here $p_{He}$ contains the small amount of precursor. Now we can calculate the velocity in the beginning of the reactor: 
+\begin{eqnarray*}
+F_{tot} = \frac{p_1\;dV}{RT_{room}\;dt} = \frac{p_1\; dx \cdot A}{RT_{room}\;dt} &=& \frac{p_1\; v_1 \cdot \pi r^2}{RT_{room}} \\
+v_1 &=& \frac{F_{tot} \cdot RT_{room}}{p_1 \cdot \pi r^2}
+\end{eqnarray*}
+\\
+\\
+In order to calculate the pressure drop correctly in the reactor we must know the viscosity of the gas in question. We can calculate (or at least approximate) the viscosities of the gases at different temperatures using the Sutherland formula. 
+\begin{equation*}
+\eta = \eta_0 \frac{T_0 + C}{T_0^{3/2}} \cdot \left( \frac{T^{3/2}}{T + C} \right) 
+\end{equation*}
+The units are $Pa \cdot s$. Because there are several gases in our flow, the total viscosity is assumed to be the weighted average of the viscosities of the component gases. That is, if the Sutherland constants for the components are known. If they are not, we assume their viscosity is the same as helium's. This assumption is usually not a problem, because the concentration of the reactant is usually much much lower than the concentration of the bath gases, so the error is quite tiny (maybe 1\% reactant). In oxygen reactions the mole fraction of oxygen can be between 0.1-0.2, but happily the Sutherland constant for oxygen is known.
+\\
+\\
+Now we can calculate the pressure drop due to the Hagen–Poiseuille equation (Kaufman's paper). For the first section $0 \rightarrow L_1$ and $T = T_{room}$. Currently $L_1 = 22.0\:cm$. 
+\begin{equation*}
+p_2 = \left( {p_1}^2 - \frac{16\:F_{tot} \: L_1 \: \eta \: RT_{room}}{\pi r^4} \right)^{1/2}
+\end{equation*}
+$r$ is the reactor radius. 
+\\
+\\
+This expression could be simplified to 
+\begin{eqnarray*}
+p_2 &=& p_1\left(  1 - \frac{16\:F_{tot} \: L_1 \: \eta \: R T_{room} }{p_1^2 \: \pi r^4} \right)^{1/2} \\
+p_2 &\approx & p_1 \left( 1 - \frac{8\:\frac{p_1\; v_1 \cdot \pi r^2}{R T_{room}  } \: L_1 \; \eta \: RT_{room}}{p_1^2 \: \pi r^4} \right) \\
+p_2 &\approx & p_1 - \frac{8L_1 \: \eta \: v_1}{r^2} \;\;,
+\end{eqnarray*}
+but for coding purposes, one might as well use the exact formula. 
+\\
+\\
+For the next section $L_1 \rightarrow L_2$ and currently $L_2 = 28\:cm$. If the reactor is heated to temperature $T_2$ the viscosity changes. Obviously the temperature rise is not instantaneous when we go from $L_1 \rightarrow L_2$, but it is very nearly so. 
+\begin{equation*}
+\eta = \eta_0 \frac{T_0 + C}{T_0^{3/2}} \cdot \left( \frac{T_{2}^{3/2}}{T_{2} + C} \right) \:.
+\end{equation*}
+We get the pressure drop for this section exactly the same way as previously. 
+\begin{equation*}
+p_3 = \left( {p_2}^2 - \frac{16\:F_{tot} \: L_2 \: \eta \: RT_2}{\pi r^4} \right)^{1/2}
+\end{equation*}
+The gas speed at this point is calculated exactly the same way as previously, the parameters just have different values. 
+\begin{eqnarray*}
+v_3 = \frac{F_{tot} \cdot RT_2}{p_3 \cdot \pi r^2}
+\end{eqnarray*}
+\\
+\\
+The concentration of a substance can be calculated from the ideal gas law 
+\begin{equation*}
+\frac{n}{V} = \frac{p}{RT} = c. 
+\end{equation*}
+In the reactor, the molar flow remains constant and so does the ratio $ \frac{F_{O_2}}{F_{tot}}$, so the concentration for $O_2$ can be calculated from 
+\begin{equation*}
+c_{O_2} = \frac{F_{O_2}}{F_{tot}} \cdot \frac{p_3}{RT_2} \:. 
+\end{equation*}
+This is in $ \frac{mol}{m^3}$. To get to $ \frac{N}{cm^3}$, we multiply with $6.022 \cdot 10^{23} \cdot 10^{-6}\:\: \frac{m^3}{mol\;cm^3} $. 
+Torr to Pa conversion is $1\;Torr = 133.322\;Pa$. 
+\\
+\\
+\\
+\\
+What about the kinetics? Take the reaction system 
+\begin{eqnarray*}
+R + O_2 &\rightarrow & RO_2 \:\:\:\:\:\:\:\: k_1 \\
+R &\rightarrow&           \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: k_{wall1} \\
+RO_2 &\rightarrow&           \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: k_{wall2}  
+\end{eqnarray*}
+So we get the following differential equation system 
+\begin{eqnarray*}
+\frac{d[R]}{dt} &=& -k_1[R][O_2] - k_{wall1}[R] \\
+\frac{d[RO_2]}{dt} &=& k_1[R][O_2] - k_{wall2}[RO_2]
+\end{eqnarray*}
+If we work under pseudo-first-order conditions ($[O_2] >> [R]$), $k_1[O_2] \approx \alpha$. Also, from now on $k_{wall1} = \gamma$ and $k_{wall2} = \delta$. 
+\begin{eqnarray*}
+\frac{d[R]}{dt} &=& -(\alpha + \gamma)[R] \\
+\frac{d[RO_2]}{dt} &=& \alpha[R] -\delta[RO_2]
+\end{eqnarray*}
+Change this to a matrix equation. From now on, $[R] = R$ and $[RO_2] = P$. 
+\begin{eqnarray*}
+\begin{pmatrix}
+R' \\
+P' 
+\end{pmatrix}
+= 
+\begin{pmatrix}
+-(\alpha + \gamma) & 0 \\
+\alpha & -\delta 
+\end{pmatrix}
+\begin{pmatrix}
+R \\
+P 
+\end{pmatrix}
+\end{eqnarray*}
+As it is a differential equation, we can guess the form of the solution. Guess: 
+\begin{eqnarray*}
+x &=& 
+\begin{pmatrix}
+R \\
+P 
+\end{pmatrix}
+= k \cdot e^{-rt} \\
+x' &=& -rk \cdot e^{-rt}
+\end{eqnarray*}
+Put stuff in place. 
+\begin{eqnarray*}
+-rk \cdot e^{-rt} &=& 
+\begin{pmatrix}
+-(\alpha + \gamma) & 0 \\
+\alpha & -\delta 
+\end{pmatrix} 
+\cdot k \cdot e^{-rt} \\
+\begin{pmatrix}
+r -\alpha - \gamma & 0 \\
+\alpha & r - \delta 
+\end{pmatrix} 
+k &=& 0 
+\end{eqnarray*}
+It turns out we have an eigenvalue problem, which we can solve. Nontrivial ($k \neq 0$) solutions exist if 
+\begin{eqnarray*}
+0 &=& \begin{vmatrix}
+r -\alpha - \gamma & 0 \\
+\alpha & r - \delta 
+\end{vmatrix} \\
+0 &=& r^2 -\delta r - \alpha r + \alpha \delta - \gamma r + \gamma \delta  \\
+r &=& \frac{1}{2} \cdot \left( \alpha + \gamma + \delta \pm \sqrt{(\alpha + \gamma + \delta)^2 - 4 \cdot(\alpha \delta + \gamma \delta)} \right)\\
+r &=& \frac{1}{2} \cdot \left( \alpha + \gamma + \delta \pm \sqrt{\alpha^2 + \gamma^2 + \delta^2 + 2 \alpha \gamma + 2 \alpha \delta + 2 \gamma \delta - 4\alpha \delta -4\gamma \delta)} \right)\\
+r &=& \frac{1}{2} \cdot \left( \alpha + \gamma + \delta \pm \sqrt{(\alpha + \gamma - \delta)^2} \right)\\
+r_1 &=& \alpha + \gamma \\
+r_2 &=& \delta
+\end{eqnarray*}
+Let's solve the equation with both eigenvalues. Let $k = \begin{pmatrix} x_1 \\ x_2  \end{pmatrix}$. 
+\begin{eqnarray*}
+-r_1 \begin{pmatrix} x_1 \\ x_2  \end{pmatrix} \cdot e^{-r_1t} &=& 
+\begin{pmatrix}
+-(\alpha + \gamma) & 0 \\
+\alpha & -\delta 
+\end{pmatrix} 
+\cdot \begin{pmatrix} x_1 \\ x_2  \end{pmatrix} \cdot e^{-r_1t} \\
+\end{eqnarray*}
+We get two equations. 
+\begin{eqnarray*}
+-(\alpha + \gamma)x_1 &=& -(\alpha + \gamma)x_1  \:\:\:\:\:\:\: \text{not very interesting} 
+\end{eqnarray*}
+and 
+\begin{eqnarray*}
+-(\alpha + \gamma)x_2 &=& \alpha x_1 - \delta x_2 \\
+x_2 &=& \frac{-\alpha}{\alpha + \gamma - \delta}x_1 
+\end{eqnarray*}
+The other solution: 
+\begin{eqnarray*}
+-r_2 \begin{pmatrix} x_1 \\ x_2  \end{pmatrix} \cdot e^{-r_2t} &=& 
+\begin{pmatrix}
+-(\alpha + \gamma) & 0 \\
+\alpha & -\delta 
+\end{pmatrix} 
+\cdot \begin{pmatrix} x_1 \\ x_2  \end{pmatrix} \cdot e^{-r_2t} \\
+\end{eqnarray*}
+We get two equations. 
+\begin{eqnarray*}
+-\delta x_1 &=& -(\alpha + \gamma)x_1  \:\:\:\: \text{either}\:\: x_1 = 0 \:\: \text{or} \:\: \delta = \alpha + \gamma
+\end{eqnarray*}
+and 
+\begin{eqnarray*}
+-\delta x_2 &=& \alpha x_1 - \delta x_2 \\
+\alpha x_1 &=& 0 \:\:\:\: \text{So} \:\ x_1 = 0 \:\ \text{because unlikely that} \:\ \alpha = 0 
+\end{eqnarray*}
+
+The full solution therefore is 
+\begin{eqnarray*}
+\begin{pmatrix}
+R \\
+P 
+\end{pmatrix}
+= c_1 \begin{pmatrix}1 \\ \frac{-\alpha}{\alpha + \gamma - \delta} \end{pmatrix} e^{-(\alpha + \gamma)t} + c_2 \begin{pmatrix}0 \\ 1 \end{pmatrix} e^{-\delta t}  \: . 
+\end{eqnarray*}
+\begin{eqnarray*}
+[R] &=& c_1e^{-(\alpha + \gamma)t} \:\:\:\: \text{because} \:\ [R]_{t = 0} = [R]_0  \:\: \text{so}  \:\: c_1 = [R]_0 \\
+\end{eqnarray*}
+\\
+\begin{eqnarray*}
+[RO_2] &=& \frac{-\alpha[R]_0}{\alpha + \gamma - \delta}e^{-(\alpha + \gamma)t} + c_2e^{-\delta t} \:\:\:\: \text{because} \:\ [RO_2]_{t = 0} = 0 
+\:\: \text{so}  \:\: c_2 = \frac{\alpha[R]_0}{\alpha + \gamma - \delta} \\
+\end{eqnarray*}
+The final solutions are therefore 
+\begin{eqnarray*}
+[R] &=& [R]_0e^{-(\alpha + \gamma)t} \\
+\end{eqnarray*}
+\begin{eqnarray*}
+[RO_2] &=& \frac{-\alpha[R]_0}{\alpha + \gamma - \delta} \left(e^{-(\alpha + \gamma)t} - e^{-\delta t} \right)
+\end{eqnarray*}
+and the functions we will be fitting to our data will be of this form. The "fitting function" for the radical is of the form $y = a + be^{-k't}$ (a is the background signal). After we do the fit we can calculate the bimolecular rate constant for the radical the following way: 
+\begin{eqnarray*}
+k' &=& \alpha + \gamma \\
+k' &=& k_1[O_2] + \gamma       \:\:\:\: \:\:\:\: \:\:\:\:\text{$k'$ increases linearly with $[O_2]$!} 
+\end{eqnarray*}
+So when have measured multiple points with different $[O_2]$ concentrations, we can do a linear fit and the gradient parameter will be the bimolecular rate constant. The constant parameter should be close to the measured wall rate.  
+~\\
+~\\
+The "fitting function" for the product ($RO_2$) is $y = a - b(e^{-k't} - e^{-k_w t})$, where $a$ is the background signal and $b$ is the amplitude (which isn't particularly useful). $k'$ should be about the same for the radical and the product and if they're not, it means there is a problem. Either the measurements were not particularly successful or there is something wrong with the reaction system (for example, there may be other reactions producing $RO_2$). The wall rate $k_w$ for the product can be obtained from the fit. It should be noted though that $k_w$ will include all channels by which $RO_2$ disappears, so it's not necessarily just the wall rate (but it includes it anyway). If the product is a stable molecule, $k_w$ might very well be zero.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+~\\
+~\\
+With an equilibrium system the handling gets a bit more complex, but is still dealable. The reaction system is usually the following: 
+\begin{eqnarray*}
+R + O_2 &\rightleftharpoons & RO_2 \:\:\:\:\:\:\:\: k_1, k_{-1} \\
+R &\rightarrow&           \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: k_{wall1} \\
+RO_2 &\rightarrow&           \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: k_{wall2}  
+\end{eqnarray*}
+So we get the following differential equation system 
+\begin{eqnarray*}
+\frac{d[R]}{dt} &=& -k_1[R][O_2] - k_{wall1}[R] + k_{-1}[RO_2] \\
+\frac{d[RO_2]}{dt} &=& k_1[R][O_2] - k_{wall2}[RO_2] - k_{-1}[RO_2] \:\: .
+\end{eqnarray*}
+Again we work under pseudo-first-order conditions, so ($[O_2] >> [R]$), $k_1[O_2] \approx \alpha$. Also, from now on $k_{-1} = \beta$, $k_{wall1} = \gamma$ and $k_{wall2} = \delta$. 
+\begin{eqnarray*}
+\frac{d[R]}{dt} &=& -(\alpha + \gamma)[R] + \beta[RO_2] \\
+\frac{d[RO_2]}{dt} &=& \alpha[R] - (\beta + \delta)[RO_2] 
+\end{eqnarray*}
+Change this to a matrix equation. From now on, $[R] = R$ and $[RO_2] = P$. 
+\begin{eqnarray*}
+\begin{pmatrix}
+R' \\
+P' 
+\end{pmatrix}
+= 
+\begin{pmatrix}
+-(\alpha + \gamma) & \beta \\
+\alpha & -(\beta + \delta) 
+\end{pmatrix}
+\begin{pmatrix}
+R \\
+P 
+\end{pmatrix}
+\end{eqnarray*}
+Guess the form of the solution: 
+\begin{eqnarray*}
+x &=& 
+\begin{pmatrix}
+R \\
+P 
+\end{pmatrix}
+= k \cdot e^{-rt} \\
+x' &=& -rk \cdot e^{-rt}
+\end{eqnarray*}
+Put stuff in place. 
+\begin{eqnarray*}
+-rk \cdot e^{-rt} &=& 
+\begin{pmatrix}
+-(\alpha + \gamma) & \beta \\
+\alpha & -(\beta + \delta) 
+\end{pmatrix} 
+\cdot k \cdot e^{-rt} \\
+\begin{pmatrix}
+r -\alpha - \gamma & \beta \\
+\alpha & r - \beta - \delta 
+\end{pmatrix} 
+k &=& 0 
+\end{eqnarray*}
+Solve the eigenvalue problem.
+\begin{eqnarray*}
+0 &=& \begin{vmatrix}
+r -\alpha - \gamma & \beta \\
+\alpha & r - \beta - \delta 
+\end{vmatrix} \\
+0 &=& r^2 - \beta r - \delta r - \alpha r + \alpha \beta + \alpha \delta -\gamma r + \beta \gamma + \gamma \delta - \alpha \beta \\
+r_{1,2} &=& \frac{1}{2} \cdot \left( \alpha + \beta + \gamma + \delta \pm \sqrt{(\alpha + \beta +  \gamma + \delta)^2 - 4 \cdot(\alpha \delta +  \beta \gamma + \gamma \delta)} \right)\\
+r_{1,2} &=& \frac{1}{2} \cdot \left( \xi \pm \sqrt{\xi^2 - 4 \cdot(\alpha \delta +  \beta \gamma + \gamma \delta)} \right)  \:\:\:\:\:\:\: \xi = \alpha + \beta + \gamma + \delta
+\end{eqnarray*}
+Let's solve the equation with both eigenvalues. Let $k = \begin{pmatrix} x_1 \\ x_2  \end{pmatrix}$. 
+\begin{eqnarray*}
+-r_1 \begin{pmatrix} x_1 \\ x_2  \end{pmatrix} \cdot e^{-r_1t} &=& 
+\begin{pmatrix}
+-(\alpha + \gamma) & \beta \\
+\alpha & -(\beta + \delta) 
+\end{pmatrix} 
+\cdot \begin{pmatrix} x_1 \\ x_2  \end{pmatrix} \cdot e^{-r_1t} \\
+\end{eqnarray*}
+We get two equations. 
+\begin{eqnarray*}
+-r_1 x_1 &=& -(\alpha + \gamma)x_1 + \beta x_2  \\
+x_2 &=& \frac{\alpha + \gamma - r_1}{\beta}x_1
+\end{eqnarray*}
+and 
+\begin{eqnarray*}
+-r_1 x_2 &=& \alpha x_1 -(\beta + \delta)x_2 \\
+x_2 &=& \frac{\alpha}{\beta + \delta - r_1}x_1 
+\end{eqnarray*}
+From here we can see that $  \frac{\alpha + \gamma - r_1}{\beta} = \frac{\alpha}{\beta + \delta - r_1}$, which is something we can use later. 
+The other solution is the same, just switch $r_1$ with $r_2$. 
+\begin{eqnarray*}
+x_2 &=& \frac{\alpha + \gamma - r_2}{\beta}x_1 \\
+x_2 &=& \frac{\alpha}{\beta + \delta - r_2}x_1 \\
+\frac{\alpha + \gamma - r_2}{\beta} &=& \frac{\alpha}{\beta + \delta - r_2}
+\end{eqnarray*}
+
+
+The full solution therefore is 
+\begin{eqnarray*}
+\begin{pmatrix}
+R \\
+P 
+\end{pmatrix}
+= c_1 \begin{pmatrix}1 \\ \frac{\alpha + \gamma - r_1}{\beta} \end{pmatrix} e^{-r_1t} + c_2 \begin{pmatrix}1 \\ \frac{\alpha + \gamma - r_2}{\beta} \end{pmatrix} e^{-r_2t}  \: . 
+\end{eqnarray*}
+\begin{eqnarray*}
+[R] &=& c_1e^{-r_1t} + c_2^{-r_2t} \:\:\:\: \text{because} \:\ [R]_{t = 0} = [R]_0  \:\: \text{so}  \:\: c_2 = [R]_0 - c_1 \\
+\end{eqnarray*}
+\\
+\begin{eqnarray*}
+[RO_2] &=& \frac{\alpha + \gamma - r_1}{\beta}c_1e^{-r_1t} + \frac{\alpha + \gamma - r_2}{\beta}[R]_0 e^{-r_2t} -  \frac{\alpha + \gamma - r_2}{\beta}c_1 e^{-r_2t} \\
+&&  \text{because} \:\ [RO_2]_{t = 0} = 0 \:\: \text{so}  \:\: \frac{\alpha + \gamma - r_1}{\beta}c_1 + \frac{\alpha + \gamma - r_2}{\beta}[R]_0  -  \frac{\alpha + \gamma - r_2}{\beta}c_1 = 0  \\
+0 &=& (r_2 - r_1)c_1 + (\alpha + \gamma - r_2)[R]_0 \\
+c_1 &=& \frac{(\alpha + \gamma - r_2)[R]_0}{r_1 - r_2} \\
+c_2 &=& [R]_0 - c_1 = \frac{(r_1 - \alpha - \gamma)[R]_0}{r_1 - r_2}
+\end{eqnarray*}
+The final solutions are therefore 
+\begin{eqnarray*}
+[R] &=& \frac{(\alpha + \gamma - r_2)[R]_0}{r_1 - r_2}e^{-r_1t} + ([R]_0 - \frac{(\alpha + \gamma - r_2)[R]_0}{r_1 - r_2})e^{-r_2t} ~\\
+\phantom{}[R] &=& \frac{(\alpha + \gamma - r_2)[R]_0}{r_1 - r_2}e^{-r_1t} + \frac{(r_1 - \alpha - \gamma)[R]_0}{r_1 - r_2}e^{-r_1t}
+\end{eqnarray*}
+\begin{eqnarray*}
+[RO_2] &=& \frac{(\alpha + \gamma - r_2)[R]_0}{r_1 - r_2} \frac{(\alpha + \gamma - r_1)}{\beta} e^{-r_1t} + 
+\frac{(r_1 - \alpha - \gamma)[R]_0}{r_1 - r_2} \frac{(\alpha + \gamma - r_2)}{\beta}  e^{-r_2t} \\
+\phantom{}[RO_2] &=& \frac{(\alpha + \gamma - r_1)(\alpha + \gamma - r_2)[R]_0}{\beta(r_1 - r_2)}\left(e^{-r_1t} - e^{-r_2t} \right) \:\: .
+\end{eqnarray*}
+For the radical precursor the "fitting function" is $ y = Ae^{r_1t} + Be^{r_2t}$. Values for $A$, $B$, $r_1$ and $r_2$ we get from the fit and $\gamma$ is known from the wall rate measurement. It is now possible to calculate the values for the other reaction rates. Alpha: 
+\begin{eqnarray*}
+\frac{A}{B} = F &=& \frac{ \frac{(\alpha + \gamma - r_2)[R]_0}{r_1 - r_2} }{ \frac{(r_1 - \alpha - \gamma)[R]_0}{r_1 - r_2} } \\
+F &=& \frac{\alpha + \gamma - r_2}{r_1 - \alpha - \gamma} \\
+r_1F - \alpha F - \gamma F &=& \alpha + \gamma - r_2 \\
+\alpha + \alpha F &=& r_1F + r_2 - \gamma - \gamma F \\
+\alpha(1 + F) &=& r_1F + r_2 - \gamma(1+F) \\
+\alpha &=& \frac{r_1F + r_2}{1 + F} - \gamma 
+\end{eqnarray*}
+Beta and delta: 
+\begin{eqnarray*}
+r_1 + r_2 &=& \frac{1}{2}(\xi + \xi) = \xi = \alpha + \beta + \gamma + \delta \\
+\beta &=& r_1 + r_2 - \alpha - \gamma -\delta 
+\end{eqnarray*}
+For delta, we need to use the equality we found earlier. 
+\begin{eqnarray*}
+\frac{\alpha + \gamma - r_1}{\beta} &=& \frac{\alpha}{\beta + \delta - r_1} \\
+\frac{\alpha + \gamma - r_1}{r_1 + r_2 - \alpha - \gamma -\delta} &=& \frac{\alpha}{r_2 - \alpha - \gamma} \\
+\alpha r_1 + \alpha r_2 -  \alpha^2 - \alpha \gamma - \alpha \delta &=& \alpha r_2 - \alpha^2 - \alpha \gamma + \gamma r_2 - \alpha \gamma - \gamma^2 - r_1 r_2 + \alpha r_1 + \gamma r_1        \\
+-\alpha \delta &=&   \gamma r_2 - \alpha \gamma - \gamma^2 - r_1 r_2 + \gamma r_1  \\
+\delta &=& \frac{1}{\alpha}\left(r_1 r_2 + \gamma^2 + \alpha \gamma - \gamma(r_2 + r_1) \right) \\
+\delta &=& \frac{1}{\alpha}\left(r_1 r_2 + \gamma^2 + \frac{\gamma r_1F + \gamma r_2}{1 + F} - \gamma^2 - \gamma(r_2 + r_1) \right) \\
+\delta &=& \frac{1}{\alpha}\left(r_1 r_2 + \gamma^2 + \gamma \frac{r_1F + r_2 - r_2 - r_2F - r_1 - r_1F}{1 + F} - \gamma^2  \right) \\
+\delta &=& \frac{1}{\alpha}\left(r_1 r_2 - \gamma \frac{r_1 + r_2F}{1 + F}  \right) \\
+\end{eqnarray*}
+~\\
+~\\
+So when we fit the function $Ae^{-r_1 t} + Be^{-r_2t}$ to our data, we can solve the bimolecular rate constant forward ($\alpha = k_f \cdot [O_2]$), the rate constant backward ($\beta$) and the wall rate (or rate of some other loss) of the product ($\delta$). The function we fit to the product signal is $C(e^{-r_1 t} - e^{-r_2t})$, but this doesn't tell us anything useful, unless we know what the precursor concentration is (which we don't). 
+~\\
+~\\
+At equilibrium 
+\begin{eqnarray*}
+k_f [R][O_2] &=& k_B [RO_2] \\
+\frac{k_f}{k_b} &=& \frac{[RO_2]}{[R][O_2]} \\
+\frac{k_f}{k_b} &=& K \\
+\end{eqnarray*}
+We want to express the EQ-constant in terms of pressure (bars) and then divide it by standard pressure (1 bar) to make it dimensionless, so $ \frac{k_f}{k_b}$ has to be multiplied with $ \frac{N_A \cdot 10^{-6} \cdot 10^5}{RT}$ (assuming the unit of the bimolecular rate constant is $\frac{molecules}{cm^3 \: s}$). 
+~\\
+~\\
+When we have measured the EQ-constant at different temperatures, we can use the van't Hoff equation to estimate the entalphy and entropy of the reaction under study. 
+\begin{eqnarray*}
+\Delta G &=& -RTln(K) \\
+ln(K) &=& -\frac{\Delta H}{RT} + \frac{\Delta S}{R} 
+\end{eqnarray*}
+When we we plot $ln(K)$ as a function of $ \frac{1}{T}$, we should get a linear plot from which we can solve $\Delta H$ and $\Delta S$ when we do a linear fit. Of course we assume that $\Delta H$ and $\Delta S$ are indipendent of temperature (which they are not, but at a relatively small temperature range they can be almost indipendent of temperature). Steps can also be taken to take into account the temperature dependence of $\Delta H$ and $\Delta S$. 
+\end{document}
