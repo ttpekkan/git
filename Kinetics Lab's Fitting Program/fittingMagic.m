@@ -1625,7 +1625,7 @@ end
        
         [carrierGasViscosity, carrierGasViscosityError] = calculateViscosity(carrierGas, Troom, TroomError); 
         
-        if(strcmp(reactant, 'Other') == 1) 
+        if(strcmp(reactant, 'Other') == 1 || dp == 0) 
             totalViscosity = carrierGasViscosity;
             totalViscosityError = carrierGasViscosityError; 
         else 
@@ -1652,7 +1652,7 @@ end
         %Calculate viscosity with Sutherland's formula. 
         [carrierGasViscosity, carrierGasViscosityError] = calculateViscosity(carrierGas, T2, T2Error);
         
-        if(strcmp(reactant, 'Other') == 1) 
+        if(strcmp(reactant, 'Other') == 1 || dp == 0) 
             totalViscosity = carrierGasViscosity;
             totalViscosityError = carrierGasViscosityError; 
         else 
