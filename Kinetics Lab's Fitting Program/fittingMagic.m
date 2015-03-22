@@ -1264,7 +1264,7 @@ function fittingGUI
               
         %x and y points for the residual data. 
         residualData(:,1) = anInterval(:,1);  
-        residualData(:,2) = anInterval(:,2) - y1; 
+        residualData(:,2) = anInterval(:,2) - y1 + params(1) -  0.25*(max(theData(:,2))-params(1)); 
         
         %Make a linear fit for the residual data. 
         outputparams = polyfit(residualData(:,1),residualData(:,2),1); 
@@ -1279,8 +1279,7 @@ function fittingGUI
         
         %Set new limits. 
         limits = xlim;
-        setLimits(limits(1), limits(2), 1.2*min(residualData(:,2)), 1.1*max(theData(:,2)));
-             
+        setLimits(limits(1), limits(2), min(residualData(:,2)), max(theData(:,2)) + 0.1*(max(theData(:,2)) - params(1)));
     end 
 
     %Edit xy-limits to the  graph. 
