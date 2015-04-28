@@ -657,10 +657,8 @@ function fittingGUI
     end 
 
     %Open print dialog.
-    function printGUI(obj, event)
-        set(f, 'PaperPositionMode', 'manual');   
+    function printGUI(obj, event)  
         printdlg(f); 
-        set(f, 'PaperPositionMode', 'auto');
     end 
 
     %Changes the fitting function.
@@ -1264,7 +1262,8 @@ function fittingGUI
               
         %x and y points for the residual data. 
         residualData(:,1) = anInterval(:,1);  
-        residualData(:,2) = anInterval(:,2) - y1 + params(1) -  0.25*(max(theData(:,2))-params(1)); 
+        residualData(:,2) = anInterval(:,2) - y1;
+        residualData(:,2) = residualData(:,2) - max(residualData(:,2)) + min(theData(:,2));
         
         %Make a linear fit for the residual data. 
         outputparams = polyfit(residualData(:,1),residualData(:,2),1); 
@@ -1279,7 +1278,10 @@ function fittingGUI
         
         %Set new limits. 
         limits = xlim;
-        setLimits(limits(1), limits(2), min(residualData(:,2)), max(theData(:,2)) + 0.1*(max(theData(:,2)) - params(1)));
+        anInterval = takeInterval(limits(1), limits(2), theData); 
+       % setLimits(limits(1), limits(2), min(residualData(:,2)), max(theData(:,2)) + 0.1*(max(theData(:,2)) - params(1)));
+        setLimits(limits(1), limits(2), min(residualData(:,2)), max(anInterval(:,2)) + 0.1*(max(anInterval(:,2)) - params(1)));
+        
     end 
 
     %Edit xy-limits to the  graph. 
@@ -1578,7 +1580,7 @@ end
         
         FVolumeError = FVolumeError * 1.0e-6;
         MVolumeError = MVolumeError * 1.0e-6;
-        ProomError = 133.322368*ProomError; 
+        ProomError = 133.3223684211*ProomError; 
         pCarrierGasError = 133.3223684211*pCarrierGasError;   
         dpError = 133.3223684211*dpError; 
         ReactorRadiusError = ReactorDiameterError / 200.0;
@@ -1786,7 +1788,6 @@ end
                                          (equilibriumConstant/rateConstantB).^2 * (rateConstantBerror).^2; 
                 equilibriumConstantError = sqrt(equilibriumConstantError);
                 
-                %Express the EQ constant in terms of pressure (bar) and make it dimensionless. 
                 equilibriumConstant = 1.0e-1 * 6.02214129e23 * equilibriumConstant /(8.3144621*T);
                 equilibriumConstantError = 1.0e-1 * 6.02214129e23 * equilibriumConstantError /(8.3144621*T);
                 

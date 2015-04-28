@@ -66,7 +66,7 @@ dn = marrheniusParamsErr(2)
 dEa = marrheniusParamsErr(3)
 
 data(:,2) = data(:,2)*1e-12;
-x = 210 : 1 : 500 ; 
+x = 260 : 1 : 370 ; 
 y1 = arrhenius(arrheniusParameters, x); 
 y2 = logFit(logFitParameters, x); 
 y3 = marrhenius(marrheniusParameters, x);
