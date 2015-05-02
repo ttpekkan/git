@@ -34,7 +34,7 @@ program t78
 !-------------Paineiden ja konsentraatioiden muutokset ajan funktiona--------------
     open(unit = 11, file = 'konsentraatiot.txt', action = 'write')
     do t = 0, 7200, dt
-        write(11,*) t, c_SO4, p_H2O2, p_SO2, -log10(C_H)
+        write(11,*) t, c_SO4, p_H2O2, p_SO2, -log10(c_H)
         DeltaC = k_ox*K_D1*H_H2O2*H_SO2*p_H2O2*p_SO2*dt
 
         c_SO4 = c_SO4 + DeltaC
