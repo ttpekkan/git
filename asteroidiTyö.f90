@@ -47,19 +47,12 @@ program asteroidOrbit
     Er = 0
     F = 0
     W = 0
-    do j = 1, 2
-        do i = 1, 2*n, 2
-            if(j == 1 .and. mod(i,2) == 1) then
-                F(i,1) = 1
-            else
-                F(i+1,2) = 1
-            end if
-        end do
-    end do
 
     !Read data into matrices.
     open(unit = 11, file = 'data.dat', action = 'read')
     do i = 1, 2*n, 2
+        F(i,1) = 1.0
+        F(i+1,2) = 1.0
         read(11,*) F(i,3), R(i,1), Er(i,1), W(i,i), R(i+1,1), Er(i+1,1), W(i+1,i+1)
         F(i+1,4) = F(i,3)
     end do
@@ -74,7 +67,7 @@ program asteroidOrbit
     !Solve the variance-covariance matrix of A
     RminFA = R - matmul(F,A)
     RminFATWRminFA = matmul(transpose(RminFA), matmul(W,RminFA))
-    sigma2 = RminFATWRminFA(1,1)/(2*n-4)
+    sigma2 = RminFATWRminFA(1,1)/(2.0*n-4.0)
     do j = 1, 4
         do i = 1, 4
             varA(i,j) = sigma2*invFTWF(i,j)
@@ -158,15 +151,14 @@ end program
 
 subroutine invertMatrix(matrixIn, invertedMatrix)
     implicit none
-    interface
 
+    interface
         recursive subroutine getDeterminant(matrixIn, determinant)
             integer, parameter :: rprec = selected_real_kind(10, 10)
             real(kind = rprec), dimension(:,:), intent(in) :: matrixIn
             real(kind = rprec), intent(out) :: determinant
 
         end subroutine getDeterminant
-
     end interface
 
     integer, parameter :: rprec = selected_real_kind(10, 10)
