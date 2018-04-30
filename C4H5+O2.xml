@@ -1,58 +1,147 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <?xml-stylesheet type='text/xsl' href='../../mesmer2.xsl' media='other'?>
 <?xml-stylesheet type='text/xsl' href='../../mesmer1.xsl' media='screen'?>
-<me:mesmer xmlns="http://www.xml-cml.org/schema" xmlns:me="http://www.chem.leeds.ac.uk/mesmer"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cml="http://www.xml-cml.org/schema">
-<me:title>MESMER Title</me:title>
-  <moleculeList>
+<me:mesmer xmlns="http://www.xml-cml.org/schema" xmlns:me="http://www.chem.leeds.ac.uk/mesmer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <me:title>Project name</me:title>
+  <moleculeList convention="">
+    
+    <molecule id="He">
+      <atomArray>
+        <atom elementType="He" />
+      </atomArray>
+      <propertyList>
+        <property dictRef="me:epsilon">
+          <scalar>10.2</scalar>
+        </property>
+        <property dictRef="me:sigma">
+          <scalar>2.55</scalar>
+        </property>
+        <property dictRef="me:MW">
+          <scalar units="amu">4.0</scalar>
+        </property>
+      </propertyList>
+      <metadata name="copiedFrom" content="../../librarymols.xml" timestamp="20171024_141150" />
+    </molecule>
+
+    <molecule id="C2H2O">
+      <atomArray>
+        <atom id="a1" elementType="C" x3="-0.000000" y3="0.000000" z3="-1.206722" />
+        <atom id="a2" elementType="C" x3="0.000000" y3="-0.000000" z3="0.102732" />
+        <atom id="a3" elementType="O" x3="0.000000" y3="-0.000000" z3="1.262293" />
+        <atom id="a4" elementType="H" x3="0.000000" y3="0.939031" z3="-1.737200" />
+        <atom id="a5" elementType="H" x3="-0.000000" y3="-0.939031" z3="-1.737200" />
+      </atomArray>
+      <bondArray>
+        <bond atomRefs2="a4 a1" order="1" />
+        <bond atomRefs2="a5 a1" order="1" />
+        <bond atomRefs2="a1 a2" order="1" />
+        <bond atomRefs2="a2 a3" order="1" />
+      </bondArray>
+      
+	<propertyList>
+        <property dictRef="me:ZPE">
+          <scalar units="kJ/mol">0.0</scalar>
+        </property>
+	<property dictRef="me:spinMultiplicity">
+          <scalar>1.00</scalar>
+        </property>
+        <property dictRef="me:vibFreqs">
+          <array units="cm-1">444.44 579.33 609.25 979.67 1175.18 1408.04 2250.43 3220.01 3322.71</array>
+        </property>
+        <property dictRef="me:rotConsts">
+          <array units="cm-1">9.478 0.345 0.332</array>
+        </property>
+        <property dictRef="me:symmetryNumber">
+          <scalar>2</scalar>
+        </property>
+      </propertyList>
+    </molecule>
+
+    <molecule id="C2H3O">
+      <atomArray>
+        <atom id="a1" elementType="C" x3="-0.243096" y3="0.429365" z3="0.000000" />
+        <atom id="a2" elementType="O" x3="-1.256411" y3="-0.172243" z3="-0.000000" />
+        <atom id="a3" elementType="C" x3="1.163415" y3="-0.098134" z3="0.000000" />
+        <atom id="a4" elementType="H" x3="1.678798" y3="0.290110" z3="0.877769" />
+        <atom id="a5" elementType="H" x3="1.171792" y3="-1.189648" z3="0.000009" />
+        <atom id="a6" elementType="H" x3="1.678790" y3="0.290094" z3="-0.877780" />
+      </atomArray>
+      <bondArray>
+        <bond atomRefs2="a6 a3" order="1" />
+        <bond atomRefs2="a1 a2" order="2" />
+        <bond atomRefs2="a1 a3" order="1" />
+        <bond atomRefs2="a3 a5" order="1" />
+        <bond atomRefs2="a3 a4" order="1" />
+      </bondArray>
+
+      <propertyList>
+        <property dictRef="me:ZPE">
+          <scalar units="kJ/mol">-372.5</scalar>
+        </property>
+        <property dictRef="me:spinMultiplicity">
+          <scalar>2.00</scalar>
+        </property>
+        <property dictRef="me:vibFreqs">
+          <array units="cm-1">107.33 458.73 878.27 941.23 1040.45 1342.63 1440.32 1442.42 1975.14 3064.24 3166.58 3172.86</array>
+        </property>
+        <property dictRef="me:rotConsts">
+          <array units="cm-1">2.837 0.335 0.317</array>
+        </property>
+        <property dictRef="me:symmetryNumber">
+          <scalar>1</scalar>
+        </property>
+      </propertyList>
+    </molecule>
 
     <molecule id="C4H5">
       <atomArray>
-        <atom id="C1"  elementType="C"   x3=" 0.0 " 		y3=" 0.0 " 		z3=" 0.0 "/>
-	<atom id="C2"  elementType="C"   x3=" 0.0 " 		y3=" 0.0 " 		z3=" 1.374368 "/>
-	<atom id="C3"  elementType="C"   x3=" 0.0 " 		y3=" 0.0 " 		z3=" 2.591152 "/>
-	<atom id="H1"  elementType="H"   x3=" 0.0 " 		y3=" 0.928203 " 	z3=" -0.552116 "/>
-	<atom id="H2"  elementType="H"   x3=" 0.0 " 		y3=" -0.928203 " 	z3=" -0.552116 "/>
-	<atom id="C4"  elementType="C"   x3=" 0.0 " 		y3=" 0.0 " 		z3=" 4.045469 "/>
-	<atom id="H3"  elementType="H"   x3=" -1.021261 " 	y3=" 0.0 " 		z3=" 4.432253 "/>
-	<atom id="H4"  elementType="H"   x3=" 0.506253 " 	y3=" -0.884508 " 	z3=" 4.433646 "/>
-	<atom id="H5"  elementType="H"   x3=" 0.506253 " 	y3=" 0.884508 " 	z3=" 4.433646 "/>
+        <atom id="a1" elementType="C" x3="0.514915" y3="0.000000" z3="-0.000479" />
+        <atom id="a2" elementType="C" x3="-0.708373" y3="0.000000" z3="-0.000156" />
+        <atom id="a3" elementType="C" x3="-2.077348" y3="0.000000" z3="0.000205" />
+        <atom id="a4" elementType="H" x3="-2.632799" y3="0.926649" z3="0.000352" />
+        <atom id="a5" elementType="H" x3="-2.632799" y3="-0.926649" z3="0.000352" />
+        <atom id="a6" elementType="C" x3="1.968102" y3="0.000000" z3="-0.000863" />
+        <atom id="a7" elementType="H" x3="2.359792" y3="-0.000000" z3="1.019193" />
+        <atom id="a8" elementType="H" x3="2.361013" y3="-0.883642" z3="-0.506067" />
+        <atom id="a9" elementType="H" x3="2.361013" y3="0.883642" z3="-0.506067" />
       </atomArray>
       <bondArray>
-        <bond id="b1"  atomRefs2="C1 C2"   order="1"/>
-	<bond id="b2"  atomRefs2="C2 C3"   order="3"/>
-	<bond id="b3"  atomRefs2="C1 H1"   order="1"/>
-	<bond id="b4"  atomRefs2="C1 H2"   order="1"/>
-	<bond id="b5"  atomRefs2="C3 C4"   order="1"/>
-	<bond id="b6"  atomRefs2="C4 H3"   order="1"/>
-	<bond id="b7"  atomRefs2="C4 H4"   order="1"/>
-	<bond id="b8"  atomRefs2="C4 H5"   order="1"/>
+        <bond id="b1" atomRefs2="a8 a6" order="1" />
+        <bond id="b2" atomRefs2="a9 a6" order="1" />
+        <bond id="b3" atomRefs2="a6 a1" order="1" />
+        <bond id="b4" atomRefs2="a6 a7" order="1" />
+        <bond id="b5" atomRefs2="a1 a2" order="3" />
+        <bond id="b6" atomRefs2="a2 a3" order="1" />
+        <bond id="b7" atomRefs2="a3 a4" order="1" />
+        <bond id="b8" atomRefs2="a3 a5" order="1" />
       </bondArray>
-      <propertyList>
-           <property dictRef="me:ZPE">
-               <scalar units="kJ/mol">0.0</scalar>
-            </property>
-            <property dictRef="me:rotConsts">
-                <array units="cm-1">3.453533205 0.1207652069 0.1192735042</array>
-            </property>
-            <property dictRef="me:vibFreqs">
-                <array units="cm-1">198.0156 209.2160 411.0436 441.5209 658.2770 778.4027 1033.4749 1035.7251 1051.3050 1246.4632 1411.3274 1468.4782 1476.4784 1477.4194 2169.7758 3058.9207 3120.9541 3134.7002 3182.6971 3278.6674</array>
-            </property>
-            <property dictRef="me:frequenciesScaleFactor">
-               <scalar>0.985</scalar>
-            </property>
-            <property dictRef="me:symmetryNumber">
-                <scalar>1</scalar>
-            </property>
-            <property dictRef="me:spinMultiplicity">
-                <scalar>2</scalar>
-            </property>
-        </propertyList>
-        <me:DOSCMethod xsi:type="me:QMRotors"/>
 
-      <!--  Frequency 43.9371 has been eliminated in favour of a 1 Dimensional rotor. -->
+      <propertyList>
+        <property dictRef="me:ZPE">
+          <scalar units="kJ/mol">0.0</scalar>
+        </property>
+        <property dictRef="me:spinMultiplicity">
+          <scalar>2.00</scalar>
+        </property>
+        <property dictRef="me:vibFreqs">
+          <array units="cm-1">190.32 208.58 414.85 448.94 706.23 779.10 1017.09 1019.50 1036.17 1259.85 1400.80 1458.12 1459.01 1461.63 2141.44 3057.93 3122.79 3138.84 3186.05 3280.19</array>
+        </property>
+        <property dictRef="me:rotConsts">
+          <array units="cm-1">3.461 0.121 0.119</array>
+        </property>
+        <property dictRef="me:symmetryNumber">
+          <scalar>1</scalar>
+        </property>
+        <property dictRef="me:frequenciesScaleFactor">
+          <scalar>0.993</scalar>
+        </property>
+      </propertyList>
+ 
+      <me:DOSCMethod xsi:type="me:QMRotors"/>
+
+      <!--  Frequency 20.25 has been eliminated in favour of a 1 dimensional free rotor. -->
       <me:ExtraDOSCMethod xsi:type="me:HinderedRotorQM1D">
-        <me:bondRef>b1</me:bondRef>
+        <me:bondRef>b3</me:bondRef>
         <me:HinderedRotorPotential format="analytical" units="kJ/mol">
           <me:PotentialPoint index="0"  coefficient="0.0"/>
         </me:HinderedRotorPotential>
@@ -62,299 +151,836 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cml="http://www.xml-
 
     <molecule id="O2">
       <atomArray>
-        <atom id="O1"  elementType="O"   x3=" 0.0 "  y3=" 0.0 "  z3=" -0.094124 "/>
-        <atom id="O2"  elementType="O"   x3=" 0.0 "  y3=" 0.0 "  z3=" 1.094124 "/>
+        <atom id="a1" elementType="O" x3="0.000000" y3="0.000000" z3="0.597418" />
+        <atom id="a2" elementType="O" x3="0.000000" y3="0.000000" z3="-0.597418" />
       </atomArray>
       <bondArray>
-        <bond id="b1"  atomRefs2="O1 O2"   order="1"/>
+        <bond atomRefs2="a2 a1" order="2" />
       </bondArray>
+
       <propertyList>
-            <property dictRef="me:ZPE">
-                <scalar units="kJ/mol">0</scalar>
-            </property>
-            <property dictRef="me:rotConsts">
-                <array units="cm-1">1.49290278</array>
-            </property>
-            <property dictRef="me:vibFreqs">
-                <array units="cm-1">1765.4666</array>
-            </property>
-            <property dictRef="me:frequenciesScaleFactor">
-               <scalar>0.985</scalar>
-            </property>
-            <property dictRef="me:symmetryNumber">
-                <scalar>2</scalar>
-            </property>
-            <property dictRef="me:spinMultiplicity">
-                <scalar>3</scalar>
-            </property>
-        </propertyList>
-        <me:DOSCMethod name="ClassicalRotors"/>
+        <property dictRef="me:ZPE">
+          <scalar units="kJ/mol">0.0</scalar>
+        </property>
+        <property dictRef="me:spinMultiplicity">
+          <scalar>3.00</scalar>
+        </property>
+        <property dictRef="me:vibFreqs">
+          <array units="cm-1">1731.79</array>
+        </property>
+        <property dictRef="me:rotConsts">
+          <array units="cm-1">1.475</array>
+        </property>
+        <property dictRef="me:symmetryNumber">
+          <scalar>2</scalar>
+        </property>
+        <property dictRef="me:frequenciesScaleFactor">
+          <scalar>0.993</scalar>
+        </property>
+      </propertyList>
+      <me:DOSCMethod xsi:type="me:QMRotors"/>
     </molecule>
 
-    <molecule id="Int1propargyl">
+    <molecule id="Int1p">
       <atomArray>
-        <atom id="C1"  elementType="C"   x3=" 0.0 "  		y3=" 0.0 "  		z3=" 0.0 "/>
-	<atom id="C2"  elementType="C"   x3=" 0.0 "  		y3=" 0.0 "  		z3=" 1.451785 "/>
-	<atom id="C3"  elementType="C"   x3=" 0.0 "  		y3=" 0.0 "  		z3=" 2.649898 "/>
-	<atom id="H1"  elementType="H"   x3=" 0.47972 "  	y3=" 0.889561 "  	z3=" -0.409124 "/>
-	<atom id="H2"  elementType="H"   x3=" 0.47972 "  	y3=" -0.889561 "  	z3=" -0.409124 "/>
-	<atom id="C4"  elementType="C"   x3=" 0.0 "  		y3=" 0.0 "  		z3=" 4.106430 "/>
-	<atom id="H3"  elementType="H"   x3=" -1.023451 " 	y3=" 0.0 "  		z3=" 4.481529 "/>
-	<atom id="H4"  elementType="H"   x3=" 0.505802 "  	y3=" -0.884949 "  	z3=" 4.491838 "/>
-	<atom id="H5"  elementType="H"   x3=" 0.505802 "  	y3=" 0.884949 "  	z3=" 4.491838 "/>
-	<atom id="O1"  elementType="O"   x3=" -1.374917 "  	y3=" 0.0 "  		z3=" -0.467005 "/>
-	<atom id="O2"  elementType="O"   x3=" -1.411284 "  	y3=" 0.0 "  		z3=" -1.759166 "/>
+        <atom id="a1" elementType="C" x3="-0.469661" y3="1.675403" z3="-0.000000" />
+        <atom id="a2" elementType="C" x3="-0.469661" y3="0.474103" z3="-0.000000" />
+        <atom id="a3" elementType="C" x3="-0.469661" y3="-0.977220" z3="0.000000" />
+        <atom id="a4" elementType="H" x3="-0.952780" y3="-1.387527" z3="0.887954" />
+        <atom id="a5" elementType="H" x3="-0.952780" y3="-1.387527" z3="-0.887954" />
+        <atom id="a6" elementType="C" x3="-0.469661" y3="3.131424" z3="-0.000000" />
+        <atom id="a7" elementType="H" x3="0.552753" y3="3.510280" z3="-0.000000" />
+        <atom id="a8" elementType="H" x3="-0.974348" y3="3.521616" z3="-0.883964" />
+        <atom id="a9" elementType="H" x3="-0.974348" y3="3.521616" z3="0.883964" />
+        <atom id="a10" elementType="O" x3="0.900301" y3="-1.451035" z3="0.000000" />
+        <atom id="a11" elementType="O" x3="0.921369" y3="-2.749055" z3="0.000000" />
       </atomArray>
       <bondArray>
-        <bond id="b1"  atomRefs2="C1 C2"   order="1"/>
-	<bond id="b2"  atomRefs2="C2 C3"   order="3"/>
-	<bond id="b3"  atomRefs2="C1 H1"   order="1"/>
-	<bond id="b4"  atomRefs2="C1 H2"   order="1"/>
-	<bond id="b5"  atomRefs2="C3 C4"   order="1"/>
-	<bond id="b6"  atomRefs2="C4 H3"   order="1"/>
-	<bond id="b7"  atomRefs2="C4 H4"   order="1"/>
-	<bond id="b8"  atomRefs2="C4 H5"   order="1"/>
-	<bond id="b9"  atomRefs2="C1 O1"   order="1"/>
-	<bond id="b10"  atomRefs2="O1 O2"   order="1"/>
+        <bond id="b1" atomRefs2="a5 a3" order="1" />
+        <bond id="b2" atomRefs2="a8 a6" order="1" />
+        <bond id="b3" atomRefs2="a1 a2" order="3" />
+        <bond id="b4" atomRefs2="a1 a6" order="1" />
+        <bond id="b5" atomRefs2="a2 a3" order="1" />
+        <bond id="b6" atomRefs2="a3 a10" order="1" />
+        <bond id="b7" atomRefs2="a3 a4" order="1" />
+        <bond id="b8" atomRefs2="a6 a7" order="1" />
+        <bond id="b9" atomRefs2="a6 a9" order="1" />
+        <bond id="b10" atomRefs2="a10 a11" order="1" />
       </bondArray>
-      <propertyList>
-            <property dictRef="me:ZPE">
-                <scalar units="kJ/mol">-74.36814203</scalar>
-            </property>
-            <property dictRef="me:rotConsts">
-                <array units="cm-1">0.7666914805 0.0437880782 0.0420785576</array>
-            </property>
-            <property dictRef="me:vibFreqs">
-                <array units="cm-1">103.1092 202.7571 320.6351 404.5534 446.2471 510.5807 817.1048 993.6277 1008.8384 1052.8750 1056.6836 1194.1328 1241.7256 1297.0132 1391.4236 1412.2921 1478.9560 1481.4337 1485.3944 2411.2830 3074.8571 3090.2486 3140.4167 3146.4991 3146.8358</array>
-            </property>
-            <property dictRef="me:frequenciesScaleFactor">
-               <scalar>0.985</scalar>
-            </property>
-            <property dictRef="me:symmetryNumber">
-                <scalar>1</scalar>
-            </property>
-            <property dictRef="me:spinMultiplicity">
-                <scalar>2</scalar>
-            </property>
-	    <property dictRef="me:epsilon">
-                <scalar>420.0</scalar>
-            </property>
-            <property dictRef="me:sigma">
-                <scalar>5.0</scalar>
-            </property>
-        </propertyList>
 
-        <me:DOSCMethod xsi:type="me:QMRotors"/>
-	
-	<!--  Frequencies 34.7275 and 69.9272 have been eliminated in favour of 1 Dimensional rotors. -->
+      <propertyList>
+        <property dictRef="me:ZPE">
+          <scalar units="kJ/mol">-78.43</scalar>
+        </property>
+        <property dictRef="me:spinMultiplicity">
+          <scalar>2.00</scalar>
+        </property>
+        <property dictRef="me:vibFreqs">
+          <array units="cm-1">101.67 200.75 317.83 411.86 430.00 508.12 808.97 978.16 1002.23 1037.22 1042.19 1187.40 1224.31 1279.15 1374.02 1402.82 1461.45 1464.17 1465.85 2382.12 3076.80 3094.75 3145.78 3152.53 3152.87</array>
+        </property>
+        <property dictRef="me:rotConsts">
+          <array units="cm-1">0.774 0.044 0.042</array>
+        </property>
+        <property dictRef="me:symmetryNumber">
+          <scalar>1</scalar>
+        </property>
+        <property dictRef="me:sigma">
+          <scalar>6.3</scalar>
+        </property>
+        <property dictRef="me:epsilon">
+          <scalar>465.0</scalar>
+        </property>
+        <property dictRef="me:frequenciesScaleFactor">
+          <scalar>0.993</scalar>
+        </property>
+      </propertyList>
+      <me:DOSCMethod xsi:type="me:QMRotors"/>
+
+      <!--  Frequency 6.10 has been eliminated in favour of a 1 dimensional free rotor. -->
+      <me:ExtraDOSCMethod xsi:type="me:HinderedRotorQM1D">
+        <me:bondRef>b4</me:bondRef>
+        <me:HinderedRotorPotential format="analytical" units="kJ/mol">
+          <me:PotentialPoint index="0"  coefficient="0.0"/>
+        </me:HinderedRotorPotential>
+        <me:periodicity>3</me:periodicity>
+      </me:ExtraDOSCMethod>
+
+      <!--  Frequency 63.69 has been eliminated in favour of a 1 dimensional hindered rotor. -->
+ 	<me:ExtraDOSCMethod xsi:type="me:HinderedRotorQM1D">
+        <me:bondRef>b6</me:bondRef>
+        <me:HinderedRotorPotential format="numerical" units="kJ/mol" expansionSize="10"> 
+  <me:PotentialPoint angle="0"  potential="0"/>                               
+ <me:PotentialPoint angle="5"  potential="0.07876500"/>                      
+ <me:PotentialPoint angle="10"  potential="0.26255000"/>                     
+ <me:PotentialPoint angle="15"  potential="0.55135500"/>                     
+ <me:PotentialPoint angle="20"  potential="0.91892500"/>                     
+ <me:PotentialPoint angle="25"  potential="1.33900500"/>                     
+ <me:PotentialPoint angle="30"  potential="1.78534000"/>                     
+ <me:PotentialPoint angle="35"  potential="2.20542000"/>                     
+ <me:PotentialPoint angle="40"  potential="2.599245"/>                       
+ <me:PotentialPoint angle="45"  potential="2.91430500"/>                     
+ <me:PotentialPoint angle="50"  potential="3.15060000"/>                     
+ <me:PotentialPoint angle="55"  potential="3.30813"/>                        
+ <me:PotentialPoint angle="60"  potential="3.36064"/>                        
+ <me:PotentialPoint angle="65"  potential="3.30813"/>                        
+ <me:PotentialPoint angle="70"  potential="3.176855"/>                       
+ <me:PotentialPoint angle="75"  potential="2.94056"/>                        
+ <me:PotentialPoint angle="80"  potential="2.651755"/>                       
+ <me:PotentialPoint angle="85"  potential="2.31044000"/>                     
+ <me:PotentialPoint angle="90"  potential="1.96912500"/>                     
+ <me:PotentialPoint angle="95"  potential="1.68032000"/>                     
+ <me:PotentialPoint angle="100"  potential="1.41777"/>                       
+ <me:PotentialPoint angle="105"  potential="1.286495"/>                      
+ <me:PotentialPoint angle="110"  potential="1.31275000"/>                    
+ <me:PotentialPoint angle="115"  potential="1.52279"/>                       
+ <me:PotentialPoint angle="120"  potential="1.91661500"/>                    
+ <me:PotentialPoint angle="125"  potential="2.46797"/>                       
+ <me:PotentialPoint angle="130"  potential="3.176855"/>                      
+ <me:PotentialPoint angle="135"  potential="3.99076000"/>                    
+ <me:PotentialPoint angle="140"  potential="4.85717500"/>                    
+ <me:PotentialPoint angle="145"  potential="5.74984500"/>                    
+ <me:PotentialPoint angle="150"  potential="6.61626"/>                       
+ <me:PotentialPoint angle="155"  potential="7.430165"/>                      
+ <me:PotentialPoint angle="160"  potential="8.13905"/>                       
+ <me:PotentialPoint angle="165"  potential="8.71666000"/>                    
+ <me:PotentialPoint angle="170"  potential="9.13674000"/>                    
+ <me:PotentialPoint angle="175"  potential="9.42554500"/>                    
+ <me:PotentialPoint angle="180"  potential="9.50431"/>                       
+ <me:PotentialPoint angle="185"  potential="9.42554500"/>                    
+ <me:PotentialPoint angle="190"  potential="9.13674000"/>                    
+ <me:PotentialPoint angle="195"  potential="8.71666000"/>                    
+ <me:PotentialPoint angle="200"  potential="8.13905"/>                       
+ <me:PotentialPoint angle="205"  potential="7.430165"/>                      
+ <me:PotentialPoint angle="210"  potential="6.61626"/>                       
+ <me:PotentialPoint angle="215"  potential="5.74984500"/>                    
+ <me:PotentialPoint angle="220"  potential="4.85717500"/>                    
+ <me:PotentialPoint angle="225"  potential="3.99076000"/>                    
+ <me:PotentialPoint angle="230"  potential="3.176855"/>                      
+ <me:PotentialPoint angle="235"  potential="2.46797"/>                       
+ <me:PotentialPoint angle="240"  potential="1.91661500"/>                    
+ <me:PotentialPoint angle="245"  potential="1.52279"/>                       
+ <me:PotentialPoint angle="250"  potential="1.31275000"/>                    
+ <me:PotentialPoint angle="255"  potential="1.286495"/>                      
+ <me:PotentialPoint angle="260"  potential="1.41777"/>                       
+ <me:PotentialPoint angle="265"  potential="1.68032000"/>                    
+ <me:PotentialPoint angle="270"  potential="1.96912500"/>                    
+ <me:PotentialPoint angle="275"  potential="2.31044000"/>                    
+ <me:PotentialPoint angle="280"  potential="2.651755"/>                      
+ <me:PotentialPoint angle="285"  potential="2.94056"/>                       
+ <me:PotentialPoint angle="290"  potential="3.176855"/>                      
+ <me:PotentialPoint angle="295"  potential="3.30813"/>                       
+ <me:PotentialPoint angle="300"  potential="3.36064"/>                       
+ <me:PotentialPoint angle="305"  potential="3.30813"/>                       
+ <me:PotentialPoint angle="310"  potential="3.15060000"/>                    
+ <me:PotentialPoint angle="315"  potential="2.91430500"/>                    
+ <me:PotentialPoint angle="320"  potential="2.599245"/>                      
+ <me:PotentialPoint angle="325"  potential="2.20542000"/>                    
+ <me:PotentialPoint angle="330"  potential="1.78534000"/>                    
+ <me:PotentialPoint angle="335"  potential="1.33900500"/>                    
+ <me:PotentialPoint angle="340"  potential="0.91892500"/>                    
+ <me:PotentialPoint angle="345"  potential="0.55135500"/>                    
+ <me:PotentialPoint angle="350"  potential="0.26255000"/>                    
+ <me:PotentialPoint angle="355"  potential="0.07876500"/>
+         </me:HinderedRotorPotential>
+	 <me:WriteStates/>
+      </me:ExtraDOSCMethod>
+
+      <me:DistributionCalcMethod default="true" name="Boltzmann" />
+
+      <me:energyTransferModel xsi:type="me:ExponentialDown">
+            <me:deltaEDown units="cm-1">182.0</me:deltaEDown>
+	    <me:deltaEDownTExponent referenceTemperature="300">0.23</me:deltaEDownTExponent>
+      </me:energyTransferModel>
+
+    </molecule>
+
+    <molecule id="Int1a">
+      <atomArray>
+        <atom id="a1" elementType="C" x3="-0.182355" y3="-0.023279" z3="0.000000" />
+        <atom id="a2" elementType="C" x3="-0.182355" y3="1.287915" z3="-0.000000" />
+        <atom id="a3" elementType="C" x3="-0.182355" y3="2.587457" z3="-0.000000" />
+        <atom id="a4" elementType="H" x3="-0.182355" y3="3.152309" z3="0.926243" />
+        <atom id="a5" elementType="H" x3="-0.182355" y3="3.152309" z3="-0.926243" />
+        <atom id="a6" elementType="C" x3="-1.370678" y3="-0.917083" z3="0.000000" />
+        <atom id="a7" elementType="H" x3="-2.272511" y3="-0.309556" z3="0.000000" />
+        <atom id="a8" elementType="H" x3="-1.361228" y3="-1.563358" z3="-0.878148" />
+        <atom id="a9" elementType="H" x3="-1.361228" y3="-1.563358" z3="0.878148" />
+        <atom id="a10" elementType="O" x3="1.075740" y3="-0.628699" z3="0.000000" />
+        <atom id="a11" elementType="O" x3="1.032526" y3="-1.931101" z3="0.000000" />
+      </atomArray>
+      <bondArray>
+        <bond id="b1" atomRefs2="a5 a3" order="1" />
+        <bond id="b2" atomRefs2="a8 a6" order="1" />
+        <bond id="b3" atomRefs2="a1 a2" order="2" />
+        <bond id="b4" atomRefs2="a1 a6" order="1" />
+        <bond id="b5" atomRefs2="a1 a10" order="1" />
+        <bond id="b6" atomRefs2="a2 a3" order="2" />
+        <bond id="b7" atomRefs2="a3 a4" order="1" />
+        <bond id="b8" atomRefs2="a6 a7" order="1" />
+        <bond id="b9" atomRefs2="a6 a9" order="1" />
+	<bond id="b10" atomRefs2="a10 a11" order="1" />
+      </bondArray>
+
+      <propertyList>
+        <property dictRef="me:ZPE">
+          <scalar units="kJ/mol">-78.10</scalar>
+        </property>
+        <property dictRef="me:spinMultiplicity">
+          <scalar>2.00</scalar>
+        </property>
+        <property dictRef="me:vibFreqs">
+          <array units="cm-1">164.25 261.58 325.76 477.85 529.50 584.36 616.44 769.94 937.62 965.04 1002.73 1043.75 1171.02 1270.44 1319.34 1401.60 1450.59 1453.06 1496.13 2065.83 3083.76 3151.89 3154.04 3189.20 3232.49</array>
+        </property>
+        <property dictRef="me:rotConsts">
+          <array units="cm-1">0.263 0.080 0.063</array>
+        </property>
+        <property dictRef="me:symmetryNumber">
+          <scalar>1</scalar>
+        </property>
+        <property dictRef="me:sigma">
+          <scalar>6.3</scalar>
+        </property>
+        <property dictRef="me:epsilon">
+          <scalar>465.0</scalar>
+        </property>
+        <property dictRef="me:frequenciesScaleFactor">
+          <scalar>0.993</scalar>
+        </property>
+      </propertyList>
+      <me:DOSCMethod xsi:type="me:QMRotors"/>
+
+      <!--  Frequency 242.02 has been eliminated in favour of a 1 dimensional hindered rotor. -->
+ 	<me:ExtraDOSCMethod xsi:type="me:HinderedRotorQM1D">
+        <me:bondRef>b4</me:bondRef>
+        <me:HinderedRotorPotential format="numerical" units="kJ/mol" expansionSize="10"> 
+  <me:PotentialPoint angle="0"  potential="0"/>                               
+ <me:PotentialPoint angle="5"  potential="0.183785"/>                        
+ <me:PotentialPoint angle="10"  potential="0.73514000"/>                     
+ <me:PotentialPoint angle="15"  potential="1.62781000"/>                     
+ <me:PotentialPoint angle="20"  potential="2.80928500"/>                     
+ <me:PotentialPoint angle="25"  potential="4.25331"/>                        
+ <me:PotentialPoint angle="30"  potential="5.82861000"/>                     
+ <me:PotentialPoint angle="35"  potential="7.430165"/>                       
+ <me:PotentialPoint angle="40"  potential="9.00546500"/>                     
+ <me:PotentialPoint angle="45"  potential="10.39698"/>                       
+ <me:PotentialPoint angle="50"  potential="11.4996900"/>                     
+ <me:PotentialPoint angle="55"  potential="12.2085750"/>                     
+ <me:PotentialPoint angle="60"  potential="12.4448700"/>                     
+ <me:PotentialPoint angle="65"  potential="12.2085750"/>                     
+ <me:PotentialPoint angle="70"  potential="11.4996900"/>                     
+ <me:PotentialPoint angle="75"  potential="10.4232350"/>                     
+ <me:PotentialPoint angle="80"  potential="9.05797500"/>                     
+ <me:PotentialPoint angle="85"  potential="7.50893"/>                        
+ <me:PotentialPoint angle="90"  potential="5.93363000"/>                     
+ <me:PotentialPoint angle="95"  potential="4.35833"/>                        
+ <me:PotentialPoint angle="100"  potential="2.94056"/>                       
+ <me:PotentialPoint angle="105"  potential="1.759085"/>                      
+ <me:PotentialPoint angle="110"  potential="0.84016000"/>                    
+ <me:PotentialPoint angle="115"  potential="0.236295"/>                      
+ <me:PotentialPoint angle="120"  potential="0"/>                             
+ <me:PotentialPoint angle="125"  potential="0.13127500"/>                    
+ <me:PotentialPoint angle="130"  potential="0.63012000"/>                    
+ <me:PotentialPoint angle="135"  potential="1.47028"/>                       
+ <me:PotentialPoint angle="140"  potential="2.62550000"/>                    
+ <me:PotentialPoint angle="145"  potential="4.017015"/>                      
+ <me:PotentialPoint angle="150"  potential="5.56606000"/>                    
+ <me:PotentialPoint angle="155"  potential="7.220125"/>                      
+ <me:PotentialPoint angle="160"  potential="8.82168000"/>                    
+ <me:PotentialPoint angle="165"  potential="10.2394500"/>                    
+ <me:PotentialPoint angle="170"  potential="11.4209250"/>                    
+ <me:PotentialPoint angle="175"  potential="12.18232"/>                      
+ <me:PotentialPoint angle="180"  potential="12.4448700"/>                    
+ <me:PotentialPoint angle="185"  potential="12.18232"/>                      
+ <me:PotentialPoint angle="190"  potential="11.4209250"/>                    
+ <me:PotentialPoint angle="195"  potential="10.2394500"/>                    
+ <me:PotentialPoint angle="200"  potential="8.82168000"/>                    
+ <me:PotentialPoint angle="205"  potential="7.220125"/>                      
+ <me:PotentialPoint angle="210"  potential="5.56606000"/>                    
+ <me:PotentialPoint angle="215"  potential="4.017015"/>                      
+ <me:PotentialPoint angle="220"  potential="2.62550000"/>                    
+ <me:PotentialPoint angle="225"  potential="1.47028"/>                       
+ <me:PotentialPoint angle="230"  potential="0.63012000"/>                    
+ <me:PotentialPoint angle="235"  potential="0.13127500"/>                    
+ <me:PotentialPoint angle="240"  potential="0"/>                             
+ <me:PotentialPoint angle="245"  potential="0.236295"/>                      
+ <me:PotentialPoint angle="250"  potential="0.84016000"/>                    
+ <me:PotentialPoint angle="255"  potential="1.759085"/>                      
+ <me:PotentialPoint angle="260"  potential="2.94056"/>                       
+ <me:PotentialPoint angle="265"  potential="4.35833"/>                       
+ <me:PotentialPoint angle="270"  potential="5.93363000"/>                    
+ <me:PotentialPoint angle="275"  potential="7.50893"/>                       
+ <me:PotentialPoint angle="280"  potential="9.05797500"/>                    
+ <me:PotentialPoint angle="285"  potential="10.4232350"/>                    
+ <me:PotentialPoint angle="290"  potential="11.4996900"/>                    
+ <me:PotentialPoint angle="295"  potential="12.2085750"/>                    
+ <me:PotentialPoint angle="300"  potential="12.4448700"/>                    
+ <me:PotentialPoint angle="305"  potential="12.2085750"/>                    
+ <me:PotentialPoint angle="310"  potential="11.4996900"/>                    
+ <me:PotentialPoint angle="315"  potential="10.39698"/>                      
+ <me:PotentialPoint angle="320"  potential="9.00546500"/>                    
+ <me:PotentialPoint angle="325"  potential="7.430165"/>                      
+ <me:PotentialPoint angle="330"  potential="5.82861000"/>                    
+ <me:PotentialPoint angle="335"  potential="4.25331"/>                       
+ <me:PotentialPoint angle="340"  potential="2.80928500"/>                    
+ <me:PotentialPoint angle="345"  potential="1.62781000"/>                    
+ <me:PotentialPoint angle="350"  potential="0.73514000"/>                    
+ <me:PotentialPoint angle="355"  potential="0.183785"/> 
+         </me:HinderedRotorPotential>
+	 <me:WriteStates/>
+      </me:ExtraDOSCMethod>
+
+      <!--  Frequency 110.64 has been eliminated in favour of a 1 dimensional hindered rotor. -->
  	<me:ExtraDOSCMethod xsi:type="me:HinderedRotorQM1D">
         <me:bondRef>b5</me:bondRef>
-        <me:HinderedRotorPotential format="numerical" units="Hartree" expansionSize="10"> 
-	   	<me:PotentialPoint angle="0"  potential="-305.66786"/>                      
- 		<me:PotentialPoint angle="5"  potential="-305.66786"/>                      
- 		<me:PotentialPoint angle="10"  potential="-305.66786"/>                     
- 		<me:PotentialPoint angle="15"  potential="-305.66785"/>                     
- 		<me:PotentialPoint angle="20"  potential="-305.66785"/>                     
- 		<me:PotentialPoint angle="25"  potential="-305.66785"/>                     
- 		<me:PotentialPoint angle="30"  potential="-305.66785"/>                     
- 		<me:PotentialPoint angle="35"  potential="-305.66784"/>                     
- 		<me:PotentialPoint angle="40"  potential="-305.66784"/>                     
- 		<me:PotentialPoint angle="45"  potential="-305.66784"/>                     
- 		<me:PotentialPoint angle="50"  potential="-305.66783"/>                     
- 		<me:PotentialPoint angle="55"  potential="-305.66783"/>                     
- 		<me:PotentialPoint angle="60"  potential="-305.66783"/>                     
- 		<me:PotentialPoint angle="65"  potential="-305.66783"/>                     
- 		<me:PotentialPoint angle="70"  potential="-305.66783"/>                     
- 		<me:PotentialPoint angle="75"  potential="-305.66784"/>                     
- 		<me:PotentialPoint angle="80"  potential="-305.66784"/>                     
- 		<me:PotentialPoint angle="85"  potential="-305.66784"/>                     
- 		<me:PotentialPoint angle="90"  potential="-305.66785"/>                     
- 		<me:PotentialPoint angle="95"  potential="-305.66785"/>                     
- 		<me:PotentialPoint angle="100"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="105"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="110"  potential="-305.66786"/>                    
- 		<me:PotentialPoint angle="115"  potential="-305.66786"/>                    
- 		<me:PotentialPoint angle="120"  potential="-305.66786"/>                    
- 		<me:PotentialPoint angle="125"  potential="-305.66786"/>                    
- 		<me:PotentialPoint angle="130"  potential="-305.66786"/>                    
- 		<me:PotentialPoint angle="135"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="140"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="145"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="150"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="155"  potential="-305.66784"/>                    
- 		<me:PotentialPoint angle="160"  potential="-305.66784"/>                    
- 		<me:PotentialPoint angle="165"  potential="-305.66784"/>                    
- 		<me:PotentialPoint angle="170"  potential="-305.66783"/>                    
- 		<me:PotentialPoint angle="175"  potential="-305.66783"/>                    
- 		<me:PotentialPoint angle="180"  potential="-305.66783"/>                    
- 		<me:PotentialPoint angle="185"  potential="-305.66783"/>                    
- 		<me:PotentialPoint angle="190"  potential="-305.66783"/>                    
- 		<me:PotentialPoint angle="195"  potential="-305.66784"/>                    
- 		<me:PotentialPoint angle="200"  potential="-305.66784"/>                    
- 		<me:PotentialPoint angle="205"  potential="-305.66784"/>                    
- 		<me:PotentialPoint angle="210"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="215"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="220"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="225"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="230"  potential="-305.66786"/>                    
- 		<me:PotentialPoint angle="235"  potential="-305.66786"/>                    
- 		<me:PotentialPoint angle="240"  potential="-305.66786"/>                    
- 		<me:PotentialPoint angle="245"  potential="-305.66786"/>                    
- 		<me:PotentialPoint angle="250"  potential="-305.66786"/>                    
- 		<me:PotentialPoint angle="255"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="260"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="265"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="270"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="275"  potential="-305.66784"/>                    
- 		<me:PotentialPoint angle="280"  potential="-305.66784"/>                    
- 		<me:PotentialPoint angle="285"  potential="-305.66784"/>                    
- 		<me:PotentialPoint angle="290"  potential="-305.66783"/>                    
- 		<me:PotentialPoint angle="295"  potential="-305.66783"/>                    
- 		<me:PotentialPoint angle="300"  potential="-305.66783"/>                    
- 		<me:PotentialPoint angle="305"  potential="-305.66783"/>                    
- 		<me:PotentialPoint angle="310"  potential="-305.66783"/>                    
- 		<me:PotentialPoint angle="315"  potential="-305.66784"/>                    
- 		<me:PotentialPoint angle="320"  potential="-305.66784"/>                    
- 		<me:PotentialPoint angle="325"  potential="-305.66784"/>                    
- 		<me:PotentialPoint angle="330"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="335"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="340"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="345"  potential="-305.66785"/>                    
- 		<me:PotentialPoint angle="350"  potential="-305.66786"/>                    
- 		<me:PotentialPoint angle="355"  potential="-305.66786"/> 
+        <me:HinderedRotorPotential format="numerical" units="kJ/mol" expansionSize="10"> 
+ <me:PotentialPoint angle="0"  potential="0"/>                               
+ <me:PotentialPoint angle="5"  potential="0.15753000"/>                      
+ <me:PotentialPoint angle="10"  potential="0.63012000"/>                     
+ <me:PotentialPoint angle="15"  potential="1.39151500"/>                     
+ <me:PotentialPoint angle="20"  potential="2.41546"/>                        
+ <me:PotentialPoint angle="25"  potential="3.67570000"/>                     
+ <me:PotentialPoint angle="30"  potential="5.04096000"/>                     
+ <me:PotentialPoint angle="35"  potential="6.51124000"/>                     
+ <me:PotentialPoint angle="40"  potential="7.95526500"/>                     
+ <me:PotentialPoint angle="45"  potential="9.34678"/>                        
+ <me:PotentialPoint angle="50"  potential="10.5545100"/>                     
+ <me:PotentialPoint angle="55"  potential="11.6572200"/>                     
+ <me:PotentialPoint angle="60"  potential="12.6286550"/>                     
+ <me:PotentialPoint angle="65"  potential="13.5738350"/>                     
+ <me:PotentialPoint angle="70"  potential="14.54527"/>                       
+ <me:PotentialPoint angle="75"  potential="15.5167050"/>                     
+ <me:PotentialPoint angle="80"  potential="16.5143950"/>                     
+ <me:PotentialPoint angle="85"  potential="17.4595750"/>                     
+ <me:PotentialPoint angle="90"  potential="18.27348"/>                       
+ <me:PotentialPoint angle="95"  potential="18.9036"/>                        
+ <me:PotentialPoint angle="100"  potential="19.2449150"/>                    
+ <me:PotentialPoint angle="105"  potential="19.27117"/>                      
+ <me:PotentialPoint angle="110"  potential="18.95611"/>                      
+ <me:PotentialPoint angle="115"  potential="18.32599"/>                      
+ <me:PotentialPoint angle="120"  potential="17.43332"/>                      
+ <me:PotentialPoint angle="125"  potential="16.304355"/>                     
+ <me:PotentialPoint angle="130"  potential="15.01786"/>                      
+ <me:PotentialPoint angle="135"  potential="13.6263450"/>                    
+ <me:PotentialPoint angle="140"  potential="12.23483"/>                      
+ <me:PotentialPoint angle="145"  potential="10.8958250"/>                    
+ <me:PotentialPoint angle="150"  potential="9.66184000"/>                    
+ <me:PotentialPoint angle="155"  potential="8.58538500"/>                    
+ <me:PotentialPoint angle="160"  potential="7.692715"/>                      
+ <me:PotentialPoint angle="165"  potential="6.98383"/>                       
+ <me:PotentialPoint angle="170"  potential="6.484985"/>                      
+ <me:PotentialPoint angle="175"  potential="6.19618"/>                       
+ <me:PotentialPoint angle="180"  potential="6.09116"/>                       
+ <me:PotentialPoint angle="185"  potential="6.19618"/>                       
+ <me:PotentialPoint angle="190"  potential="6.484985"/>                      
+ <me:PotentialPoint angle="195"  potential="6.98383"/>                       
+ <me:PotentialPoint angle="200"  potential="7.692715"/>                      
+ <me:PotentialPoint angle="205"  potential="8.58538500"/>                    
+ <me:PotentialPoint angle="210"  potential="9.66184000"/>                    
+ <me:PotentialPoint angle="215"  potential="10.8958250"/>                    
+ <me:PotentialPoint angle="220"  potential="12.23483"/>                      
+ <me:PotentialPoint angle="225"  potential="13.6263450"/>                    
+ <me:PotentialPoint angle="230"  potential="15.01786"/>                      
+ <me:PotentialPoint angle="235"  potential="16.304355"/>                     
+ <me:PotentialPoint angle="240"  potential="17.43332"/>                      
+ <me:PotentialPoint angle="245"  potential="18.32599"/>                      
+ <me:PotentialPoint angle="250"  potential="18.95611"/>                      
+ <me:PotentialPoint angle="255"  potential="19.27117"/>                      
+ <me:PotentialPoint angle="260"  potential="19.2449150"/>                    
+ <me:PotentialPoint angle="265"  potential="18.9036"/>                       
+ <me:PotentialPoint angle="270"  potential="18.27348"/>                      
+ <me:PotentialPoint angle="275"  potential="17.4595750"/>                    
+ <me:PotentialPoint angle="280"  potential="16.5143950"/>                    
+ <me:PotentialPoint angle="285"  potential="15.5167050"/>                    
+ <me:PotentialPoint angle="290"  potential="14.54527"/>                      
+ <me:PotentialPoint angle="295"  potential="13.5738350"/>                    
+ <me:PotentialPoint angle="300"  potential="12.6286550"/>                    
+ <me:PotentialPoint angle="305"  potential="11.6572200"/>                    
+ <me:PotentialPoint angle="310"  potential="10.5545100"/>                    
+ <me:PotentialPoint angle="315"  potential="9.34678"/>                       
+ <me:PotentialPoint angle="320"  potential="7.95526500"/>                    
+ <me:PotentialPoint angle="325"  potential="6.51124000"/>                    
+ <me:PotentialPoint angle="330"  potential="5.04096000"/>                    
+ <me:PotentialPoint angle="335"  potential="3.67570000"/>                    
+ <me:PotentialPoint angle="340"  potential="2.41546"/>                       
+ <me:PotentialPoint angle="345"  potential="1.39151500"/>                    
+ <me:PotentialPoint angle="350"  potential="0.63012000"/>                    
+ <me:PotentialPoint angle="355"  potential="0.15753000"/> 
          </me:HinderedRotorPotential>
+  	 <me:WriteStates/>
       </me:ExtraDOSCMethod>
 
-	<me:ExtraDOSCMethod xsi:type="me:HinderedRotorQM1D">
-        <me:bondRef>b9</me:bondRef>
-        <me:HinderedRotorPotential format="numerical" units="Hartree" expansionSize="10"> 
-	    	<me:PotentialPoint angle="0"  potential="-305.53358"/>                      
- 		<me:PotentialPoint angle="5"  potential="-305.53362"/>                      
- 		<me:PotentialPoint angle="10"  potential="-305.53374"/>                     
- 		<me:PotentialPoint angle="15"  potential="-305.53393"/>                     
- 		<me:PotentialPoint angle="20"  potential="-305.53419"/>                     
- 		<me:PotentialPoint angle="25"  potential="-305.5345"/>                      
- 		<me:PotentialPoint angle="30"  potential="-305.53486"/>                     
- 		<me:PotentialPoint angle="35"  potential="-305.53524"/>                     
- 		<me:PotentialPoint angle="40"  potential="-305.53564"/>                     
- 		<me:PotentialPoint angle="45"  potential="-305.53603"/>                     
- 		<me:PotentialPoint angle="50"  potential="-305.53638"/>                     
- 		<me:PotentialPoint angle="55"  potential="-305.53669"/>                     
- 		<me:PotentialPoint angle="60"  potential="-305.53693"/>                     
- 		<me:PotentialPoint angle="65"  potential="-305.5371"/>                      
- 		<me:PotentialPoint angle="70"  potential="-305.53719"/>                     
- 		<me:PotentialPoint angle="75"  potential="-305.5372"/>                      
- 		<me:PotentialPoint angle="80"  potential="-305.53715"/>                     
- 		<me:PotentialPoint angle="85"  potential="-305.53704"/>                     
- 		<me:PotentialPoint angle="90"  potential="-305.5369"/>                      
- 		<me:PotentialPoint angle="95"  potential="-305.53674"/>                     
- 		<me:PotentialPoint angle="100"  potential="-305.53659"/>                    
- 		<me:PotentialPoint angle="105"  potential="-305.53645"/>                    
- 		<me:PotentialPoint angle="110"  potential="-305.53635"/>                    
- 		<me:PotentialPoint angle="115"  potential="-305.53628"/>                    
- 		<me:PotentialPoint angle="120"  potential="-305.53626"/>                    
- 		<me:PotentialPoint angle="125"  potential="-305.53628"/>                    
- 		<me:PotentialPoint angle="130"  potential="-305.53633"/>                    
- 		<me:PotentialPoint angle="135"  potential="-305.53643"/>                    
- 		<me:PotentialPoint angle="140"  potential="-305.53657"/>                    
- 		<me:PotentialPoint angle="145"  potential="-305.53672"/>                    
- 		<me:PotentialPoint angle="150"  potential="-305.5369"/>                     
- 		<me:PotentialPoint angle="155"  potential="-305.53708"/>                    
- 		<me:PotentialPoint angle="160"  potential="-305.53725"/>                    
- 		<me:PotentialPoint angle="165"  potential="-305.5374"/>                     
- 		<me:PotentialPoint angle="170"  potential="-305.53752"/>                    
- 		<me:PotentialPoint angle="175"  potential="-305.53759"/>                    
- 		<me:PotentialPoint angle="180"  potential="-305.53762"/>                    
- 		<me:PotentialPoint angle="185"  potential="-305.53759"/>                    
- 		<me:PotentialPoint angle="190"  potential="-305.53752"/>                    
- 		<me:PotentialPoint angle="195"  potential="-305.5374"/>                     
- 		<me:PotentialPoint angle="200"  potential="-305.53725"/>                    
- 		<me:PotentialPoint angle="205"  potential="-305.53708"/>                    
- 		<me:PotentialPoint angle="210"  potential="-305.5369"/>                     
- 		<me:PotentialPoint angle="215"  potential="-305.53672"/>                    
- 		<me:PotentialPoint angle="220"  potential="-305.53657"/>                    
- 		<me:PotentialPoint angle="225"  potential="-305.53643"/>                    
- 		<me:PotentialPoint angle="230"  potential="-305.53633"/>                    
- 		<me:PotentialPoint angle="235"  potential="-305.53628"/>                    
- 		<me:PotentialPoint angle="240"  potential="-305.53626"/>                    
- 		<me:PotentialPoint angle="245"  potential="-305.53628"/>                    
- 		<me:PotentialPoint angle="250"  potential="-305.53635"/>                    
- 		<me:PotentialPoint angle="255"  potential="-305.53645"/>                    
- 		<me:PotentialPoint angle="260"  potential="-305.53659"/>                    
- 		<me:PotentialPoint angle="265"  potential="-305.53674"/>                    
- 		<me:PotentialPoint angle="270"  potential="-305.5369"/>                     
- 		<me:PotentialPoint angle="275"  potential="-305.53704"/>                    
- 		<me:PotentialPoint angle="280"  potential="-305.53715"/>                    
- 		<me:PotentialPoint angle="285"  potential="-305.5372"/>                     
- 		<me:PotentialPoint angle="290"  potential="-305.53719"/>                    
- 		<me:PotentialPoint angle="295"  potential="-305.5371"/>                     
- 		<me:PotentialPoint angle="300"  potential="-305.53693"/>                    
- 		<me:PotentialPoint angle="305"  potential="-305.53669"/>                    
- 		<me:PotentialPoint angle="310"  potential="-305.53638"/>                    
- 		<me:PotentialPoint angle="315"  potential="-305.53603"/>                    
- 		<me:PotentialPoint angle="320"  potential="-305.53564"/>                    
- 		<me:PotentialPoint angle="325"  potential="-305.53524"/>                    
- 		<me:PotentialPoint angle="330"  potential="-305.53486"/>                    
- 		<me:PotentialPoint angle="335"  potential="-305.5345"/>                     
- 		<me:PotentialPoint angle="340"  potential="-305.53419"/>                    
- 		<me:PotentialPoint angle="345"  potential="-305.53393"/>                    
- 		<me:PotentialPoint angle="350"  potential="-305.53374"/>                    
- 		<me:PotentialPoint angle="355"  potential="-305.53362"/> 
-         </me:HinderedRotorPotential>
-      </me:ExtraDOSCMethod>
+      <me:DistributionCalcMethod default="true" name="Boltzmann" />
 
-	<me:energyTransferModel xsi:type="me:ExponentialDown">
-            <me:deltaEDown units="cm-1">156.7</me:deltaEDown>
-	    <me:deltaEDownTExponent referenceTemperature="300">0.85</me:deltaEDownTExponent>
-        </me:energyTransferModel>
-   </molecule>
+      <me:energyTransferModel xsi:type="me:ExponentialDown">
+            <me:deltaEDown units="cm-1" >182.0</me:deltaEDown>
+	    <me:deltaEDownTExponent referenceTemperature="300" >0.23</me:deltaEDownTExponent>
+      </me:energyTransferModel>
 
-   
-
-    <molecule id="He">
-        <propertyList>
-            <property dictRef="me:MW">
-                <scalar units="amu">4</scalar>
-            </property>
-            <property dictRef="me:epsilon">
-                <scalar>10.2</scalar>
-            </property>
-            <property dictRef="me:sigma">
-                <scalar>2.55</scalar>
-            </property>
-        </propertyList>
-        <me:DOSCMethod name="ClassicalRotors"/>
     </molecule>
+
+    <molecule id="TS1a">
+      <atomArray>
+        <atom id="a1" elementType="C" x3="1.693361" y3="-1.312262" z3="-0.000002" />
+        <atom id="a2" elementType="C" x3="0.378180" y3="-1.098754" z3="0.000003" />
+        <atom id="a3" elementType="C" x3="-0.731512" y3="-0.541036" z3="0.000004" />
+        <atom id="a4" elementType="C" x3="-2.176327" y3="-0.357320" z3="-0.000002" />
+        <atom id="a5" elementType="O" x3="-0.090459" y3="1.425350" z3="0.000001" />
+        <atom id="a6" elementType="O" x3="1.116162" y3="1.531260" z3="-0.000001" />
+        <atom id="a7" elementType="H" x3="2.236925" y3="-1.434597" z3="-0.927701" />
+        <atom id="a8" elementType="H" x3="2.236931" y3="-1.434600" z3="0.927693" />
+        <atom id="a9" elementType="H" x3="-2.680878" y3="-1.324643" z3="0.000017" />
+        <atom id="a10" elementType="H" x3="-2.490410" y3="0.198613" z3="0.884098" />
+        <atom id="a11" elementType="H" x3="-2.490407" y3="0.198577" z3="-0.884126" />
+      </atomArray>
+      <bondArray>
+        <bond id="b1" atomRefs2="a8 a1" order="1" />
+        <bond id="b2" atomRefs2="a11 a4" order="1" />
+        <bond id="b3" atomRefs2="a1 a2" order="1" />
+        <bond id="b4" atomRefs2="a1 a7" order="1" />
+        <bond id="b5" atomRefs2="a2 a3" order="1" />
+        <bond id="b6" atomRefs2="a3 a4" order="1" />
+        <bond id="b7" atomRefs2="a4 a10" order="1" />
+        <bond id="b8" atomRefs2="a4 a9" order="1" />
+        <bond id="b9" atomRefs2="a5 a6" order="1" />
+	<bond id="b10" atomRefs2="a3 a5" order="1" />
+      </bondArray>
+
+      <propertyList>
+        <property dictRef="me:ZPE">
+          <scalar units="kJ/mol">5.9</scalar>
+        </property>
+        <property dictRef="me:spinMultiplicity">
+          <scalar>2.00</scalar>
+        </property>
+        <property dictRef="me:vibFreqs">
+          <array units="cm-1">89.24 200.15 219.74 403.49 411.54 442.84 504.14 814.72 867.24 1011.37 1030.40 1060.90 1329.34 1404.42 1467.56 1474.99 1499.67 1523.44 2084.96 3064.87 3137.56 3138.22 3166.60 3256.40</array>
+        </property>
+        <property dictRef="me:imFreqs">
+          <scalar units="cm-1">504.25</scalar>
+        </property>
+        <property dictRef="me:rotConsts">
+          <array units="cm-1">0.142 0.110 0.064</array>
+        </property>
+        <property dictRef="me:symmetryNumber">
+          <scalar>1</scalar>
+        </property>
+        <property dictRef="me:frequenciesScaleFactor">
+          <scalar>0.993</scalar>
+        </property>
+      </propertyList>
+      <me:DOSCMethod xsi:type="me:QMRotors"/>
+
+
+      <!--  Frequency 76.23 has been eliminated in favour of a 1 dimensional hindered rotor. -->
+ 	<me:ExtraDOSCMethod xsi:type="me:HinderedRotorQM1D">
+        <me:bondRef>b6</me:bondRef>
+        <me:HinderedRotorPotential format="numerical" units="kJ/mol" expansionSize="10"> 
+ <me:PotentialPoint angle="0"  potential="0"/>                               
+ <me:PotentialPoint angle="5"  potential="0.02625500"/>                      
+ <me:PotentialPoint angle="10"  potential="0.07876500"/>                     
+ <me:PotentialPoint angle="15"  potential="0.15753000"/>                     
+ <me:PotentialPoint angle="20"  potential="0.26255000"/>                     
+ <me:PotentialPoint angle="25"  potential="0.39382500"/>                     
+ <me:PotentialPoint angle="30"  potential="0.55135500"/>                     
+ <me:PotentialPoint angle="35"  potential="0.708885"/>                       
+ <me:PotentialPoint angle="40"  potential="0.89267"/>                        
+ <me:PotentialPoint angle="45"  potential="1.0502"/>                         
+ <me:PotentialPoint angle="50"  potential="1.181475"/>                       
+ <me:PotentialPoint angle="55"  potential="1.286495"/>                       
+ <me:PotentialPoint angle="60"  potential="1.33900500"/>                     
+ <me:PotentialPoint angle="65"  potential="1.31275"/>                        
+ <me:PotentialPoint angle="70"  potential="1.20773000"/>                     
+ <me:PotentialPoint angle="75"  potential="1.076455"/>                       
+ <me:PotentialPoint angle="80"  potential="0.91892500"/>                     
+ <me:PotentialPoint angle="85"  potential="0.73514000"/>                     
+ <me:PotentialPoint angle="90"  potential="0.57761"/>                        
+ <me:PotentialPoint angle="95"  potential="0.42008"/>                        
+ <me:PotentialPoint angle="100"  potential="0.26255000"/>                    
+ <me:PotentialPoint angle="105"  potential="0.15753000"/>                    
+ <me:PotentialPoint angle="110"  potential="0.07876500"/>                    
+ <me:PotentialPoint angle="115"  potential="0.02625500"/>                    
+ <me:PotentialPoint angle="120"  potential="0"/>                             
+ <me:PotentialPoint angle="125"  potential="0.02625500"/>                    
+ <me:PotentialPoint angle="130"  potential="0.07876500"/>                    
+ <me:PotentialPoint angle="135"  potential="0.15753000"/>                    
+ <me:PotentialPoint angle="140"  potential="0.26255000"/>                    
+ <me:PotentialPoint angle="145"  potential="0.39382500"/>                    
+ <me:PotentialPoint angle="150"  potential="0.55135500"/>                    
+ <me:PotentialPoint angle="155"  potential="0.73514000"/>                    
+ <me:PotentialPoint angle="160"  potential="0.91892500"/>                    
+ <me:PotentialPoint angle="165"  potential="1.076455"/>                      
+ <me:PotentialPoint angle="170"  potential="1.20773000"/>                    
+ <me:PotentialPoint angle="175"  potential="1.31275"/>                       
+ <me:PotentialPoint angle="180"  potential="1.33900500"/>                    
+ <me:PotentialPoint angle="185"  potential="1.31275"/>                       
+ <me:PotentialPoint angle="190"  potential="1.20773000"/>                    
+ <me:PotentialPoint angle="195"  potential="1.076455"/>                      
+ <me:PotentialPoint angle="200"  potential="0.91892500"/>                    
+ <me:PotentialPoint angle="205"  potential="0.73514000"/>                    
+ <me:PotentialPoint angle="210"  potential="0.55135500"/>                    
+ <me:PotentialPoint angle="215"  potential="0.39382500"/>                    
+ <me:PotentialPoint angle="220"  potential="0.26255000"/>                    
+ <me:PotentialPoint angle="225"  potential="0.15753000"/>                    
+ <me:PotentialPoint angle="230"  potential="0.07876500"/>                    
+ <me:PotentialPoint angle="235"  potential="0.02625500"/>                    
+ <me:PotentialPoint angle="240"  potential="0"/>                             
+ <me:PotentialPoint angle="245"  potential="0.02625500"/>                    
+ <me:PotentialPoint angle="250"  potential="0.07876500"/>                    
+ <me:PotentialPoint angle="255"  potential="0.15753000"/>                    
+ <me:PotentialPoint angle="260"  potential="0.26255000"/>                    
+ <me:PotentialPoint angle="265"  potential="0.42008"/>                       
+ <me:PotentialPoint angle="270"  potential="0.57761"/>                       
+ <me:PotentialPoint angle="275"  potential="0.73514000"/>                    
+ <me:PotentialPoint angle="280"  potential="0.91892500"/>                    
+ <me:PotentialPoint angle="285"  potential="1.076455"/>                      
+ <me:PotentialPoint angle="290"  potential="1.20773000"/>                    
+ <me:PotentialPoint angle="295"  potential="1.31275"/>                       
+ <me:PotentialPoint angle="300"  potential="1.33900500"/>                    
+ <me:PotentialPoint angle="305"  potential="1.286495"/>                      
+ <me:PotentialPoint angle="310"  potential="1.181475"/>                      
+ <me:PotentialPoint angle="315"  potential="1.0502"/>                        
+ <me:PotentialPoint angle="320"  potential="0.89267"/>                       
+ <me:PotentialPoint angle="325"  potential="0.708885"/>                      
+ <me:PotentialPoint angle="330"  potential="0.55135500"/>                    
+ <me:PotentialPoint angle="335"  potential="0.39382500"/>                    
+ <me:PotentialPoint angle="340"  potential="0.26255000"/>                    
+ <me:PotentialPoint angle="345"  potential="0.15753000"/>                    
+ <me:PotentialPoint angle="350"  potential="0.07876500"/>                    
+ <me:PotentialPoint angle="355"  potential="0.02625500"/>  
+         </me:HinderedRotorPotential>
+	 <me:WriteStates/>
+      </me:ExtraDOSCMethod>
+
+<!--  Frequency 136.46 has been eliminated in favour of a 1 dimensional hindered rotor. -->
+ 	<me:ExtraDOSCMethod xsi:type="me:HinderedRotorQM1D">
+        <me:bondRef>b10</me:bondRef>
+        <me:HinderedRotorPotential format="numerical" units="kJ/mol" expansionSize="10"> 
+   <me:PotentialPoint angle="0"  potential="0"/>                               
+ <me:PotentialPoint angle="5"  potential="0.21003999"/>                      
+ <me:PotentialPoint angle="10"  potential="0.84016"/>                        
+ <me:PotentialPoint angle="15"  potential="1.81159499"/>                     
+ <me:PotentialPoint angle="20"  potential="3.019325"/>                       
+ <me:PotentialPoint angle="25"  potential="4.384585"/>                       
+ <me:PotentialPoint angle="30"  potential="5.802355"/>                       
+ <me:PotentialPoint angle="35"  potential="7.220125"/>                       
+ <me:PotentialPoint angle="40"  potential="8.61163999"/>                     
+ <me:PotentialPoint angle="45"  potential="9.89813499"/>                     
+ <me:PotentialPoint angle="50"  potential="11.0796099"/>                     
+ <me:PotentialPoint angle="55"  potential="12.1560649"/>                     
+ <me:PotentialPoint angle="60"  potential="13.0487349"/>                     
+ <me:PotentialPoint angle="65"  potential="13.8101299"/>                     
+ <me:PotentialPoint angle="70"  potential="14.4139949"/>                     
+ <me:PotentialPoint angle="75"  potential="14.8603299"/>                     
+ <me:PotentialPoint angle="80"  potential="15.1228799"/>                     
+ <me:PotentialPoint angle="85"  potential="15.201645"/>                      
+ <me:PotentialPoint angle="90"  potential="15.07037"/>                       
+ <me:PotentialPoint angle="95"  potential="14.8078199"/>                     
+ <me:PotentialPoint angle="100"  potential="14.3352299"/>                    
+ <me:PotentialPoint angle="105"  potential="13.7051099"/>                    
+ <me:PotentialPoint angle="110"  potential="12.9962249"/>                    
+ <me:PotentialPoint angle="115"  potential="12.1560649"/>                    
+ <me:PotentialPoint angle="120"  potential="11.2633949"/>                    
+ <me:PotentialPoint angle="125"  potential="10.34447"/>                      
+ <me:PotentialPoint angle="130"  potential="9.47805499"/>                    
+ <me:PotentialPoint angle="135"  potential="8.61163999"/>                    
+ <me:PotentialPoint angle="140"  potential="7.797735"/>                      
+ <me:PotentialPoint angle="145"  potential="7.08885"/>                       
+ <me:PotentialPoint angle="150"  potential="6.45873"/>                       
+ <me:PotentialPoint angle="155"  potential="5.93362999"/>                    
+ <me:PotentialPoint angle="160"  potential="5.51355"/>                       
+ <me:PotentialPoint angle="165"  potential="5.22474499"/>                    
+ <me:PotentialPoint angle="170"  potential="5.01470499"/>                    
+ <me:PotentialPoint angle="175"  potential="4.88342999"/>                    
+ <me:PotentialPoint angle="180"  potential="4.857175"/>                      
+ <me:PotentialPoint angle="185"  potential="4.88342999"/>                    
+ <me:PotentialPoint angle="190"  potential="5.01470499"/>                    
+ <me:PotentialPoint angle="195"  potential="5.22474499"/>                    
+ <me:PotentialPoint angle="200"  potential="5.51355"/>                       
+ <me:PotentialPoint angle="205"  potential="5.93362999"/>                    
+ <me:PotentialPoint angle="210"  potential="6.45873"/>                       
+ <me:PotentialPoint angle="215"  potential="7.08885"/>                       
+ <me:PotentialPoint angle="220"  potential="7.797735"/>                      
+ <me:PotentialPoint angle="225"  potential="8.61163999"/>                    
+ <me:PotentialPoint angle="230"  potential="9.47805499"/>                    
+ <me:PotentialPoint angle="235"  potential="10.34447"/>                      
+ <me:PotentialPoint angle="240"  potential="11.2633949"/>                    
+ <me:PotentialPoint angle="245"  potential="12.1560649"/>                    
+ <me:PotentialPoint angle="250"  potential="12.9962249"/>                    
+ <me:PotentialPoint angle="255"  potential="13.7051099"/>                    
+ <me:PotentialPoint angle="260"  potential="14.3352299"/>                    
+ <me:PotentialPoint angle="265"  potential="14.8078199"/>                    
+ <me:PotentialPoint angle="270"  potential="15.07037"/>                      
+ <me:PotentialPoint angle="275"  potential="15.201645"/>                     
+ <me:PotentialPoint angle="280"  potential="15.1228799"/>                    
+ <me:PotentialPoint angle="285"  potential="14.8603299"/>                    
+ <me:PotentialPoint angle="290"  potential="14.4139949"/>                    
+ <me:PotentialPoint angle="295"  potential="13.8101299"/>                    
+ <me:PotentialPoint angle="300"  potential="13.0487349"/>                    
+ <me:PotentialPoint angle="305"  potential="12.1560649"/>                    
+ <me:PotentialPoint angle="310"  potential="11.0796099"/>                    
+ <me:PotentialPoint angle="315"  potential="9.89813499"/>                    
+ <me:PotentialPoint angle="320"  potential="8.61163999"/>                    
+ <me:PotentialPoint angle="325"  potential="7.220125"/>                      
+ <me:PotentialPoint angle="330"  potential="5.802355"/>                      
+ <me:PotentialPoint angle="335"  potential="4.384585"/>                      
+ <me:PotentialPoint angle="340"  potential="3.019325"/>                      
+ <me:PotentialPoint angle="345"  potential="1.81159499"/>                    
+ <me:PotentialPoint angle="350"  potential="0.84016"/>                       
+ <me:PotentialPoint angle="355"  potential="0.21003999"/>
+         </me:HinderedRotorPotential>
+	 <me:WriteStates/>
+      </me:ExtraDOSCMethod>
+
+    </molecule>
+
+    <molecule id="TS2a">
+      <atomArray>
+        <atom id="a1" elementType="C" x3="-1.938134" y3="-0.988410" z3="-0.043678" />
+        <atom id="a2" elementType="C" x3="-0.764459" y3="-0.406388" z3="0.062131" />
+        <atom id="a3" elementType="C" x3="0.559530" y3="-0.158907" z3="-0.047091" />
+        <atom id="a4" elementType="C" x3="1.743212" y3="-1.040039" z3="0.090333" />
+        <atom id="a5" elementType="O" x3="0.715444" y3="1.146455" z3="-0.195106" />
+        <atom id="a6" elementType="O" x3="-0.570886" y3="1.576529" z3="0.129439" />
+        <atom id="a7" elementType="H" x3="-2.154469" y3="-1.678636" z3="-0.851965" />
+        <atom id="a8" elementType="H" x3="-2.739952" y3="-0.755320" z3="0.646841" />
+        <atom id="a9" elementType="H" x3="2.382175" y3="-0.944817" z3="-0.788783" />
+        <atom id="a10" elementType="H" x3="2.330912" y3="-0.767100" z3="0.967806" />
+        <atom id="a11" elementType="H" x3="1.423969" y3="-2.075529" z3="0.181265" />
+      </atomArray>
+      <bondArray>
+        <bond id="b1" atomRefs2="a7 a1" order="1" />
+        <bond id="b2" atomRefs2="a9 a4" order="1" />
+        <bond id="b3" atomRefs2="a5 a3" order="1" />
+        <bond id="b4" atomRefs2="a5 a6" order="1" />
+        <bond id="b5" atomRefs2="a3 a2" order="2" />
+        <bond id="b6" atomRefs2="a3 a4" order="1" />
+        <bond id="b7" atomRefs2="a1 a2" order="2" />
+        <bond id="b8" atomRefs2="a1 a8" order="1" />
+        <bond id="b9" atomRefs2="a4 a11" order="1" />
+        <bond id="b10" atomRefs2="a4 a10" order="1" />
+      </bondArray>
+
+      <propertyList>
+        <property dictRef="me:ZPE">
+          <scalar units="kJ/mol">-1.53</scalar>
+        </property>
+        <property dictRef="me:spinMultiplicity">
+          <scalar>2.00</scalar>
+        </property>
+        <property dictRef="me:vibFreqs">
+          <array units="cm-1">195.86 230.81 258.03 356.41 538.34 593.98 664.11 800.56 863.86 928.99 977.79 1007.23 1037.12 1287.57 1349.86 1404.46 1447.74 1455.09 1476.75 1857.44 3078.48 3147.80 3155.57 3187.28 3243.21</array>
+        </property>
+        <property dictRef="me:imFreqs">
+          <scalar units="cm-1">648.47</scalar>
+        </property>
+        <property dictRef="me:rotConsts">
+          <array units="cm-1">0.168 0.125 0.074</array>
+        </property>
+        <property dictRef="me:symmetryNumber">
+          <scalar>1</scalar>
+        </property>
+        <property dictRef="me:frequenciesScaleFactor">
+          <scalar>0.993</scalar>
+        </property>
+      </propertyList>
+      <me:DOSCMethod xsi:type="me:QMRotors"/>
+
+      <!--  Frequency 103.97 has been eliminated in favour of a 1 dimensional hindered rotor. -->
+ 	<me:ExtraDOSCMethod xsi:type="me:HinderedRotorQM1D">
+        <me:bondRef>b6</me:bondRef>
+        <me:HinderedRotorPotential format="numerical" units="kJ/mol" expansionSize="10"> 
+   <me:PotentialPoint angle="0"  potential="0"/>                               
+ <me:PotentialPoint angle="5"  potential="0.02625500"/>                      
+ <me:PotentialPoint angle="10"  potential="0.15753000"/>                     
+ <me:PotentialPoint angle="15"  potential="0.36757000"/>                     
+ <me:PotentialPoint angle="20"  potential="0.63012000"/>                     
+ <me:PotentialPoint angle="25"  potential="0.97143500"/>                     
+ <me:PotentialPoint angle="30"  potential="1.33900500"/>                     
+ <me:PotentialPoint angle="35"  potential="1.73283000"/>                     
+ <me:PotentialPoint angle="40"  potential="2.10040000"/>                     
+ <me:PotentialPoint angle="45"  potential="2.44171500"/>                     
+ <me:PotentialPoint angle="50"  potential="2.73052000"/>                     
+ <me:PotentialPoint angle="55"  potential="2.88805"/>                        
+ <me:PotentialPoint angle="60"  potential="2.94056"/>                        
+ <me:PotentialPoint angle="65"  potential="2.86179500"/>                     
+ <me:PotentialPoint angle="70"  potential="2.67801000"/>                     
+ <me:PotentialPoint angle="75"  potential="2.41546"/>                        
+ <me:PotentialPoint angle="80"  potential="2.04789000"/>                     
+ <me:PotentialPoint angle="85"  potential="1.68032000"/>                     
+ <me:PotentialPoint angle="90"  potential="1.286495"/>                       
+ <me:PotentialPoint angle="95"  potential="0.91892500"/>                     
+ <me:PotentialPoint angle="100"  potential="0.60386500"/>                    
+ <me:PotentialPoint angle="105"  potential="0.341315"/>                      
+ <me:PotentialPoint angle="110"  potential="0.13127500"/>                    
+ <me:PotentialPoint angle="115"  potential="0.02625500"/>                    
+ <me:PotentialPoint angle="120"  potential="0"/>                             
+ <me:PotentialPoint angle="125"  potential="0.02625500"/>                    
+ <me:PotentialPoint angle="130"  potential="0.15753000"/>                    
+ <me:PotentialPoint angle="135"  potential="0.36757000"/>                    
+ <me:PotentialPoint angle="140"  potential="0.63012000"/>                    
+ <me:PotentialPoint angle="145"  potential="0.94518"/>                       
+ <me:PotentialPoint angle="150"  potential="1.31275000"/>                    
+ <me:PotentialPoint angle="155"  potential="1.706575"/>                      
+ <me:PotentialPoint angle="160"  potential="2.074145"/>                      
+ <me:PotentialPoint angle="165"  potential="2.41546"/>                       
+ <me:PotentialPoint angle="170"  potential="2.704265"/>                      
+ <me:PotentialPoint angle="175"  potential="2.88805"/>                       
+ <me:PotentialPoint angle="180"  potential="2.94056"/>                       
+ <me:PotentialPoint angle="185"  potential="2.88805"/>                       
+ <me:PotentialPoint angle="190"  potential="2.704265"/>                      
+ <me:PotentialPoint angle="195"  potential="2.41546"/>                       
+ <me:PotentialPoint angle="200"  potential="2.074145"/>                      
+ <me:PotentialPoint angle="205"  potential="1.706575"/>                      
+ <me:PotentialPoint angle="210"  potential="1.31275000"/>                    
+ <me:PotentialPoint angle="215"  potential="0.94518"/>                       
+ <me:PotentialPoint angle="220"  potential="0.63012000"/>                    
+ <me:PotentialPoint angle="225"  potential="0.36757000"/>                    
+ <me:PotentialPoint angle="230"  potential="0.15753000"/>                    
+ <me:PotentialPoint angle="235"  potential="0.02625500"/>                    
+ <me:PotentialPoint angle="240"  potential="0"/>                             
+ <me:PotentialPoint angle="245"  potential="0.02625500"/>                    
+ <me:PotentialPoint angle="250"  potential="0.13127500"/>                    
+ <me:PotentialPoint angle="255"  potential="0.341315"/>                      
+ <me:PotentialPoint angle="260"  potential="0.60386500"/>                    
+ <me:PotentialPoint angle="265"  potential="0.91892500"/>                    
+ <me:PotentialPoint angle="270"  potential="1.286495"/>                      
+ <me:PotentialPoint angle="275"  potential="1.68032000"/>                    
+ <me:PotentialPoint angle="280"  potential="2.04789000"/>                    
+ <me:PotentialPoint angle="285"  potential="2.41546"/>                       
+ <me:PotentialPoint angle="290"  potential="2.67801000"/>                    
+ <me:PotentialPoint angle="295"  potential="2.86179500"/>                    
+ <me:PotentialPoint angle="300"  potential="2.94056"/>                       
+ <me:PotentialPoint angle="305"  potential="2.88805"/>                       
+ <me:PotentialPoint angle="310"  potential="2.73052000"/>                    
+ <me:PotentialPoint angle="315"  potential="2.44171500"/>                    
+ <me:PotentialPoint angle="320"  potential="2.10040000"/>                    
+ <me:PotentialPoint angle="325"  potential="1.73283000"/>                    
+ <me:PotentialPoint angle="330"  potential="1.33900500"/>                    
+ <me:PotentialPoint angle="335"  potential="0.97143500"/>                    
+ <me:PotentialPoint angle="340"  potential="0.63012000"/>                    
+ <me:PotentialPoint angle="345"  potential="0.36757000"/>                    
+ <me:PotentialPoint angle="350"  potential="0.15753000"/>                    
+ <me:PotentialPoint angle="355"  potential="0.02625500"/>
+         </me:HinderedRotorPotential>
+          <me:WriteStates/>
+      </me:ExtraDOSCMethod>
+      
+    </molecule>
+
   </moleculeList>
 
   <reactionList>
 
-    <reaction id="R0p">
+  <reaction id="R1p" reversible="true">
+      <reactantList>
         <reactant>
-            <molecule ref="C4H5" me:type="deficientReactant" />
+          <molecule ref="C4H5" role="deficientReactant" />
         </reactant>
         <reactant>
-            <molecule ref="O2" me:type="excessReactant" />
+          <molecule ref="O2" role="excessReactant" />
         </reactant>
+      </reactantList>
+      <productList>
         <product>
-            <molecule ref="Int1propargyl" me:type="modelled" />
+          <molecule ref="Int1p" role="modelled" />
         </product>
-        <me:excessReactantConc>1.0e15</me:excessReactantConc>
+      </productList>
+      <me:excessReactantConc>1.0e15</me:excessReactantConc>
         <me:MCRCMethod name="MesmerILT"/>
-        <me:preExponential units="cm3molecule-1s-1">1.02e-12</me:preExponential>
+        <me:preExponential units="cm3molecule-1s-1">6.64e-13</me:preExponential>
         <me:activationEnergy units="kJ/mol">0.0</me:activationEnergy>
 	<me:TInfinity>300.0</me:TInfinity>
-        <me:nInfinity>-1.5</me:nInfinity>
-    </reaction>
- </reactionList>
+        <me:nInfinity>-1.49</me:nInfinity>
+    </reaction>	
 
-  <me:conditions>
+
+  <reaction id="R1a" reversible="true">
+      <reactantList>
+        <reactant> 
+          <molecule ref="C4H5" role="deficientReactant" />
+        </reactant>
+        <reactant>
+          <molecule ref="O2" role="excessReactant" />
+        </reactant>
+      </reactantList>
+      <productList>
+        <product>
+          <molecule ref="Int1a" role="modelled" />
+        </product>
+      </productList>
+      <me:excessReactantConc>1.0e15</me:excessReactantConc>
+       <me:MCRCMethod name="SimpleRRKM" />
+        <me:transitionState>
+         <molecule ref="TS1a" me:type="TS1a" />
+       </me:transitionState>
+    </reaction>
+
+   <reaction id="R2a">
+        <reactant>
+            <molecule ref="Int1a" me:type="modelled" />
+        </reactant>
+         <product>
+            <molecule ref="C2H3O" me:type="sink" />
+        </product>
+        <product>
+            <molecule ref="C2H2O" me:type="sink" />
+        </product>
+        <me:MCRCMethod name="SimpleRRKM" />
+        <me:transitionState>
+         <molecule ref="TS2a" me:type="transitionState" />
+       </me:transitionState>
+    </reaction>
+
+    
+   </reactionList>
+
+ <me:conditions>
     <me:bathGas>He</me:bathGas>
     <me:PTs>
-	<me:PTpair me:units="PPCC" me:P="5.0e15" me:T="200" me:precision= "double" />
-	<me:PTpair me:units="PPCC" me:P="5.0e16" me:T="200" me:precision= "double" />
-	<me:PTpair me:units="PPCC" me:P="5.0e17" me:T="200" me:precision= "double" />
-	<me:PTpair me:units="PPCC" me:P="5.0e18" me:T="200" me:precision= "double" />
+	
+    <me:PTpair units="PPCC" P="1.90e16" T="465.15" precision= "double" >
+	<me:experimentalRate ref1="C4H5" ref2="C4H5" refReaction="R1a" error="0.0211e-14">0.995e-14</me:experimentalRate>
+        </me:PTpair>
  </me:PTs>
 </me:conditions>
   <me:modelParameters>
@@ -363,13 +989,10 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cml="http://www.xml-
   </me:modelParameters>
 
   <me:control>
-    <me:calcMethod>simpleCalc</me:calcMethod>
-    <me:printSpeciesProfile/>		
-    <me:testDOS />
+     <me:calcMethod>simpleCalc</me:calcMethod>
+    <me:testDOS/>
+    <me:printSpeciesProfile/>
   </me:control>
 </me:mesmer>
-
-
-
 
 
