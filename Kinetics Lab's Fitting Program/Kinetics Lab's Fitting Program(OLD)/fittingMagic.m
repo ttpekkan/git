@@ -15,7 +15,7 @@ function fittingGUI
   
    f = figure; 
    set(f, 'NumberTitle', 'off'); 
-   set(f, 'Name', 'Fitting Program'); 
+   set(f, 'Name', 'Raimo''s Magical Fitting Program'); 
    set(f, 'Units', 'Normalized'); 
    set(f, 'Menubar', 'none');
    set(f, 'Position', [0, 0, ScreenResolution(3)/1.1,ScreenResolution(4)/1.2]);  
@@ -40,7 +40,7 @@ function fittingGUI
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% This Section Creates the Text/Edit Components %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      
    getPath = uicontrol('Parent', f); 
-   createText(getPath, 'edit', [0.02, 0.91, 0.20, 0.03], 0.45,'/home/timo/' );   
+   createText(getPath, 'edit', [0.02, 0.91, 0.20, 0.03], 0.45, '/home/timo/');   
    
    SourceTrig = uicontrol('Parent', f); 
    createText(SourceTrig, 'text', [0.36, 0.96, 0.05, 0.035], 0.35, 'Source Of Triggering'); 
@@ -129,35 +129,35 @@ function fittingGUI
    time = uicontrol('Parent', f); 
    createText(time, 'text', [0.787, 0.83, 0.07, 0.035], 0.45, 'Time(s)');
    
-   T2 = uicontrol('Parent', f); 
-   createText(T2, 'text', [0.787, 0.79, 0.07, 0.035], 0.45, 'T2(K)');
-   
-   L1 = uicontrol('Parent', f); 
-   createText(L1, 'text', [0.787, 0.75, 0.07, 0.035], 0.45, 'L1(cm)');
-   
-   L2 = uicontrol('Parent', f); 
-   createText(L2, 'text', [0.787, 0.71, 0.07, 0.035], 0.45, 'L2(cm)');
-   
-   reacDia = uicontrol('Parent', f); 
-   createText(reacDia, 'text', [0.787, 0.67, 0.07, 0.035], 0.45, 'Reactor i.d.(cm)');
-   
-   MVol = uicontrol('Parent', f); 
-   createText(MVol, 'text', [0.787, 0.63, 0.07, 0.035], 0.45, 'M-volume (cm3)');
-   
-   reacDil = uicontrol('Parent', f); 
-   createText(reacDil, 'text', [0.787, 0.59, 0.07, 0.035], 0.45, 'Reac. Diluted to(%)');
+   pinhole = uicontrol('Parent', f); 
+   createText(pinhole, 'text', [0.787, 0.79, 0.07, 0.035], 0.45, 'Pinhole corr.');
    
    pTot = uicontrol('Parent', f); 
-   createText(pTot, 'text', [0.787, 0.55, 0.07, 0.035], 0.45, 'pTot(torr)');
+   createText(pTot, 'text', [0.787, 0.75, 0.07, 0.035], 0.45, 'pTot(torr)');
+   
+   T2 = uicontrol('Parent', f); 
+   createText(T2, 'text', [0.787, 0.71, 0.07, 0.035], 0.45, 'T2(K)');
+   
+   L1 = uicontrol('Parent', f); 
+   createText(L1, 'text', [0.787, 0.67, 0.07, 0.035], 0.45, 'L1(cm)');
+   
+   L2 = uicontrol('Parent', f); 
+   createText(L2, 'text', [0.787, 0.63, 0.07, 0.035], 0.45, 'L2(cm)');
+   
+   reacDia = uicontrol('Parent', f); 
+   createText(reacDia, 'text', [0.787, 0.59, 0.07, 0.035], 0.45, 'Reactor i.d.(cm)');
+   
+   MVol = uicontrol('Parent', f); 
+   createText(MVol, 'text', [0.787, 0.55, 0.07, 0.035], 0.45, 'M-volume (cm3)');
+   
+   reacDil = uicontrol('Parent', f); 
+   createText(reacDil, 'text', [0.787, 0.51, 0.07, 0.035], 0.45, 'Reac. Diluted to(%)');
    
    dp = uicontrol('Parent', f); 
-   createText(dp, 'text', [0.787, 0.51, 0.07, 0.035], 0.45, 'dp(torr)');
+   createText(dp, 'text', [0.787, 0.47, 0.07, 0.035], 0.45, 'dp(torr)');
    
    dt = uicontrol('Parent', f); 
-   createText(dt, 'text', [0.787, 0.47, 0.07, 0.035], 0.45, 'dt(s)');
-   
-   pinhole = uicontrol('Parent', f); 
-   createText(pinhole, 'text', [0.787, 0.43, 0.07, 0.035], 0.5, 'Pinhole corr.');
+   createText(dt, 'text', [0.787, 0.43, 0.07, 0.035], 0.45, 'dt(s)');
    
    editTroom = uicontrol('Parent', f); 
    createText(editTroom, 'edit', [0.86, 0.95, 0.06, 0.035], 0.5, '298.15'); 
@@ -171,38 +171,38 @@ function fittingGUI
    editTime = uicontrol('Parent', f); 
    createText(editTime, 'edit', [0.86, 0.83, 0.06, 0.035], 0.5, '10.0'); 
    
-   editT2 = uicontrol('Parent', f); 
-   createText(editT2, 'edit', [0.86, 0.79, 0.06, 0.035], 0.5, '298.15'); 
-   
-   editL1 = uicontrol('Parent', f); 
-   createText(editL1, 'edit', [0.86, 0.75, 0.06, 0.035], 0.5, '22.00');
-   
-   editL2 = uicontrol('Parent', f); 
-   createText(editL2, 'edit', [0.86, 0.71, 0.06, 0.035], 0.5, '14.00'); 
-   
-   editReacDia = uicontrol('Parent', f); 
-   createText(editReacDia, 'edit', [0.86, 0.67, 0.06, 0.035], 0.5, '1.70'); 
-   
-   editMVol = uicontrol('Parent', f); 
-   createText(editMVol, 'edit', [0.86, 0.63, 0.06, 0.035], 0.5, '86.9');
-   
-   editReacDil = uicontrol('Parent', f); 
-   createText(editReacDil, 'edit', [0.86, 0.59, 0.06, 0.035], 0.5, '100.0');
+   editPinhole = uicontrol('Parent', f); 
+   createText(editPinhole, 'edit', [0.86, 0.79, 0.06, 0.035], 0.5, '0.030'); 
    
    editpTot = uicontrol('Parent', f); 
-   createText(editpTot, 'edit', [0.86, 0.55, 0.06, 0.035], 0.5, '1.000'); 
+   createText(editpTot, 'edit', [0.86, 0.75, 0.06, 0.035], 0.5, '1.000'); 
+   
+   editT2 = uicontrol('Parent', f); 
+   createText(editT2, 'edit', [0.86, 0.71, 0.06, 0.035], 0.5, '298.15'); 
+   
+   editL1 = uicontrol('Parent', f); 
+   createText(editL1, 'edit', [0.86, 0.67, 0.06, 0.035], 0.5, '28.00');
+   
+   editL2 = uicontrol('Parent', f); 
+   createText(editL2, 'edit', [0.86, 0.63, 0.06, 0.035], 0.5, '22.00'); 
+   
+   editReacDia = uicontrol('Parent', f); 
+   createText(editReacDia, 'edit', [0.86, 0.59, 0.06, 0.035], 0.5, '1.70'); 
+   
+   editMVol = uicontrol('Parent', f); 
+   createText(editMVol, 'edit', [0.86, 0.55, 0.06, 0.035], 0.5, '56.1');
+   
+   editReacDil = uicontrol('Parent', f); 
+   createText(editReacDil, 'edit', [0.86, 0.51, 0.06, 0.035], 0.5, '100.0');
    
    editdp = uicontrol('Parent', f); 
-   createText(editdp, 'edit', [0.86, 0.51, 0.06, 0.035], 0.5, '1.0');
+   createText(editdp, 'edit', [0.86, 0.47, 0.06, 0.035], 0.5, '0.1');
    
    editdt = uicontrol('Parent', f); 
-   createText(editdt, 'edit', [0.86, 0.47, 0.06, 0.035], 0.5, '10.0');
-   
-   editPinhole = uicontrol('Parent', f); 
-   createText(editPinhole, 'text', [0.86, 0.43, 0.06, 0.035], 0.5, '0.10'); 
+   createText(editdt, 'edit', [0.86, 0.43, 0.06, 0.035], 0.5, '10.0');
    
    TroomError = uicontrol('Parent', f); 
-   createText(TroomError, 'edit', [0.925, 0.95, 0.06, 0.035], 0.5, '2.0'); 
+   createText(TroomError, 'edit', [0.925, 0.95, 0.06, 0.035], 0.5, '1'); 
    
    ProomError = uicontrol('Parent', f); 
    createText(ProomError, 'edit', [0.925, 0.91, 0.06, 0.035], 0.5, '15.2'); 
@@ -213,35 +213,35 @@ function fittingGUI
    TimeError = uicontrol('Parent', f); 
    createText(TimeError, 'edit', [0.925, 0.83, 0.06, 0.035], 0.5, '0.2'); 
    
-   T2Error = uicontrol('Parent', f); 
-   createText(T2Error, 'edit', [0.925, 0.79, 0.06, 0.035], 0.5, '2.0'); 
-   
-   L1Error = uicontrol('Parent', f); 
-   createText(L1Error, 'edit', [0.925, 0.75, 0.06, 0.035], 0.5, '0');
-   
-   L2Error = uicontrol('Parent', f); 
-   createText(L2Error, 'edit', [0.925, 0.71, 0.06, 0.035], 0.5, '0'); 
-   
-   ReacDiaError = uicontrol('Parent', f); 
-   createText(ReacDiaError, 'edit', [0.925, 0.67, 0.06, 0.035], 0.5, '0'); 
-   
-   MVolError = uicontrol('Parent', f); 
-   createText(MVolError, 'edit', [0.925, 0.63, 0.06, 0.035], 0.5, '0');
-   
-   ReacDilError = uicontrol('Parent', f); 
-   createText(ReacDilError, 'edit', [0.925, 0.59, 0.06, 0.035], 0.5, '0.5');
+   PinholeError = uicontrol('Parent', f); 
+   createText(PinholeError, 'edit', [0.925, 0.79, 0.06, 0.035], 0.5, '0.005'); 
    
    pTotError = uicontrol('Parent', f); 
-   createText(pTotError, 'edit', [0.925, 0.55, 0.06, 0.035], 0.5, '0.10');
+   createText(pTotError, 'edit', [0.925, 0.75, 0.06, 0.035], 0.5, '0.01'); 
+   
+   T2Error = uicontrol('Parent', f); 
+   createText(T2Error, 'edit', [0.925, 0.71, 0.06, 0.035], 0.5, '2'); 
+   
+   L1Error = uicontrol('Parent', f); 
+   createText(L1Error, 'edit', [0.925, 0.67, 0.06, 0.035], 0.5, '0');
+   
+   L2Error = uicontrol('Parent', f); 
+   createText(L2Error, 'edit', [0.925, 0.63, 0.06, 0.035], 0.5, '0'); 
+   
+   ReacDiaError = uicontrol('Parent', f); 
+   createText(ReacDiaError, 'edit', [0.925, 0.59, 0.06, 0.035], 0.5, '0'); 
+   
+   MVolError = uicontrol('Parent', f); 
+   createText(MVolError, 'edit', [0.925, 0.55, 0.06, 0.035], 0.5, '0');
+   
+   ReacDilError = uicontrol('Parent', f); 
+   createText(ReacDilError, 'edit', [0.925, 0.51, 0.06, 0.035], 0.5, '0.5065');
    
    dpError = uicontrol('Parent', f); 
-   createText(dpError, 'edit', [0.925, 0.51, 0.06, 0.035], 0.5, '0');
+   createText(dpError, 'edit', [0.925, 0.47, 0.06, 0.035], 0.5, '0');
    
    dtError = uicontrol('Parent', f); 
-   createText(dtError, 'edit', [0.925, 0.47, 0.06, 0.035], 0.5, '0.2');
-   
-   PinholeError = uicontrol('Parent', f); 
-   createText(PinholeError, 'edit', [0.925, 0.43, 0.06, 0.035], 0.5, '0.015'); 
+   createText(dtError, 'edit', [0.925, 0.43, 0.06, 0.035], 0.5, '0.2');
    
    p1 = uicontrol('Parent', f); 
    createText(p1, 'text', [0.59, 0.20, 0.1, 0.035], 0.6, 'p1(Torr)');
@@ -411,12 +411,8 @@ function fittingGUI
    set(changeLimitsButton, 'Callback', @changeLimits); 
    
    calculateButton = uicontrol('Parent', f); 
-   createButton(calculateButton, [0.85, 0.30, 0.13, 0.04], 0.4, 'Set Pinhole'); 
-   set(calculateButton, 'Callback', @setPinhole);
-   
-   calculateButton = uicontrol('Parent', f); 
-   createButton(calculateButton, [0.85, 0.25, 0.13, 0.04], 0.4, 'Calculate!'); 
-   set(calculateButton, 'Callback', @startToCalculate);
+   createButton(calculateButton, [0.83, 0.26, 0.13, 0.05], 0.4, 'Calculate!'); 
+   set(calculateButton, 'Callback', @startToCalculate); 
    
    removePointButton = uicontrol('Parent', f); 
    createButton(removePointButton, [0.653, 0.68, 0.13, 0.05], 0.4, 'Remove a Point'); 
@@ -447,7 +443,7 @@ function fittingGUI
    
    selectReactant = uicontrol('Parent', f); 
    set(selectReactant, 'Style', 'popup'); 
-   set(selectReactant, 'String', {'Oxygen', 'Other'}); 
+   set(selectReactant, 'String', {'Other', 'Oxygen'}); 
    set(selectReactant, 'Units', 'Normalized', 'FontUnits', 'Normalized');
    set(selectReactant, 'Position', [0.89, 0.35, 0.09, 0.035]); 
    set(selectReactant, 'FontSize', 0.6); 
@@ -496,44 +492,42 @@ function fittingGUI
    maxLine = [];  
    minBG = [];
    maxBG = []; 
-   reactant = 'Oxygen';
+   reactant = 'Other';  
    carrierGas = 'Helium'; 
    selectedFunction = 1; 
    
    fittingFunctionSelected; 
    variables = load('variables'); 
    positions = load('positions'); 
-   pinholeFunction = fileread('pinhole.txt');
-   pinholeFunction = str2func(pinholeFunction);
    
    set(editTroom, 'String', num2str(variables(1)));
    set(editProom, 'String', num2str(variables(2)));
    set(editFVol, 'String', num2str(variables(3)));
    set(editTime, 'String', num2str(variables(4)));
-   set(editT2, 'String', num2str(variables(5)));
-   set(editL1, 'String', num2str(variables(6)));
-   set(editL2, 'String', num2str(variables(7)));
-   set(editReacDia, 'String', num2str(variables(8)));
-   set(editMVol, 'String', num2str(variables(9)));
-   set(editReacDil, 'String', num2str(variables(10)));
-   set(editpTot, 'String', num2str(variables(11)));
-   set(editdp, 'String', num2str(variables(12)));
-   set(editdt, 'String', num2str(variables(13)));
-   set(editPinhole, 'String', num2str(variables(14)));
+   set(editPinhole, 'String', num2str(variables(5)));
+   set(editpTot, 'String', num2str(variables(6)));
+   set(editT2, 'String', num2str(variables(7)));
+   set(editL1, 'String', num2str(variables(8)));
+   set(editL2, 'String', num2str(variables(9)));
+   set(editReacDia, 'String', num2str(variables(10)));
+   set(editMVol, 'String', num2str(variables(11)));
+   set(editReacDil, 'String', num2str(variables(12)));
+   set(editdp, 'String', num2str(variables(13)));
+   set(editdt, 'String', num2str(variables(14)));
    set(TroomError, 'String', num2str(variables(15)));
    set(ProomError, 'String', num2str(variables(16)));
    set(FVolError, 'String', num2str(variables(17)));
    set(TimeError, 'String', num2str(variables(18)));
-   set(T2Error, 'String', num2str(variables(19)));
-   set(L1Error, 'String', num2str(variables(20)));
-   set(L2Error, 'String', num2str(variables(21)));
-   set(ReacDiaError, 'String', num2str(variables(22)));
-   set(MVolError, 'String', num2str(variables(23)));
-   set(ReacDilError, 'String', num2str(variables(24)));
-   set(pTotError, 'String', num2str(variables(25)));
-   set(dpError, 'String', num2str(variables(26)));
-   set(dtError, 'String', num2str(variables(27)));
-   set(PinholeError, 'String', num2str(variables(28)));
+   set(PinholeError, 'String', num2str(variables(19)));
+   set(pTotError, 'String', num2str(variables(20)));
+   set(T2Error, 'String', num2str(variables(21)));
+   set(L1Error, 'String', num2str(variables(22)));
+   set(L2Error, 'String', num2str(variables(23)));
+   set(ReacDiaError, 'String', num2str(variables(24)));
+   set(MVolError, 'String', num2str(variables(25)));
+   set(ReacDilError, 'String', num2str(variables(26)));
+   set(dpError, 'String', num2str(variables(27)));
+   set(dtError, 'String', num2str(variables(28)));
    
    set(editFirstWallRate, 'String', num2str(variables(29)));
    set(firstWallRateError, 'String', num2str(variables(30)));
@@ -907,7 +901,7 @@ function fittingGUI
             end 
         end 
         
-        %We need to know the reactant concentration to calculate other stuff (such as the EQ constant). 
+        %We need to know the reactant concentraiton to calculate other stuff (such as the EQ constant). 
         startToCalculate;
         T = str2double(get(editT2, 'String'));
         reactantC = str2double(get(editNreactant, 'String'));
@@ -1014,33 +1008,6 @@ function fittingGUI
         end
     end 
 
-    function setPinhole(obj, event)
-        while 1
-            prompt = {'Set function to calculate pinhole correction. Example formats:                    @(p,T)0.1300+4.6734*p/T                         or                                  @(p,T)0.1300-0.2000*exp(-250*p/T).'};
-            title = 'Pinhole correction';
-            default = fileread('pinhole.txt');
-            definput = {default};
-            pinholeFunction = inputdlg(prompt,title,[1 40],definput);
-            pinholeFunction = cell2mat(pinholeFunction);
-            if isempty(pinholeFunction) == 1 || length(pinholeFunction) < 7
-                pinholeFunction = default;
-                msgbox({'Bad or no input. Using previous pinhole function!'});
-            end
-            pinholeFunction = str2func(pinholeFunction);
-            try
-                pinholeFunction(3.0,298.15);                
-                fid = fopen('pinhole.txt','wt');
-                fprintf(fid, func2str(pinholeFunction));
-                fclose(fid);
-                startToCalculate;
-                break;                
-            catch
-                pinholeFunction = default;
-                continue;
-            end
-        end 
-    end 
-
     %Gets the data from the textfields to send in for calculations. Also saves variables to a text file. 
     function startToCalculate(obj, event) 
         allData = zeros(1,30); 
@@ -1052,38 +1019,36 @@ function fittingGUI
         allData(2) = str2double(get(editProom, 'String'));
         allData(3) = str2double(get(editFVol, 'String'));
         allData(4) = str2double(get(editTime, 'String'));
-        allData(5) = str2double(get(editT2, 'String'));
-        allData(6) = str2double(get(editL1, 'String'));
-        allData(7) = str2double(get(editL2, 'String'));
-        allData(8) = str2double(get(editReacDia, 'String'));
-        allData(9) = str2double(get(editMVol, 'String'));
-        allData(10) = str2double(get(editReacDil, 'String'));
-        allData(11) = str2double(get(editpTot, 'String'));
-        allData(12) = str2double(get(editdp, 'String'));
-        allData(13) = str2double(get(editdt, 'String'));
+        allData(5) = str2double(get(editPinhole, 'String'));
+        allData(6) = str2double(get(editpTot, 'String'));
+        allData(7) = str2double(get(editT2, 'String'));
+        allData(8) = str2double(get(editL1, 'String'));
+        allData(9) = str2double(get(editL2, 'String'));
+        allData(10) = str2double(get(editReacDia, 'String'));
+        allData(11) = str2double(get(editMVol, 'String'));
+        allData(12) = str2double(get(editReacDil, 'String'));
+        allData(13) = str2double(get(editdp, 'String'));
+        allData(14) = str2double(get(editdt, 'String'));
         
-        %Determine pinhole:
-        allData(14) = solvePinhole(allData(1:13), carrierGas, reactant);
-        inputData = allData(1:14);
-         
         allData(15) = str2double(get(TroomError, 'String'));
         allData(16) = str2double(get(ProomError, 'String'));
         allData(17) = str2double(get(FVolError, 'String'));
-        allData(18) = str2double(get(TimeError, 'String'));                
-        allData(19) = str2double(get(T2Error, 'String'));
-        allData(20) = str2double(get(L1Error, 'String'));
-        allData(21) = str2double(get(L2Error, 'String'));
-        allData(22) = str2double(get(ReacDiaError, 'String'));
-        allData(23) = str2double(get(MVolError, 'String'));
-        allData(24) = str2double(get(ReacDilError, 'String'));
-        allData(25) = str2double(get(pTotError, 'String'));
-        allData(26) = str2double(get(dpError, 'String'));
-        allData(27) = str2double(get(dtError, 'String'));
-        allData(28) = str2double(get(PinholeError, 'String'));
+        allData(18) = str2double(get(TimeError, 'String'));
+        allData(19) = str2double(get(PinholeError, 'String'));
+        allData(20) = str2double(get(pTotError, 'String'));
+        allData(21) = str2double(get(T2Error, 'String'));
+        allData(22) = str2double(get(L1Error, 'String'));
+        allData(23) = str2double(get(L2Error, 'String'));
+        allData(24) = str2double(get(ReacDiaError, 'String'));
+        allData(25) = str2double(get(MVolError, 'String'));
+        allData(26) = str2double(get(ReacDilError, 'String'));
+        allData(27) = str2double(get(dpError, 'String'));
+        allData(28) = str2double(get(dtError, 'String'));
         
         allData(29) = str2double(get(editFirstWallRate, 'String'));
         allData(30) = str2double(get(firstWallRateError, 'String'));
         
+        inputData = allData(1:14);
         inputDataErrors = allData(15:28); 
         
         %Check that the values make sense. 
@@ -1125,52 +1090,54 @@ function fittingGUI
         if(inputData(4) <= 0)
             set(editTime, 'String', '<= 0?!'); 
             return; 
-        end                  
-        if(inputData(5) <= 0)
-            set(editT2, 'String', '<= 0?!'); 
-            return; 
         end  
-        if(inputData(6) <= 0)
-            set(editL1, 'String', '<= 0?!'); 
-            return; 
-        end  
-        if(inputData(7) <= 0)
-            set(editL2, 'String', '<= 0?!'); 
-            return; 
-        end  
-        if(inputData(9) <= 0)
-            set(editReacDia, 'String', '<= 0?!'); 
-            return; 
-        end  
-        if(inputData(9) <= 0)
-            set(editMVol, 'String', '<= 0?!'); 
-            return; 
-        end  
-        if(inputData(10) <= 0 || inputData(12) > 100.0)
-            set(editReacDil, 'String', '<=0 or >100% ?!'); 
-            return; 
-        end  
-        if(inputData(11) <= 0)
-            set(editpTot, 'String', '<= 0?!'); 
-            return; 
-        end  
-        if(inputData(12) < 0)
-            set(editdp, 'String', '< 0 ?!'); 
-            return; 
-        end
-        if(inputData(13) <= 0)
-            set(editdt, 'String', '<= 0?!'); 
-            return; 
-        end  
-        if(inputData(14) >= 1 || inputData(14) < 0)
+        if(inputData(5) >= 1 || inputData(5) < 0)
             set(editPinhole, 'String', '< 0 or > 1?!'); 
             return; 
         end
-        
+        if(inputData(6) <= 0)
+            set(editpTot, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(7) <= 0)
+            set(editT2, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(8) <= 0)
+            set(editL1, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(9) <= 0)
+            set(editL2, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(10) <= 0)
+            set(editReacDia, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(11) <= 0)
+            set(editMVol, 'String', '<= 0?!'); 
+            return; 
+        end  
+        if(inputData(12) <= 0 || inputData(12) > 100.0)
+            set(editReacDil, 'String', '<=0 or >100% ?!'); 
+            return; 
+        end  
+        if(inputData(13) < 0)
+            set(editdp, 'String', '< 0 ?!'); 
+            return; 
+        elseif(inputData(13) == 0) 
+            set(editdt, 'String', '1.0');
+            inputData(14) = 1.0; 
+        end
+        if(inputData(14) <= 0)
+            set(editdt, 'String', '<= 0?!'); 
+            return; 
+        end  
+    
         outputData = letsDoSomeMaths(inputData, inputDataErrors, carrierGas, reactant);  
         
         %Makes the results visible. 
-        set(editPinhole, 'String', num2str(inputData(14))); 
         set(editp1, 'String', num2str(outputData(1))); 
         set(p1Error, 'String', num2str(outputData(2)));
         set(editv1, 'String', num2str(outputData(3))); 
@@ -1205,9 +1172,9 @@ function fittingGUI
         set(selectReactant, 'Enable', 'on');
         selection = get(selectReactant, 'Value'); 
         if(selection == 1) 
-            reactant = 'Oxygen'; 
-        elseif(selection == 2) 
             reactant = 'Other'; 
+        elseif(selection == 2) 
+            reactant = 'Oxygen'; 
         end 
     end 
 
@@ -1567,60 +1534,60 @@ end
         %Let's see what we are working with. 
         outputData = zeros(1,10); 
         
-        Troom = inputData(1); 
-        Proom = inputData(2);
-        FVolume = inputData(3);
-        Time = inputData(4);   
-        T2 = inputData(5);
-        L1 = inputData(6);
-        L2 = inputData(7);
-        reactorDiameter = inputData(8);
-        MVolume = inputData(9);
-        dilution = inputData(10);
-        p1 = inputData(11);
-        dp = inputData(12);
-        dt = inputData(13); 
-        PinholeCorrection = inputData(14);
+        Troom  = inputData(1); 
+        Proom  = inputData(2);
+        FVolume  = inputData(3);
+        Time  = inputData(4);
+        PinholeCorrection  = inputData(5);
+        pCarrierGas  = inputData(6);
+        T2  = inputData(7);
+        L1  = inputData(8);
+        L2  = inputData(9);
+        reactorDiameter  = inputData(10);
+        MVolume  = inputData(11);
+        dilution  = inputData(12);
+        dp  = inputData(13);
+        dt  = inputData(14); 
         
-        TroomError = errorData(1); 
-        ProomError = errorData(2);
-        FVolumeError = errorData(3);
-        TimeError = errorData(4);                
-        T2Error = errorData(5);
-        L1Error = errorData(6);
-        L2Error = errorData(7);
-        ReactorDiameterError  = errorData(8);
-        MVolumeError = errorData(9);
-        DilutionError = errorData(10);
-        p1Error = errorData(11);
-        dpError = errorData(12);
-        dtError = errorData(13); 
-        PinholeCorrectionError  = errorData(14);
+        TroomError  = errorData(1); 
+        ProomError  = errorData(2);
+        FVolumeError  = errorData(3);
+        TimeError  = errorData(4);
+        PinholeCorrectionError  = errorData(5);
+        pCarrierGasError  = errorData(6);
+        T2Error  = errorData(7);
+        L1Error  = errorData(8);
+        L2Error  = errorData(9);
+        ReactorDiameterError  = errorData(10);
+        MVolumeError  = errorData(11);
+        DilutionError  = errorData(12);
+        dpError  = errorData(13);
+        dtError  = errorData(14); 
         
         N = 6.02214129e23;
         R = 8.3144621; 
         
         %Change to SI units. 
-        Proom = 133.3223684211*Proom; 
         FVolume = FVolume * 1.0e-6;
-        MVolume = MVolume * 1.0e-6;        
+        MVolume = MVolume * 1.0e-6;
+        Proom = 133.3223684211*Proom; 
+        pCarrierGas = 133.3223684211*pCarrierGas;   
+        dp = 133.3223684211*dp; 
+        reactorRadius = reactorDiameter / 200.0;
         L1 = L1/100.0; 
         L2 = L2/100.0;
-        reactorRadius = reactorDiameter / 200.0;
         dilution = dilution/100.0;   
-        p1 = 133.3223684211*p1;
-        dp = 133.3223684211*dp; 
         
-        ProomError = 133.3223684211*ProomError; 
         FVolumeError = FVolumeError * 1.0e-6;
-        MVolumeError = MVolumeError * 1.0e-6;      
+        MVolumeError = MVolumeError * 1.0e-6;
+        ProomError = 133.3223684211*ProomError; 
+        pCarrierGasError = 133.3223684211*pCarrierGasError;   
+        dpError = 133.3223684211*dpError; 
+        ReactorRadiusError = ReactorDiameterError / 200.0;
         L1Error = L1Error/100.0; 
         L2Error = L2Error/100.0;
-        ReactorRadiusError = ReactorDiameterError / 200.0;
-        DilutionError = DilutionError/100.0;
-        p1Error = 133.3223684211*p1Error;   
-        dpError = 133.3223684211*dpError; 
-        
+        DilutionError = DilutionError/100.0;   
+
         PinholeCorrectionError = sqrt((1/(1-PinholeCorrection).^2).^2 *PinholeCorrectionError.^2); 
         PinholeCorrection = 1.0 / (1.0 - PinholeCorrection);
         
@@ -1644,14 +1611,11 @@ end
         totalFlowError = sqrt(carrierGasFlowError.^2 + reactantFlowError.^2); 
         
         %Calculate total pressure and the velocity in the beginning of the reactor. 
-        %OLD IMPLEMENTATION
-        %----------------------------------------------------------------------------------------
-        %p1 = pCarrierGas + (reactantFlow/carrierGasFlow)*pCarrierGas;
-        %p1Error = (1 + reactantFlow/carrierGasFlow).^2 * pCarrierGasError.^2 + ...
-        %          (pCarrierGas/carrierGasFlow).^2 * reactantFlowError.^2 + ...
-        %          (-reactantFlow*pCarrierGas/(carrierGasFlow).^2).^2 * carrierGasFlowError.^2; 
-        %p1Error = sqrt(p1Error); 
-        %----------------------------------------------------------------------------------------
+        p1 = pCarrierGas + (reactantFlow/carrierGasFlow)*pCarrierGas;
+        p1Error = (1 + reactantFlow/carrierGasFlow).^2 * pCarrierGasError.^2 + ...
+                  (pCarrierGas/carrierGasFlow).^2 * reactantFlowError.^2 + ...
+                  (-reactantFlow*pCarrierGas/(carrierGasFlow).^2).^2 * carrierGasFlowError.^2; 
+        p1Error = sqrt(p1Error); 
         
         v1 = (totalFlow*R*Troom)/(p1*pi*reactorRadius.^2);
         v1Error = ((R*Troom)/(p1*pi*reactorRadius.^2)).^2 * totalFlowError.^2 + ... 
@@ -1660,22 +1624,19 @@ end
                   ((-2*totalFlow*R*Troom)/(p1*pi*reactorRadius.^3)).^2 * ReactorRadiusError.^2; 
         v1Error = sqrt(v1Error); 
        
-        %Calculate viscosity with Sutherland's formula.
         [carrierGasViscosity, carrierGasViscosityError] = calculateViscosity(carrierGas, Troom, TroomError); 
         
         if(strcmp(reactant, 'Other') == 1 || dp == 0) 
             totalViscosity = carrierGasViscosity;
-            totalViscosityError = carrierGasViscosityError;
+            totalViscosityError = carrierGasViscosityError; 
         else 
-            [reactantViscosity, reactantViscosityError] = calculateViscosity(reactant, Troom, TroomError);  
-            totalViscosity = 1.0/totalFlow * (reactantFlow*dilution*reactantViscosity + reactantFlow*(1.0-dilution)*carrierGasViscosity + carrierGasFlow*carrierGasViscosity);
-            
-            totalViscosityError =  ((-1.0/totalFlow.^2)*(reactantFlow*dilution*reactantViscosity + reactantFlow*(1.0-dilution)*carrierGasViscosity + carrierGasFlow*carrierGasViscosity)).^2 *(totalFlowError).^2 + ...
-                                  ((1.0/totalFlow)*(dilution*reactantViscosity + (1.0-dilution)*carrierGasViscosity)).^2 *(reactantFlowError).^2  + ...
-                                  ((1.0/totalFlow)*(reactantFlow*reactantViscosity - reactantFlow*carrierGasViscosity)).^2 *(DilutionError).^2  + ...
-                                  ((1.0/totalFlow)*(reactantFlow*dilution)).^2 *(reactantViscosityError).^2  + ...
-                                  ((1.0/totalFlow)*(reactantFlow*(1.0-dilution) + carrierGasFlow)).^2 * (carrierGasViscosityError).^2 + ...
-                                  ((1.0/totalFlow)*(carrierGasViscosity)).^2 * (carrierGasFlowError).^2;
+            [reactantViscosity, reactantViscosityError] = calculateViscosity(reactant, Troom, TroomError);   
+            totalViscosity = (carrierGasFlow/totalFlow)*carrierGasViscosity + (reactantFlow/totalFlow)*reactantViscosity;
+            totalViscosityError = (carrierGasViscosity/totalFlow).^2 * carrierGasFlowError.^2 + ... 
+                                  (carrierGasFlow/totalFlow).^2 * carrierGasViscosityError.^2 + ... 
+                                  (reactantViscosity/totalFlow).^2 * reactantFlowError.^2 + ... 
+                                  (reactantFlow/totalFlow).^2 * reactantViscosityError.^2 + ... 
+                                  ((-carrierGasFlow*carrierGasViscosity-reactantFlow*reactantViscosity)/(totalFlow.^2)).^2 * (totalFlowError).^2; 
             totalViscosityError = sqrt(totalViscosityError);        
         end 
         
@@ -1689,22 +1650,20 @@ end
                   (p1/p2).^2 * p1Error.^2; 
         p2Error = sqrt(p2Error); 
          
-         
+        %Calculate viscosity with Sutherland's formula. 
         [carrierGasViscosity, carrierGasViscosityError] = calculateViscosity(carrierGas, T2, T2Error);
         
         if(strcmp(reactant, 'Other') == 1 || dp == 0) 
             totalViscosity = carrierGasViscosity;
-            totalViscosityError = carrierGasViscosityError;
+            totalViscosityError = carrierGasViscosityError; 
         else 
-            [reactantViscosity, reactantViscosityError] = calculateViscosity(reactant, T2, T2Error);
-            totalViscosity = 1.0/totalFlow * (reactantFlow*dilution*reactantViscosity + reactantFlow*(1.0-dilution)*carrierGasViscosity + carrierGasFlow*carrierGasViscosity);
-            
-            totalViscosityError =  ((-1.0/totalFlow.^2)*(reactantFlow*dilution*reactantViscosity + reactantFlow*(1.0-dilution)*carrierGasViscosity + carrierGasFlow*carrierGasViscosity)).^2 *(totalFlowError).^2 + ...
-                                  ((1.0/totalFlow)*(dilution*reactantViscosity + (1.0-dilution)*carrierGasViscosity)).^2 *(reactantFlowError).^2  + ...
-                                  ((1.0/totalFlow)*(reactantFlow*reactantViscosity - reactantFlow*carrierGasViscosity)).^2 *(DilutionError).^2  + ...
-                                  ((1.0/totalFlow)*(reactantFlow*dilution)).^2 *(reactantViscosityError).^2  + ...
-                                  ((1.0/totalFlow)*(reactantFlow*(1.0-dilution) + carrierGasFlow)).^2 * (carrierGasViscosityError).^2 + ...
-                                  ((1.0/totalFlow)*(carrierGasViscosity)).^2 * (carrierGasFlowError).^2;
+            [reactantViscosity, reactantViscosityError] = calculateViscosity(reactant, T2, T2Error);   
+            totalViscosity = (carrierGasFlow/totalFlow)*carrierGasViscosity + (reactantFlow/totalFlow)*reactantViscosity;
+            totalViscosityError = (carrierGasViscosity/totalFlow).^2 * carrierGasFlowError.^2 + ... 
+                                  (carrierGasFlow/totalFlow).^2 * carrierGasViscosityError.^2 + ... 
+                                  (reactantViscosity/totalFlow).^2 * reactantFlowError.^2 + ... 
+                                  (reactantFlow/totalFlow).^2 * reactantViscosityError.^2 + ... 
+                                  ((-carrierGasFlow*carrierGasViscosity-reactantFlow*reactantViscosity)/(totalFlow.^2)).^2 * (totalFlowError).^2; 
             totalViscosityError = sqrt(totalViscosityError);        
         end 
 
@@ -1874,76 +1833,6 @@ end
         viscosityError = ( (Visc0*(T0 + C)/(T0.^(1.5))) * ... 
                              ( 1.5*T.^(0.5)*(T + C).^(-1.0)  - T.^(1.5)*(T + C).^(-2.0)) ).^2 * dT.^2; 
         viscosityError = sqrt(viscosityError);
-    end 
-    
-    function [pinhole] = solvePinhole(inputData, carrierGas, reactant)
-        
-        pinholeFunction = fileread('pinhole.txt');
-        pinholeFunction = str2func(pinholeFunction);
-        
-        Troom = inputData(1);
-        Proom = inputData(2);
-        FVolume = inputData(3);
-        Time = inputData(4);   
-        T2 = inputData(5);
-        L1 = inputData(6);
-        L2 = inputData(7);
-        reactorDiameter = inputData(8);
-        MVolume = inputData(9);
-        dilution = inputData(10);
-        p1 = inputData(11);
-        dp = inputData(12);
-        dt = inputData(13);
-        
-        R = 8.3144621; 
-        
-        %Change to SI units. 
-        Proom = 133.3223684211*Proom; 
-        FVolume = FVolume * 1.0e-6;
-        MVolume = MVolume * 1.0e-6;        
-        L1 = L1/100.0; 
-        L2 = L2/100.0;
-        reactorRadius = reactorDiameter / 200.0;
-        dilution = dilution/100.0;   
-        p1 = 133.3223684211*p1;
-        dp = 133.3223684211*dp; 
-        pinhole = pinholeFunction(p1/133.3223684211, T2); %Initial guess for pinhole
-        
-        while 1
-            PinholeCorrection = 1.0 / (1.0 - pinhole);
-        
-            %Calculate the molar flows. Carrier Gas flow obviously includes the precursor flow. 
-            reactantFlow = (dp*MVolume)/(R*Troom*dt);                  
-            carrierGasFlow = PinholeCorrection*(Proom*FVolume)/(R*Troom*Time);
-            totalFlow = reactantFlow + carrierGasFlow;              
-       
-            %Calculate viscosity with Sutherland's formula.
-            [carrierGasViscosity, carrierGasViscosityError] = calculateViscosity(carrierGas, Troom, 0.0); 
-        
-            if(strcmp(reactant, 'Other') == 1 || dp == 0) 
-                totalViscosity = carrierGasViscosity;
-            else 
-                [reactantViscosity, reactantViscosityError] = calculateViscosity(reactant, Troom, 0.0);  
-                totalViscosity = 1.0/totalFlow * (reactantFlow*dilution*reactantViscosity + reactantFlow*(1.0-dilution)*carrierGasViscosity + carrierGasFlow*carrierGasViscosity);      
-            end  
-            p2 = sqrt(p1.^2 - (16*totalFlow*L1*totalViscosity*R*Troom)/(reactorRadius.^4 * pi)); 
-      
-            [carrierGasViscosity, carrierGasViscosityError] = calculateViscosity(carrierGas, T2, 0.0);
-            if(strcmp(reactant, 'Other') == 1 || dp == 0) 
-                totalViscosity = carrierGasViscosity;
-            else 
-                [reactantViscosity, reactantViscosityError] = calculateViscosity(reactant, T2, 0.0);
-                totalViscosity = 1.0/totalFlow * (reactantFlow*dilution*reactantViscosity + reactantFlow*(1.0-dilution)*carrierGasViscosity + carrierGasFlow*carrierGasViscosity);
-            end 
-            p3 = sqrt(p2.^2 - (16*totalFlow*L2*totalViscosity*R*T2)/(reactorRadius.^4 * pi));
-            oldph = pinhole; 
-            pinhole = pinholeFunction(p3/133.3223684211, T2);
-            if abs(pinhole-oldph) < 1e-10
-                break
-            end
-        end
-        
-       
     end 
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
