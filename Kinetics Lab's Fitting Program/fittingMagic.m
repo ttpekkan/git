@@ -1902,7 +1902,7 @@ end
         FVolume = FVolume * 1.0e-6;
         MVolume = MVolume * 1.0e-6;        
         L1 = L1/100.0; 
-        L2 = L2/100.0;
+        L2 = 2*L2/100.0;            %2*L2 to get the distance to pinhole. L2 should be set to the middle of the heated section. 
         reactorRadius = reactorDiameter / 200.0;
         dilution = dilution/100.0;   
         p1 = 133.3223684211*p1;
