@@ -417,7 +417,7 @@ function fittingGUI
    calculateButton = uicontrol('Parent', f); 
    createButton(calculateButton, [0.85, 0.25, 0.13, 0.04], 0.4, 'Calculate!'); 
    set(calculateButton, 'Callback', @startToCalculate);
- 
+   
    removePointButton = uicontrol('Parent', f); 
    createButton(removePointButton, [0.653, 0.68, 0.13, 0.05], 0.4, 'Remove a Point'); 
    set(removePointButton, 'Callback', @selectPoint); 
@@ -501,8 +501,8 @@ function fittingGUI
    selectedFunction = 1; 
    
    fittingFunctionSelected; 
-   variables = load('variables.txt'); 
-   positions = load('positions.txt'); 
+   variables = load('variables'); 
+   positions = load('positions'); 
    pinholeFunction = fileread('pinhole.txt');
    pinholeFunction = str2func(pinholeFunction);
    
@@ -618,9 +618,16 @@ function fittingGUI
         theData(:,2) = fread(openedFile, numOfIntegers, 'int32=>float64'); 
         fclose(openedFile); 
         for i = 1:numOfIntegers 
-            theData(i,1) = (i-1)*tempNumber*10^(-6) - 0.02; 
+            theData(i,1) = (i-1)*tempNumber*10^(-6) - 0.015; 
         end 
         
+        %Here we remove the point, which is caused by the laser pulse. It has much higher value than the others.
+        for i = 2:numOfIntegers-1   
+            if(theData(i-1,2)*10 < theData(i,2) && theData(i+1,2)*10 < theData(i,2))
+                theData = removePoint(theData, theData(i,1), theData(i,2)); 
+                break;
+            end 
+        end
         plotPoints(theData); 
     end 
 
@@ -864,7 +871,6 @@ function fittingGUI
         
         %Get the fit parameters. 
         outputParams = getExponentialFitParameters(exponentialFitInterval, initParams, selectedFunction);
-        
         %Plot the result. 
         plotFittedExponential(exponentialFitInterval, outputParams);
         
@@ -885,8 +891,8 @@ function fittingGUI
         position(6) = BGmax(1);
         
         %Save the positions to a text file. 
-        save('positions.txt', 'position',  '-ascii');
-        positions = load('positions.txt');
+        save('positions', 'position',  '-ascii');
+        positions = load('positions');
         
         %Show the fit parameters and data derived from them. 
         changeOutputParams(outputParams);   
@@ -1096,7 +1102,7 @@ function fittingGUI
                 allData(30) = 999; 
         end 
         %Save the given value to a text file. 
-        save('variables.txt', 'allData',  '-ascii'); 
+        save('variables', 'allData',  '-ascii'); 
             
         for i = 1:14 
             if(inputDataErrors(i) < 0) 
@@ -1162,7 +1168,6 @@ function fittingGUI
         end
         
         outputData = letsDoSomeMaths(inputData, inputDataErrors, carrierGas, reactant);  
-
         
         %Makes the results visible. 
         set(editPinhole, 'String', num2str(inputData(14))); 
