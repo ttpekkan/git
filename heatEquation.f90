@@ -34,7 +34,7 @@ program heatEquation
         do i = 1, meshSize+1
             r = (i-1)*radius/meshSize
             if(i == 1) then                                     !dT/dt = alpha*[d**2 U/dr**2 + (1/r)dU/dr] at r=0
-                M(1) = M(1) + 4*a*(M(2) - M(1))/(dr**2)*dt
+                M(1) = M(1) + 4*a*dt*(M(2) - M(1))/(dr**2)
             else if (i == meshSize+1) then                      !do nothing if at boundary (surface)
                 continue
             else                                                !dT/dt = alpha*[d**2 U/dr**2 + (1/r)dU/dr] at r /= 0
