@@ -462,7 +462,7 @@ function fittingGUI
                                          'Radical decay, wall fit', ... 
                                         'Reaction product that has a zero wall rate', ...
                                         'Reaction product that has a nonzero wall rate', ...
-                                        'EQ: Radical decay, product wall rate is zero', ...
+                                        'Double exponential with one fixed', ...
                                         'EQ: Radical decay, product wall rate is nonzero', ...
                                         'EQ: Reaction product'}); 
    set(selectFittingFunction, 'Units', 'Normalized', 'FontUnits', 'Normalized');
@@ -863,7 +863,8 @@ function fittingGUI
         end
         
         %Get the fit parameters. 
-        outputParams = getExponentialFitParameters(exponentialFitInterval, initParams, selectedFunction);
+        fixedExponent = str2double(get(editFirstWallRate, 'String'));
+        outputParams = getExponentialFitParameters(exponentialFitInterval, initParams, selectedFunction, fixedExponent);
         
         %Plot the result. 
         plotFittedExponential(exponentialFitInterval, outputParams);
@@ -1465,10 +1466,11 @@ end
     end 
     
     %Gets the fit parameters for a given set of data and for a given fit function. 
-    function [outputParams] = getExponentialFitParameters(theData, initParams, selection)
+    function [outputParams] = getExponentialFitParameters(theData, initParams, selection, fixedExponent)
         outputParams = zeros(1, 2*size(initParams, 2));
         background = initParams(1);
         backgroundConstantParameters = initParams(2:size(initParams, 2));
+        doubleExpoParameters = initParams(3:size(initParams, 2));
         
         if(selection == 1)
             
@@ -1523,7 +1525,23 @@ end
             outputParams(6) = parameterErrors(2);
             outputParams(7) = parameters(3);
             outputParams(8) = parameterErrors(3);
-        elseif(selection == 5 || selection == 6)    
+         elseif(selection == 5)    
+            
+            expFunc = @(params, x) background + params(1)*exp(-params(2)*x) + params(3)*exp(-fixedExponent*x);
+            [parameters, Res, Jac, Cov, MSE] = nlinfit(theData(:,1), theData(:,2), expFunc, doubleExpoParameters);
+           
+            parameterErrors = sqrt(diag(Cov));
+            outputParams(1) = initParams(1);
+            outputParams(2) = 0;
+            outputParams(3) = parameters(1);
+            outputParams(4) = parameterErrors(1);
+            outputParams(5) = parameters(2);
+            outputParams(6) = parameterErrors(2);
+            outputParams(7) = parameters(3);
+            outputParams(8) = parameterErrors(3);
+            outputParams(9) = fixedExponent;
+            outputParams(10) = 0;
+        elseif(selection == 6)    
             
             expFunc = @(params, x) background + params(1)*exp(-params(2)*x) + params(3)*exp(-params(4)*x);
             [parameters, Res, Jac, Cov, MSE] = nlinfit(theData(:,1), theData(:,2), expFunc, backgroundConstantParameters);
@@ -1778,8 +1796,10 @@ end
             
             outputData(1) = rateConstant; 
             outputData(2) = rateConstantError;
+        elseif(selection == 5)
+            outputData = zeros(1,8); 
             
-        elseif(selection == 5 || selection == 6)  
+        elseif(selection == 6)
             if(reactantC == 0) 
                 outputData = zeros(1,8); 
             else 
@@ -1795,18 +1815,13 @@ end
                            (-1).^2 * (wallRateError).^2; 
                 alphaError = sqrt(alphaError);
                 
-                if(selection == 6) 
-                    delta = (params(5)*params(9) - wallRate * ((params(5) + params(9)*F)/(1+F)) )/(alpha);
-                    deltaError = ( -delta/alpha ).^2 * (alphaError).^2 + ...
-                               ( (params(9)/alpha - wallRate/(alpha*(1+F))) ).^2 * (params(6)).^2 + ...
-                               ( (params(5)/alpha - wallRate*F/(alpha*(1+F))) ).^2 * (params(10)).^2 + ...  
-                               ( -params(5)/(alpha*(1+F)) - params(9)*F/(alpha*(1+F)) ).^2 * (wallRateError).^2 + ... 
-                               ( -(wallRate/alpha) * (params(9)/(1+F) - (params(5) + params(9)*F)/((1+F).^2)) ).^2 * (Ferror).^2 ;
-                    deltaError = sqrt(deltaError);
-                else 
-                    delta = 0; 
-                    deltaError = 0; 
-                end 
+                delta = (params(5)*params(9) - wallRate * ((params(5) + params(9)*F)/(1+F)) )/(alpha);
+                deltaError = ( -delta/alpha ).^2 * (alphaError).^2 + ...
+                             ( (params(9)/alpha - wallRate/(alpha*(1+F))) ).^2 * (params(6)).^2 + ...
+                             ( (params(5)/alpha - wallRate*F/(alpha*(1+F))) ).^2 * (params(10)).^2 + ...  
+                             ( -params(5)/(alpha*(1+F)) - params(9)*F/(alpha*(1+F)) ).^2 * (wallRateError).^2 + ... 
+                             ( -(wallRate/alpha) * (params(9)/(1+F) - (params(5) + params(9)*F)/((1+F).^2)) ).^2 * (Ferror).^2 ;
+                deltaError = sqrt(deltaError);
                 
                 beta = params(5) + params(9) - alpha - wallRate - delta ;
                 betaError = (params(6)).^2 + (params(10)).^2 + (alphaError).^2 + (wallRateError).^2 + (deltaError).^2; 
@@ -1910,7 +1925,7 @@ end
             %Calculate the molar flows. Carrier Gas flow obviously includes the precursor flow. 
             reactantFlow = (dp*MVolume)/(R*Troom*dt);                  
             carrierGasFlow = PinholeCorrection*(Proom*FVolume)/(R*Troom*Time);
-            totalFlow = reactantFlow + carrierGasFlow;              
+            totalFlow = reactantFlow + carrierGasFlow;             
        
             %Calculate viscosity with Sutherland's formula.
             [carrierGasViscosity, carrierGasViscosityError] = calculateViscosity(carrierGas, Troom, 0.0); 
@@ -1921,8 +1936,8 @@ end
                 [reactantViscosity, reactantViscosityError] = calculateViscosity(reactant, Troom, 0.0);  
                 totalViscosity = 1.0/totalFlow * (reactantFlow*dilution*reactantViscosity + reactantFlow*(1.0-dilution)*carrierGasViscosity + carrierGasFlow*carrierGasViscosity);      
             end  
-            p2 = sqrt(p1.^2 - (16*totalFlow*L1*totalViscosity*R*Troom)/(reactorRadius.^4 * pi)); 
-      
+            p2 = sqrt(p1.^2 - (16*totalFlow*L1*totalViscosity*R*Troom)/(reactorRadius.^4 * pi));
+            
             [carrierGasViscosity, carrierGasViscosityError] = calculateViscosity(carrierGas, T2, 0.0);
             if(strcmp(reactant, 'Other') == 1 || dp == 0) 
                 totalViscosity = carrierGasViscosity;
@@ -1931,6 +1946,7 @@ end
                 totalViscosity = 1.0/totalFlow * (reactantFlow*dilution*reactantViscosity + reactantFlow*(1.0-dilution)*carrierGasViscosity + carrierGasFlow*carrierGasViscosity);
             end 
             p3 = sqrt(p2.^2 - (16*totalFlow*L2*totalViscosity*R*T2)/(reactorRadius.^4 * pi));
+            
             oldph = pinhole; 
             pinhole = pinholeFunction(p3/133.3223684211, T2);
             if abs(pinhole-oldph) < 1e-10
