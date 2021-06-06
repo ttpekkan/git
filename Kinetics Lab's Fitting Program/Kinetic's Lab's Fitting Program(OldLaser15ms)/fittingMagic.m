@@ -14,6 +14,9 @@ function fittingGUI
    %f is the "foundation" for the GUI 
   
    f = figure; 
+   f.GraphicsSmoothing = 'off';
+   gcf = f;
+   set(gcf, 'renderermode' , 'manual' , 'renderer' , 'painters')
    set(f, 'NumberTitle', 'off'); 
    set(f, 'Name', 'Fitting Program'); 
    set(f, 'Units', 'Normalized'); 
@@ -1222,7 +1225,9 @@ function fittingGUI
         ySF = 1.0 / (str2double(get(edityMax, 'String')) - str2double(get(edityMin, 'String')));
         xSF = 1.0 / (str2double(get(editxMax, 'String')) - str2double(get(editxMin, 'String')));
         c = sqrt(2.0); 
+        set(gcf, 'renderermode' , 'manual' , 'renderer' , 'opengl')
         [x, y] = ginput(1); 
+        set(gcf, 'renderermode' , 'manual' , 'renderer' , 'painters')
         xval = 0; 
         yval = 0; 
         
@@ -1253,6 +1258,7 @@ function fittingGUI
         
            %Initially we delete everything in the graph and create everything anew. 
            createAxes(theAxes); 
+           set(groot,'DefaultFigureGraphicsSmoothing','off');
            minLine = line;
            maxLine = line;
            minBG = line;

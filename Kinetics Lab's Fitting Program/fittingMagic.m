@@ -14,6 +14,9 @@ function fittingGUI
    %f is the "foundation" for the GUI 
   
    f = figure; 
+   f.GraphicsSmoothing = 'off';
+   gcf = f;
+   set(gcf, 'renderermode' , 'manual' , 'renderer' , 'painters')
    set(f, 'NumberTitle', 'off'); 
    set(f, 'Name', 'Fitting Program'); 
    set(f, 'Units', 'Normalized'); 
@@ -853,9 +856,9 @@ function fittingGUI
             initParams(3) = 30; 
             initParams(4) = 150; 
         elseif(selectedFunction == 5 || selectedFunction == 6)
-            initParams(2) = 2*initParams(2);
-            initParams(4) = 0.7*initParams(2); 
-            initParams(5) = 110;
+            initParams(2) = 0.7*initParams(2);
+            initParams(4) = 0.3*initParams(2); 
+            initParams(5) = 50;
         elseif(selectedFunction == 7)
             initParams(2) = 2*initParams(2);
             initParams(3) = 70;
@@ -1218,7 +1221,9 @@ function fittingGUI
         ySF = 1.0 / (str2double(get(edityMax, 'String')) - str2double(get(edityMin, 'String')));
         xSF = 1.0 / (str2double(get(editxMax, 'String')) - str2double(get(editxMin, 'String')));
         c = sqrt(2.0); 
+        set(gcf, 'renderermode' , 'manual' , 'renderer' , 'opengl')
         [x, y] = ginput(1); 
+        set(gcf, 'renderermode' , 'manual' , 'renderer' , 'painters')
         xval = 0; 
         yval = 0; 
         
@@ -1947,7 +1952,7 @@ end
             end 
             p3 = sqrt(p2.^2 - (16*totalFlow*L2*totalViscosity*R*T2)/(reactorRadius.^4 * pi));
             
-            oldph = pinhole; 
+            oldph = pinhole;
             pinhole = pinholeFunction(p3/133.3223684211, T2);
             if abs(pinhole-oldph) < 1e-10
                 break
