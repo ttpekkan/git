@@ -1,0 +1,156 @@
+#The n = 4 case 
+function MCFunction4(E::Float64, J::Float64, ν::Float64, η::Float64, θ::Float64, rc::Float64, μ::Float64, I::SizedMatrix{3,2,Float64}, B::SizedMatrix{3,3,Float64})
+    IDiatom = I[3, 1]
+    rcm = get_rcm(θ, rc)                        #Reaction coordinate is user-defined
+    Iex = μ * rcm^2
+
+    B[1, 1] = IDiatom * cos(θ)^2 + Iex
+    B[2, 1] = 0.0
+    B[3, 1] = IDiatom * cos(θ) * sin(θ)
+    B[1, 2] = B[2, 1]
+    B[2, 2] = IDiatom + Iex
+    B[3, 2] = 0.0
+    B[1, 3] = B[3, 1]
+    B[2, 3] = B[3, 2]
+    B[3, 3] = IDiatom * sin(θ)^2
+
+    Ia, Ib, Ic = eigvals(B)
+    detA = sin(θ)^2 * Iex^2 * IDiatom^2
+    ϵ = E - Erot(J, Ia, Ib, Ic, ν, η) - Vtr(θ, rcm) #The potential is user-defined. Modify the number of arguments based on the arugments the V function takes. 
+    if Heaviside(ϵ) == 0
+        return 0.0
+    else
+        return (detA / det(B))^0.5 * ϵ^0.5
+    end
+end
+
+#The n = 5 case 
+function MCFunction5(E::Float64, J::Float64, ν::Float64, η::Float64, θ1::Float64, ϕ1::Float64, rc::Float64, μ::Float64, I::SizedMatrix{3,2,Float64}, B::SizedMatrix{3,3,Float64})
+    I1a = I[1, 1]
+    I1b = I[2, 1]
+    I1c = I[3, 1]
+    rcm = get_rcm(θ1, rc)                       #Reaction coordinate is user-defined
+    Iex = μ * rcm^2
+
+    ΔC1 = (I1c - I1b) * cos(θ1) * cos(ϕ1) * sin(ϕ1)
+    ΔS1 = (I1c - I1b) * sin(θ1) * cos(ϕ1) * sin(ϕ1)
+
+    B[1, 1] = (I1c * cos(ϕ1)^2 + I1b * sin(ϕ1)^2) * cos(θ1)^2 + I1a * sin(θ1)^2 + Iex
+    B[2, 1] = ΔC1
+    B[3, 1] = (I1c * cos(ϕ1)^2 + I1b * sin(ϕ1)^2 - I1a) * sin(θ1) * cos(θ1)
+    B[1, 2] = B[2, 1]
+    B[2, 2] = I1c * sin(ϕ1)^2 + I1b * cos(ϕ1)^2 + Iex
+    B[3, 2] = ΔS1
+    B[1, 3] = B[3, 1]
+    B[2, 3] = B[3, 2]
+    B[3, 3] = (I1c * cos(ϕ1)^2 + I1b * sin(ϕ1)^2) * sin(θ1)^2 + I1a * cos(θ1)^2
+
+    Ia, Ib, Ic = eigvals(B)
+    detA = sin(θ1)^2 * Iex^2 * I1a * I1b * I1c
+    ϵ = E - Erot(J, Ia, Ib, Ic, ν, η) - Vtr(θ1, rcm) #The potential is user-defined. Modify the number of arguments based on the arugments the V function takes. 
+    if Heaviside(ϵ) == 0
+        return 0.0
+    else
+        return (detA / det(B))^0.5 * ϵ
+    end
+end
+
+#The n = 6 case 
+function MCFunction6(E::Float64, J::Float64, ν::Float64, η::Float64, θ1::Float64, θ2::Float64, χ::Float64, rc::Float64, μ::Float64, I::SizedMatrix{3,2,Float64}, B::SizedMatrix{3,3,Float64})
+    I1 = I[1, 1]
+    I2 = I[1, 2]
+    rcm = get_rcm(θ1, rc)                       #Reaction coordinate is user-defined
+    Iex = μ * rcm^2
+
+    B[1, 1] = I2 * sin(χ)^2 + I2 * cos(χ)^2 * cos(θ2)^2 + I1 * cos(θ1)^2 + Iex
+    B[2, 1] = -I2 * sin(χ) * cos(χ) * sin(θ2)^2
+    B[3, 1] = I1 * sin(θ1) * cos(θ1) + I2 * sin(θ2) * cos(θ2) * cos(χ)
+    B[1, 2] = B[2, 1]
+    B[2, 2] = I1 + I2 * cos(χ)^2 * sin(θ2)^2 + I2 * cos(θ2)^2 + Iex
+    B[3, 2] = I2 * sin(χ) * sin(θ2) * cos(θ2)
+    B[1, 3] = B[3, 1]
+    B[2, 3] = B[3, 2]
+    B[3, 3] = I1 * sin(θ1)^2 + I2 * sin(θ2)^2
+
+    Ia, Ib, Ic = eigvals(B)
+    detA = sin(θ1)^2 * sin(θ2)^2 * Iex^2 * I1^2 * I2^2
+    ϵ = E - Erot(J, Ia, Ib, Ic, ν, η) - Vtr(θ1, rcm) #The potential is user-defined. Modify the number of arguments based on the arugments the V function takes. 
+    if Heaviside(ϵ) == 0
+        return 0.0
+    else
+        return (detA / det(B))^0.5 * ϵ^1.5
+    end
+end
+
+#The n = 7 case 
+function MCFunction7(E::Float64, J::Float64, ν::Float64, η::Float64, θ1::Float64, ϕ1::Float64, θ2::Float64, χ::Float64, rc::Float64, μ::Float64, I::SizedMatrix{3,2,Float64}, B::SizedMatrix{3,3,Float64})
+    I1a = I[1, 1]
+    I1b = I[2, 1]
+    I1c = I[3, 1]
+    I2 = I[1, 2]
+    rcm = get_rcm(θ1, rc)                       #Reaction coordinate is user-defined 
+    Iex = μ * rcm^2
+
+    Σ = I1b * cos(ϕ1)^2 + I1c * sin(ϕ1)^2
+    ΔC1 = (I1c - I1b) * cos(θ1) * cos(ϕ1) * sin(ϕ1)
+    ΔS1 = (I1c - I1b) * sin(θ1) * cos(ϕ1) * sin(ϕ1)
+
+    B[1, 1] = (I1b + I1c - Σ) * cos(θ1)^2 + I1a * sin(θ1)^2 + I2 * cos(χ)^2 * cos(θ2)^2 + I2 * sin(χ)^2 + Iex
+    B[2, 1] = ΔC1 - I2 * cos(χ) * sin(χ) * cos(θ2)^2
+    B[3, 1] = (I1b + I1c - Σ - I1a) * cos(θ1) * sin(θ1) + I2 * sin(θ2) * cos(θ2) * cos(χ)
+    B[1, 2] = B[2, 1]
+    B[2, 2] = Σ + I2 * cos(χ)^2 * sin(θ2)^2 + I2 * cos(θ2)^2 + Iex
+    B[3, 2] = ΔS1 + I2 * cos(θ2) * sin(θ2) * sin(χ)
+    B[1, 3] = B[3, 1]
+    B[2, 3] = B[3, 2]
+    B[3, 3] = (I1b + I1c - Σ) * sin(θ1)^2 + I1a * cos(θ1)^2 - I2 * sin(θ2)^2
+
+    Ia, Ib, Ic = eigvals(B)
+    detA = sin(θ1)^2 * sin(θ2)^2 * Iex^2 * I1a * I1b * I1c * I2^2
+    ϵ = E - Erot(J, Ia, Ib, Ic, ν, η) - Vtr(θ1, rcm) #The potential is user-defined. Modify the number of arguments based on the arugments the V function takes. 
+    if Heaviside(ϵ) == 0
+        return 0.0
+    else
+        return (detA / det(B))^0.5 * ϵ^2.0
+    end
+end
+
+#The n = 8 case 
+function MCFunction8(E::Float64, J::Float64, ν::Float64, η::Float64, θ1::Float64, ϕ1::Float64, θ2::Float64, ϕ2::Float64, χ::Float64, rc::Float64, μ::Float64, I::SizedMatrix{3,2,Float64}, B::SizedMatrix{3,3,Float64})
+    I1a = I[1, 1]
+    I1b = I[2, 1]
+    I1c = I[3, 1]
+    I2a = I[1, 2]
+    I2b = I[2, 2]
+    I2c = I[3, 2]
+    rcm = get_rcm2(θ1, ϕ1, θ2, ϕ2, χ, rc)                       #Reaction coordinate is user-defined 
+    Iex = μ * rcm^2
+
+    Σ1Plus = I1b * cos(ϕ1)^2 + I1c * sin(ϕ1)^2
+    Σ1Minus = I1b * sin(ϕ1)^2 + I1c * cos(ϕ1)^2
+    Σ2Plus = I2b * cos(ϕ2)^2 + I2c * sin(ϕ2)^2
+    Σ2Minus = I2b * sin(ϕ2)^2 + I2c * cos(ϕ2)^2
+    ΔC1 = (I1c - I1b) * cos(θ1) * cos(ϕ1) * sin(ϕ1)
+    ΔS1 = (I1c - I1b) * sin(θ1) * cos(ϕ1) * sin(ϕ1)
+    ΔC2 = (I2c - I2b) * cos(θ2) * cos(ϕ2) * sin(ϕ2)
+    ΔS2 = (I2c - I2b) * sin(θ2) * cos(ϕ2) * sin(ϕ2)
+
+    B[1, 1] = I1a * sin(θ1)^2 + Σ1Minus * cos(θ1)^2 + (I2a * sin(θ2)^2 + Σ2Minus * cos(θ2)^2) - 2ΔC2 * cos(χ) * sin(χ) + Σ2Plus * sin(χ)^2 + Iex
+    B[2, 1] = ΔC1 + ΔC2 * (2 * cos(χ)^2 - 1.0) + (Σ2Minus * cos(θ2)^2 - Σ2Plus + I2a * sin(θ2)^2) * sin(χ) * cos(χ)
+    B[3, 1] = (Σ1Minus - I1a) * cos(θ1) * sin(θ1) - ΔS2 * sin(χ) + (Σ2Minus - I2a) * cos(θ2) * sin(θ2) * cos(χ)
+    B[1, 2] = B[2, 1]
+    B[2, 2] = Σ1Plus + Σ2Plus * cos(χ)^2 + I2a * sin(θ2)^2 * sin(χ)^2 + Σ2Minus * cos(θ2)^2 * sin(χ)^2 + 2ΔC2 * cos(χ) * sin(χ) + Iex
+    B[3, 2] = ΔS1 + ΔS2 * cos(χ) + (Σ2Minus - I2a) * cos(θ2) * sin(θ2) * sin(χ)
+    B[1, 3] = B[3, 1]
+    B[2, 3] = B[3, 2]
+    B[3, 3] = Σ1Minus * sin(θ1)^2 + I1a * cos(θ1)^2 + Σ2Minus * sin(θ2)^2 + I2a * cos(θ2)^2
+
+    Ia, Ib, Ic = eigvals(B)
+    detA = sin(θ1)^2 * sin(θ2)^2 * Iex^2 * I1a * I1b * I1c * I2a * I2b * I2c
+    ϵ = E - Erot(J, Ia, Ib, Ic, ν, η) - Vtr(θ1, rcm) #The potential is user-defined. Modify the number of arguments based on the arugments the V function takes. 
+    if Heaviside(ϵ) == 0
+        return 0.0
+    else
+        return (detA / det(B))^0.5 * ϵ^2.5
+    end
+end
